@@ -1,10 +1,9 @@
 <?php
 require "vendor/autoload.php";
 
-$app = new \Slim\App();
+$app = new \Slim\Slim();
 
-$app->get("/",function($request, $response, $args){
-
+$app->get("/",function(){
 
 });
 
