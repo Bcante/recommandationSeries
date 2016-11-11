@@ -1,0 +1,28 @@
+<section class="connexion">
+    <div>
+        <md-card class="md-primary">
+            <md-card-title>
+                <md-card-title-text>
+                    Connexion
+                </md-card-title-text>
+                <md-card-content>
+                    <form ng-submit="connexion()">
+                        <md-input-container class="md-block">
+                            <label>Nom d'utilisateur</label>
+                            <input ng-model="username" type="text">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Mot de passe</label>
+                            <input ng-model="password" type="password">
+                        </md-input-container>
+                        <md-card-actions>
+                            <md-button class="md-primary" ng-click="toConnect()">
+                                Se connecter
+                            </md-button>
+                        </md-card-actions>
+                    </form>
+                </md-card-content>
+            </md-card-title>
+        </md-card>
+    </div>
+</section>
