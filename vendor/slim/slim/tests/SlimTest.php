@@ -1643,8 +1643,8 @@ class SlimTest extends PHPUnit_Framework_TestCase
      *
      * Pre-conditions:
      * Slim app is extended by Derived class and instantiated;
-     * Derived class overrides the 'getDefaultSettings' function and adds an extra default config value
-     * Test that the new config value exists
+     * Derived class overrides the 'getDefaultSettings' function and adds an extra default conf value
+     * Test that the new conf value exists
      *
      * Post-conditions:
      * Config value exists and is equal to expected value

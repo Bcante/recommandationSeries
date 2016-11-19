@@ -1,8 +1,3 @@
 .idea/
 .gitignore
-src/conf/db.ini
 vendor/
-
-.idea/ c'est ma config PHPStorm
-/src/conf/db.ini c'était pour la config de la bdd locale (mais si on prend en local pas de soucis à avoir)
-vendor/ c'est ce qu'il faut impérativement mettre, c'est la config perso de Slim

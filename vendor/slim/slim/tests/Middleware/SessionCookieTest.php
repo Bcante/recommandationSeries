@@ -83,7 +83,7 @@ class SessionCookieTest extends PHPUnit_Framework_TestCase
     //     $app = new \Slim\Slim();
     //     // The cookie value in the test is encrypted, so cookies.encrypt must
     //     // be set to true
-    //     $app->config('cookies.encrypt', true);
+    //     $app->conf('cookies.encrypt', true);
     //     $app->get('/foo', function () {
     //         echo "Success";
     //     });

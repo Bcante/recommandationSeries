@@ -1,5 +1,8 @@
 <?php
+
 require "vendor/autoload.php";
+
+conf\DbConf::init();
 
 $app = new \Slim\Slim(
     array(
