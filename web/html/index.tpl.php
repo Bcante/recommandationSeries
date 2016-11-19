@@ -48,6 +48,11 @@
                     Se connecter
                 </md-button>
             </md-card-actions>
+            <md-card-actions>
+                <md-button class="md-primary" ng-click="toRegistrate()">
+                    S'inscrire
+                </md-button>
+            </md-card-actions>
         </md-card>
         </md-content>
     </div>

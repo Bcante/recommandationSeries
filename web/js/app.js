@@ -11,15 +11,25 @@ var app = angular.module('MyApp',[
 ]);
 app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdThemingProvider){
     $routeProvider
-
         .when('/connexion',{
             templateUrl: 'web/html/connexion.html',
             controller : 'connexionCtrl'
         })
         .otherwise('/',{
-        templateUrl: 'web/html/index.tpl.php',
-        controller : 'indexCtrl'
-    });
-    $mdThemingProvider.theme('default').primaryPalette('green')
+            templateUrl: 'web/html/index.tpl.php',
+            controller : 'indexCtrl'
+        });
+
+    $routeProvider
+        .when('/registration', {
+            templateUrl: 'web/html/registration.html',
+            controller : 'registrationCtrl'
+        })
+        .otherwise('/', {
+            templateUrl : 'web/html/index.tpl.php',
+            controller : 'indexCtrl'
+        });
+
+    $mdThemingProvider.theme('default').primaryPalette('blue')
         .accentPalette('red').dark();
 }]);

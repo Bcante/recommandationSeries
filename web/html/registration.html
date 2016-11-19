@@ -1,0 +1,36 @@
+<section class="registration">
+    <div>
+        <md-card class="md-primary">
+            <md-card-title>
+                <md-card-title-text>
+                    Inscription
+                </md-card-title-text>
+                <md-card-content>
+                    <form ng-submit="registration()">
+                        <md-input-container class="md-block">
+                            <label>Nom d'utilisateur</label>
+                            <input ng-model="username" type="text">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input ng-model="email" type="text">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Mot de passe</label>
+                            <input ng-model="password" type="password">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Confirmation mot de passe</label>
+                            <input ng-model="confirm_password" type="password">
+                        </md-input-container>
+                        <md-card-actions>
+                            <md-button class="md-primary" ng-click="toRegistrate()">
+                                S'inscrire
+                            </md-button>
+                        </md-card-actions>
+                    </form>
+                </md-card-content>
+            </md-card-title>
+        </md-card>
+    </div>
+</section>
