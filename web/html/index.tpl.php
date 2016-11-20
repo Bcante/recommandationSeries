@@ -1,29 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: benja
- * Date: 11/11/2016
- * Time: 15:49
- */
+
 ?>
 
 <!DOCTYPE html>
 <html lang="fr" ng-app="MyApp">
 <head>
     <!-- CSS -->
-    <link rel="stylesheet"
-          href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="web/css/angular-material.min.css">
 
     <!-- Angular Material requires Angular.js Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
-    <script src="https://code.angularjs.org/1.5.5/angular-route.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+    <script src="web/js/angular/angular.js"></script>
+    <script src="web/js/angular/angular-route.js"></script>
+    <script src="web/js/angular/angular-animate.min.js"></script>
+    <script src="web/js/angular/angular-aria.min.js"></script>
+    <script src="web/js/angular/angular-messages.min.js"></script>
+    <script src="web/js/angular/angular-sanitize.js"></script>
 
     <!-- Angular Material Library -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="web/js/angular/angular-material.min.js"></script>
 
     <!-- Custom Script -->
     <script src="web/js/app.js"></script>
@@ -31,29 +25,23 @@
     <script src="web/js/Controller/indexCtrl.js"></script>
 
     <script src="web/js/Controller/connexionCtrl.js"></script>
-
-
 </head>
 <body ng-controller="indexCtrl">
     <div>
-        <md-content class="md-padding" layout-xs="column" layout="row">
-        <md-card class="md-primary">
-            <md-card-title>
-                <md-card-titile-text>
-                    {{hello}}
-                </md-card-titile-text>
-            </md-card-title>
-            <md-card-actions>
-                <md-button class="md-primary" ng-click="toConnect()">
-                    Se connecter
-                </md-button>
-            </md-card-actions>
-            <md-card-actions>
-                <md-button class="md-primary" ng-click="toRegistrate()">
-                    S'inscrire
-                </md-button>
-            </md-card-actions>
-        </md-card>
+        <md-content class="md-padding">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" class="nav-bar">
+                <md-nav-item md-nav-click="goto('pageAccueil')" name="pageAccueil">Accueil</md-nav-item>
+                <form ng-submit="$event.preventDefault()" name="searchForm">
+                    <div layout-gt-sm="row">
+                        <md-input-container flex>
+                            <label>Rechercher une serie</label>
+                            <input type="text"/>
+                        </md-input-container>
+                    </div>
+                </form>
+                <md-nav-item ng-click="toRegistrate()" md-nav-click="goto('pageInscription')" name="pageConnexion">Inscription</md-nav-item>
+                <md-nav-item ng-click="toConnect()" md-nav-click="goto('pageConnexion')" name="pageInscription">Connexion</md-nav-item>
+            </md-nav-bar>
         </md-content>
     </div>
 
