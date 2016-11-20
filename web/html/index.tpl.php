@@ -7,7 +7,7 @@
 <head>
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
-
+    <link rel="stylesheet" href="web/css/style.css">
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="web/js/angular/angular.js"></script>
     <script src="web/js/angular/angular-route.js"></script>
@@ -28,23 +28,28 @@
 </head>
 <body ng-controller="indexCtrl">
     <div>
-        <md-content class="md-padding">
-            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" class="nav-bar">
-                <md-nav-item md-nav-click="goto('pageAccueil')" name="pageAccueil">Accueil</md-nav-item>
-                <form ng-submit="$event.preventDefault()" name="searchForm">
-                    <div layout-gt-sm="row">
-                        <md-input-container flex>
-                            <label>Rechercher une serie</label>
-                            <input type="text"/>
-                        </md-input-container>
-                    </div>
-                </form>
-                <md-nav-item ng-click="toRegistrate()" md-nav-click="goto('pageInscription')" name="pageConnexion">Inscription</md-nav-item>
-                <md-nav-item ng-click="toConnect()" md-nav-click="goto('pageConnexion')" name="pageInscription">Connexion</md-nav-item>
-            </md-nav-bar>
-        </md-content>
+       <md-content>
+           <md-toolbar>
+               <div class="md-toolbar-tools">
+                   <md-button aria-label="Accueil">
+                       Accueil
+                   </md-button>
+                   <h2>
+                       <md-input-container>
+                           <label>Rechercher une serie</label>
+                           <input type="text"/>
+                       </md-input-container>
+                   </h2>
+                   <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
+                       Connexion
+                   </md-button>
+                   <md-button class="md-raised" aria-label="Inscription" ng-click="toRegistrate()">
+                       Inscription
+                   </md-button>
+               </div>
+           </md-toolbar>
+       </md-content>
     </div>
-
     <div class="view" ng-view flex>
     </div>
 </body>
