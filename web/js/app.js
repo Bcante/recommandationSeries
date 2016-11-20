@@ -1,6 +1,3 @@
-/**
- * Created by benja on 11/11/2016.
- */
 var app = angular.module('MyApp',[
     'ngMaterial',
     'ngSanitize',
@@ -30,6 +27,16 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             controller : 'indexCtrl'
         });
 
+    $routeProvider
+        .when('/home', {
+            templateUrl: 'web/html/home.html',
+            controller : 'homeCtrl'
+        })
+        .otherwise('/', {
+            templateUrl : 'web/html/home',
+            controller : 'indexCtrl'
+        });
+
     $mdThemingProvider.theme('default').primaryPalette('blue')
-        .accentPalette('red').dark();
+        .accentPalette('blue').dark();
 }]);
