@@ -1,6 +1,3 @@
-/**
- * Created by benja on 11/11/2016.
- */
 var app = angular.module('routeAppControllers',[]);
 app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
     $scope.hello = "Hello World";
@@ -14,4 +11,9 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.toRegistrate = function () {
         $location.path('/registration');
     };
+
+    $scope.home = false;
+    $scope.toHome = function () {
+        $location.path('/home');
+    }
 }]);
