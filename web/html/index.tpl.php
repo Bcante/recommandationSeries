@@ -23,8 +23,8 @@
     <script src="web/js/app.js"></script>
 
     <script src="web/js/Controller/indexCtrl.js"></script>
-
     <script src="web/js/Controller/connexionCtrl.js"></script>
+    <script src="web/js/Controller/registrationCtrl.js"></script>
 </head>
 <body ng-controller="indexCtrl">
     <div>
