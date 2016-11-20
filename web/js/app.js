@@ -12,28 +12,16 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             templateUrl: 'web/html/connexion.html',
             controller : 'connexionCtrl'
         })
-        .otherwise('/',{
-            templateUrl: 'web/html/index.tpl.php',
-            controller : 'indexCtrl'
-        });
-
-    $routeProvider
         .when('/registration', {
             templateUrl: 'web/html/registration.html',
             controller : 'registrationCtrl'
         })
-        .otherwise('/', {
-            templateUrl : 'web/html/index.tpl.php',
-            controller : 'indexCtrl'
-        });
-
-    $routeProvider
         .when('/home', {
             templateUrl: 'web/html/home.html',
             controller : 'homeCtrl'
         })
         .otherwise('/', {
-            templateUrl : 'web/html/home',
+            templateUrl : 'web/html/index.tpl.php',
             controller : 'indexCtrl'
         });
 
