@@ -30,17 +30,15 @@
 <body ng-controller="indexCtrl">
     <div>
        <md-content>
-           <md-toolbar>
-               <div class="md-toolbar-tools">
+           <md-toolbar style="height: 80px">
+               <div class="md-toolbar-tools" layout="row">
                    <md-button aria-label="Accueil">
                        Accueil
                    </md-button>
-                   <h2>
-                       <md-input-container>
-                           <label>Rechercher une serie</label>
-                           <input type="text"/>
-                       </md-input-container>
-                   </h2>
+                   <md-input-container style="margin-top: 40px">
+                       <label>Rechercher une serie</label>
+                       <input type="text"/>
+                   </md-input-container>
                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
                        Connexion
                    </md-button>
