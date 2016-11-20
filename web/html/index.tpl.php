@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="MyApp">
 <head>
+
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
     <link rel="stylesheet" href="web/css/style.css">
