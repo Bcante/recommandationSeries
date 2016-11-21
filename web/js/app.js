@@ -20,6 +20,10 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             templateUrl: 'web/html/home.html',
             controller : 'homeCtrl'
         })
+        .when('/', {
+            templateUrl: 'web/html/home.html',
+            controller : 'homeCtrl'
+        })
         .otherwise('/', {
             templateUrl : 'web/html/index.tpl.php',
             controller : 'indexCtrl'

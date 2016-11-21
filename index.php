@@ -10,8 +10,12 @@ $app = new \Slim\Slim(
     )
 );
 
-$app->get("/",function() use ($app){
+$app->get('/',function() use ($app){
     $app->render('index.tpl.php');
+});
+
+$app->get('/v1/home', function() {
+    echo 'test ok !';
 });
 
 $app->run();
