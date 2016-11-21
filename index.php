@@ -15,7 +15,8 @@ $app->get('/',function() use ($app){
 });
 
 $app->get('/home/genres', function() {
-    // getGenreSeries
+    $contrInvite = new \recommandationSeries\control\GuestController();
+    $contrInvite->getGenresSeries();
 });
 
 $app->get('/home/informationsSeries', function() {

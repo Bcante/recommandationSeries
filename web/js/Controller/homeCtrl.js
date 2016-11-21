@@ -9,13 +9,13 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     .success(function(data, status, headers, config) {
         console.log(data);
 
-        $http({
+        /*$http({
             method: 'GET',
             url: 'home/informationsSeries'
         })
         .success(function(data, status, headers, config) {
             console.log(data);
-        })
+        })*/
     });
 
 }]);

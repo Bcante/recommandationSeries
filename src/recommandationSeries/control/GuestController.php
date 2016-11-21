@@ -1,5 +1,8 @@
 <?php
+
 namespace recommandationSeries\control;
+
+use recommandationSeries\model\Genres;
 
 class GuestController extends AbstractController {
 	public function __construct() {
@@ -7,12 +10,12 @@ class GuestController extends AbstractController {
 	}
 
 	public function getGenresSeries() {
-		$genres = Genres::select('name')->get();
-		$res = json_encode($genres);
+        $genres = Genres::select('name')->get();
+        $res = json_encode($genres);
 		echo $res;
 	}
 
-	public function getNamesImagesSeries() {}
+	// public function getNamesImagesSeries() {}
 
 }
 ?>

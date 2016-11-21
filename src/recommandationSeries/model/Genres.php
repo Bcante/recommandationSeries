@@ -1,12 +1,15 @@
 <?php
-namespace app\model;
-require('vendor/autoload.php');
 
+namespace recommandationSeries\model;
 
-class Genres extends \illuminate\database\Illuminate\Database\Eloquent\Model{
+use Illuminate\Database\Eloquent\Model;
+
+class Genres extends Model {
+
 		protected $table='genres';
 		protected $primaryKey='id';
 		public $timestamps=false;
 
 }
+
 ?>
