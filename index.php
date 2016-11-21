@@ -2,6 +2,8 @@
 
 require "vendor/autoload.php";
 
+use \recommandationSeries\control\GuestController;
+
 conf\DbConf::init();
 
 $app = new \Slim\Slim(
@@ -15,12 +17,12 @@ $app->get('/',function() use ($app){
 });
 
 $app->get('/home/genres', function() {
-    $guestContr = new \recommandationSeries\control\GuestController();
+    $guestContr = new GuestController();
     $guestContr->getGenresSeries();
 });
 
 /*$app->get('/home/informationsSeries', function() {
-    $guestContr = new \recommandationSeries\control\GuestController();
+    $guestContr = new GuestController();
     $guestContr->getNamesImagesSeries();
 });*/
 
