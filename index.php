@@ -15,13 +15,14 @@ $app->get('/',function() use ($app){
 });
 
 $app->get('/home/genres', function() {
-    $contrInvite = new \recommandationSeries\control\GuestController();
-    $contrInvite->getGenresSeries();
+    $guestContr = new \recommandationSeries\control\GuestController();
+    $guestContr->getGenresSeries();
 });
 
-$app->get('/home/informationsSeries', function() {
-    // getNamesImagesSeries
-});
+/*$app->get('/home/informationsSeries', function() {
+    $guestContr = new \recommandationSeries\control\GuestController();
+    $guestContr->getNamesImagesSeries();
+});*/
 
 $app->run();
 

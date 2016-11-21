@@ -7,7 +7,12 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         url : 'home/genres'
     })
     .success(function(data, status, headers, config) {
-        console.log(data);
+        var arrayGenres = [];
+        for(var i in data){
+            arrayGenres.push(data[i].name);
+        }
+        // console.log(arrayGenres);
+        $scope.arrayGenres = arrayGenres;
 
         /*$http({
             method: 'GET',
