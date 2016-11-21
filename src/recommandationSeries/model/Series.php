@@ -1,9 +1,12 @@
 <?php
+
 namespace app\model;
-require('vendor/autoload.php');
+
+use Illuminate\Database\Eloquent\Model;
 
 
-class Series extends \illuminate\database\Illuminate\Database\Eloquent\Model{
+class Series extends Model{
+
 		protected $table='series';
 		protected $primaryKey='id';
 		public $timestamps=false;
