@@ -6,7 +6,7 @@ conf\DbConf::init();
 
 $app = new \Slim\Slim(
     array(
-        'templates.path' => './web/html/'
+        'templates.path' => './src/recommandationSeries/vue'
     )
 );
 
