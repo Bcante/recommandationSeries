@@ -14,8 +14,12 @@ $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
 
-$app->get('/v1/home', function() {
-    echo 'test ok !';
+$app->get('/home/genres', function() {
+    // getGenreSeries
+});
+
+$app->get('/home/informationsSeries', function() {
+    // getNamesImagesSeries
 });
 
 $app->run();

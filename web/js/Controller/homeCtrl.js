@@ -4,10 +4,18 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
 
     $http({
         method: 'GET',
-        url : 'v1/home'
+        url : 'home/genres'
     })
     .success(function(data, status, headers, config) {
         console.log(data);
+
+        $http({
+            method: 'GET',
+            url: 'home/informationsSeries'
+        })
+        .success(function(data, status, headers, config) {
+            console.log(data);
+        })
     });
 
 }]);
