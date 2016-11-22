@@ -1,8 +1,8 @@
 <section class="home">
     <div class="tabsdemoDynamicHeight" ng-app="MyApp">
         <md-content>
-            <md-tabs md-border-bottom md-stretch-tabs="always">
-                <md-tab ng-repeat="genre in genresArray" label="{{ genre }}">
+            <md-tabs md-border-bottom>
+                <md-tab ng-repeat="genre in genresArray" label="{{genre}}" ng-click="yolo()">
                     <md-content class="md-padding">
                         <h1 class="md-display-2">{{ genre }}</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
