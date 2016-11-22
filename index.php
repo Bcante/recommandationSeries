@@ -18,12 +18,12 @@ $app->get('/',function() use ($app){
 
 $app->get('/home/genres', function() {
     $guestContr = new GuestController();
-    $guestContr->getGenresSeries();
+    echo $guestContr->getGenresSeries();
 });
 
 /*$app->get('/home/informationsSeries', function() {
     $guestContr = new GuestController();
-    $guestContr->getNamesImagesSeries();
+    echo $guestContr->getNamesImagesSeries();
 });*/
 
 $app->run();

@@ -2,10 +2,10 @@
     <div ng-cloak>
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab ng-repeat="genre in arrayGenres" label="{{ genre.name }}">
+                <md-tab ng-repeat="genre in arrayGenres" label="{{ genre }}">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">{{ genre.name }}</h1>
-                        <p>Tous les films avec comme genre : {{ genre.name }}.</p>
+                        <h1 class="md-display-2">{{ genre }}</h1>
+                        <p>Tous les films avec comme genre : {{ genre }}.</p>
                     </md-content>
                 </md-tab>
             </md-tabs>

@@ -7,15 +7,12 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         url : 'home/genres'
     })
     .success(function(data, status, headers, config) {
-        $scope.arrayGenres = data;
+        var array = [];
+        for(var i=0 in data) {
+            array.push(data[i].name);
+        }
 
-        /*$http({
-            method: 'GET',
-            url: 'home/informationsSeries'
-        })
-        .success(function(data, status, headers, config) {
-            console.log(data);
-        })*/
+        $scope.arrayGenres = array.sort();
     });
 
 }]);

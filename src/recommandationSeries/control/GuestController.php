@@ -12,14 +12,14 @@ class GuestController extends AbstractController {
 
 	public function getGenresSeries() {
         $genres = Genres::select('name')->get();
-        $res = json_encode($genres);
-        echo $res;
+        $genreJson = json_encode($genres);
+        return $genreJson;
 	}
 
 	/*public function getNamesImagesSeries() {
         $info = Series::select('name', 'backdrop_path')->get();
         $res = json_encode($info);
-        echo $res;
+        return $res;
     }*/
 
 }
