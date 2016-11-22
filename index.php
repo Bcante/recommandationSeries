@@ -22,6 +22,11 @@ $app->get('/home/genres', function() {
 	//echo $guestContr->testGetSeriesEtGenres();
 });
 
+$app->get('/home/allSeries', function() {
+    $guestContr = new GuestController();
+    echo $guestContr->getAllSeries();
+});
+
 /*$app->get('/home/informationsSeries', function() {
     $guestContr = new GuestController();
     echo $guestContr->getNamesImagesSeries();
