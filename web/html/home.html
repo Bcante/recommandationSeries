@@ -6,7 +6,6 @@
                     <md-content class="md-padding">
                         <h1 class="md-display-2">All Series</h1>
                         <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
-
                             <md-whiteframe ng-repeat="serie in allSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                                 <span>
                                     <img src="https://image.tmdb.org/t/p/w300{{ serie.backdrop_path }}"> <br />
@@ -19,7 +18,14 @@
                 <md-tab ng-repeat="genre in genresArray" label="{{genre}}" ng-click="displayInfoSerie(genre)">
                     <md-content class="md-padding">
                         <h1 class="md-display-2">{{ genre }}</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                        <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+                            <!--<md-whiteframe ng-repeat="infoSerie in infoSeriesGenres" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+                                <span>
+                                    <img src="https://image.tmdb.org/t/p/w300{{ infoSerie.backdrop_path }}"> <br />
+                                    {{ infoSerie.name }}
+                                </span>
+                            </md-whiteframe>-->
+                        </div>
                     </md-content>
                 </md-tab>
             </md-tabs>

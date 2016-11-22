@@ -20,6 +20,16 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
 
     $scope.displayInfoSerie = function (genre) {
         console.log(genre);
+        /*$http({
+            method: 'GET',
+            data: {
+                genre : genre
+            },
+            url: '/home/infoSeriesByGenre'
+        })
+        .success(function(data, status, headers, config) {
+            $scope.infoSeriesGenres = data;
+        });*/
     };
 
 

@@ -27,9 +27,9 @@ $app->get('/home/allSeries', function() {
     echo $guestContr->getAllSeries();
 });
 
-/*$app->get('/home/informationsSeries', function() {
+/*$app->get('/home/infoSeriesByGenre/:genre', function() {
     $guestContr = new GuestController();
-    echo $guestContr->getNamesImagesSeries();
+    echo $guestContr->getInfoByGenre();
 });*/
 
 $app->run();
