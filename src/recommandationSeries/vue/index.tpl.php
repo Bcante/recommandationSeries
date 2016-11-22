@@ -34,20 +34,20 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <md-button aria-label="Accueil" ng-click="toHome()">
-                        Accueil
+                        Home
                     </md-button>
                     <h2>
                         <md-input-container>
-                            <label>Rechercher une serie</label>
+                            <label>Find a serie</label>
 
                             <input type="text"/>
                         </md-input-container>
                     </h2>
                     <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
-                        Connexion
+                        Sign in
                     </md-button>
                     <md-button class="md-raised" aria-label="Inscription" ng-click="toRegistrate()">
-                        Inscription
+                        Sign up
                     </md-button>
                 </div>
             </md-toolbar>
