@@ -2,6 +2,7 @@ var app = angular.module('routeAppControllers');
 
 app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
 
+
     $http({
         method: 'GET',
         url : 'v1/home'
@@ -10,4 +11,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         console.log(data);
     });
 
+    $scope.yolo = function () {
+        console.log("yolo");
+    }
 }]);
