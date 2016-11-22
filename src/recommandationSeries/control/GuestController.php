@@ -17,13 +17,12 @@ class GuestController extends AbstractController {
         return $genreJson;
 	}
 
-	/**public function testGetSeriesEtGenres() {
-		$series = Series::all();
-		$genres = Genres::all();
-		$both = $series
-		$genreJson = json_encode($series);
-		return $genreJson;
-	}**/
+	public function testGetSeriesEtGenres() {
+		$series = Series::with('genres')->first();
+		
+		//$genreJson = json_encode($series);
+		return "$series";
+	}
 
 	/*public function getNamesImagesSeries() {
         $info = Series::select('name', 'backdrop_path')->get();
