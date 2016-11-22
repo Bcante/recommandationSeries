@@ -4,7 +4,6 @@ require "vendor/autoload.php";
 
 use \recommandationSeries\control\GuestController;
 
-conf\DbConf::init();
 
 $app = new \Slim\Slim(
     array(
