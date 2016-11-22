@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model;
+namespace recommandationSeries\model;
 
 use Illuminate\Database\Eloquent\Model;
 
