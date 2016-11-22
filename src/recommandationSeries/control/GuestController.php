@@ -25,7 +25,7 @@ class GuestController extends AbstractController {
 	}
 
     public function getAllSeries() {
-        $series = Series::select('name')->get();
+        $series = Series::select('name', 'backdrop_path')->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }

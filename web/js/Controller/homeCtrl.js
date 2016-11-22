@@ -14,7 +14,6 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
             url: 'home/allSeries'
         })
         .success(function(data, status, headers, config) {
-            // $scope.allSeries = arraySortByName(data);
             $scope.allSeries = data;
         });
     });
@@ -27,7 +26,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     // homeController functions
     function arraySortByName(data) {
         var array = [];
-        for(var i=0 in data) {
+        for(var i = 0 in data) {
             array.push(data[i].name);
         }
         return array.sort();
