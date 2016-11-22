@@ -2,7 +2,6 @@ var app = angular.module('routeAppControllers');
 
 app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
 
-
     $http({
         method: 'GET',
         url : 'home/genres'
@@ -13,7 +12,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
             array.push(data[i].name);
         }
 
-        $scope.arrayGenres = array.sort();
+        $scope.genresArray = array.sort();
     });
 
     $scope.yolo = function () {
