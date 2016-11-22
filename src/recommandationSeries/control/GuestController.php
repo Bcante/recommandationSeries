@@ -3,6 +3,7 @@
 namespace recommandationSeries\control;
 
 use recommandationSeries\model\Genres;
+use recommandationSeries\model\Series;
 
 class GuestController extends AbstractController {
 
@@ -15,6 +16,14 @@ class GuestController extends AbstractController {
         $genreJson = json_encode($genres);
         return $genreJson;
 	}
+
+	/**public function testGetSeriesEtGenres() {
+		$series = Series::all();
+		$genres = Genres::all();
+		$both = $series
+		$genreJson = json_encode($series);
+		return $genreJson;
+	}**/
 
 	/*public function getNamesImagesSeries() {
         $info = Series::select('name', 'backdrop_path')->get();

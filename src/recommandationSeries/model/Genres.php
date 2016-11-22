@@ -10,6 +10,10 @@ class Genres extends Model {
 		protected $primaryKey='id';
 		public $timestamps=false;
 
+ public function relationSeries() {
+        return $this->hasManyThrough('series', 'seriesgenres', 'series_id', 'genre_id');
+    }
+
 }
 
 ?>
