@@ -32,6 +32,11 @@ $app->get('/home/infoSeriesByGenre/:genre', function($genre) {
     echo $guestContr->getInfoByGenre($genre);
 });
 
+$app->get('/series/:serieId', function($genre) {
+    $guestContr = new GuestController();
+    echo $guestContr->getInfoSerie($genre);
+});
+
 $app->run();
 
 ?>

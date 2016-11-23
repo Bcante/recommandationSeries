@@ -26,7 +26,6 @@ class GuestController extends AbstractController {
 
     public function getAllSeries() {
 		$series = Series::orderBy('name', 'ASC')->get();
-        // $series = Series::select('name', 'poster_path')->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
@@ -37,9 +36,14 @@ class GuestController extends AbstractController {
 
         // select * from `series` inner join `seriesgenres` on `id` = `series_id` where `genre_id` = 16 order by `name` asc
         $series = Series::join('seriesgenres', 'id', '=', 'series_id')->orderBy('name', 'ASC')->where('genre_id', '=', $idGenre)->get();
-
         $seriesJson = json_encode($series);
         return $seriesJson;
+    }
+
+    public function getInfoSerie($serieId) {
+        $serie = Series::orderBy('name', 'ASC')->where('id', '=', $serieId)->get();
+        $serieJson = json_encode($serie);
+        return $serieJson;
     }
 
 }

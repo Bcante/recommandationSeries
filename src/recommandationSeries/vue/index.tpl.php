@@ -28,6 +28,7 @@
     <script src="web/js/Controller/connexionCtrl.js"></script>
     <script src="web/js/Controller/registrationCtrl.js"></script>
     <script src="web/js/Controller/homeCtrl.js"></script>
+    <script src="web/js/Controller/seriesCtrl.js"></script>
 </head>
 <body ng-controller="indexCtrl">
 <div class="index">

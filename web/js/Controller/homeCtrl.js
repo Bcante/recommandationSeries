@@ -18,8 +18,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         });
     });
 
-    $scope.displayInfoSerie = function (genre) {
-        console.log(genre.name);
+    $scope.displaySeriesByGenre = function (genre) {
         $http({
             method: 'GET',
             url: 'home/infoSeriesByGenre/'+genre.name
@@ -28,5 +27,10 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
             $scope.infoSeriesGenres = data;
         });
     };
+
+    $scope.displayASerie = function (serieId) {
+        console.log(serieId)
+        // il faut envoyer vers display(serieId) qui se trouve dans seriesCtrl
+    }
 
 }]);
