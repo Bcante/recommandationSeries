@@ -19,17 +19,14 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     });
 
     $scope.displayInfoSerie = function (genre) {
-        console.log(genre);
-        /*$http({
+        console.log(genre.name);
+        $http({
             method: 'GET',
-            data: {
-                genre : genre
-            },
-            url: '/home/infoSeriesByGenre'
+            url: 'home/infoSeriesByGenre/'+genre.name
         })
         .success(function(data, status, headers, config) {
             $scope.infoSeriesGenres = data;
-        });*/
+        });
     };
 
 }]);

@@ -10,9 +10,10 @@ class Series extends Model {
 	protected $primaryKey='id';
 	public $timestamps=false;
 
-    public function genres() {
-	    return $this->belongsToMany('\recommandationSeries\model\Genres', 'seriesgenres', 'series_id', 'genre_id');
-	}
+    /*public function relationGenres() {
+	    //return $this->belongsToMany('\recommandationSeries\model\Genres', 'seriesgenres', 'series_id', 'genre_id');
+		return $this->belongsTo('\recommandationSeries\model\Genres', 'seriesgenres', 'serie_id', 'genre_id');
+	}*/
 
 }
 ?>

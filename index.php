@@ -27,10 +27,10 @@ $app->get('/home/allSeries', function() {
     echo $guestContr->getAllSeries();
 });
 
-/*$app->get('/home/infoSeriesByGenre/:genre', function() {
+$app->get('/home/infoSeriesByGenre/:genre', function($genre) {
     $guestContr = new GuestController();
-    echo $guestContr->getInfoByGenre();
-});*/
+    echo $guestContr->getInfoByGenre($genre);
+});
 
 $app->run();
 
