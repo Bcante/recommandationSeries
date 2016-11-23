@@ -36,14 +36,11 @@
                     <md-button aria-label="Accueil" ng-click="toHome()">
                         Home
                     </md-button>
-                    <h2>
                         <md-input-container>
                             <label>Find a serie</label>
-
                             <input type="text"/>
                         </md-input-container>
-                    </h2>
-                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
+                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()" style="margin-left: 50%">
                         Sign in
                     </md-button>
                     <md-button class="md-raised" aria-label="Inscription" ng-click="toRegistrate()">
@@ -53,7 +50,17 @@
             </md-toolbar>
         </md-content>
     </div>
-
+    <div style="float: right; height:inherit;">
+        <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2" style="float: right; height: inherit">
+            <form>
+                <md-input-container>
+                    <label for="testInput">Test input</label>
+                    <input id="testInput" ng-model="data" md-autofocus type="text">
+                </md-input-container>
+            </form>
+            yolo
+        </md-sidenav>
+    </div>
     <div class="view" ng-view flex>
     </div>
 </body>
