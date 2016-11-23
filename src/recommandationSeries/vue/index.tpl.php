@@ -8,6 +8,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
+    <link rel="stylesheet" href="web/css/style.css">
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="web/js/angular/angular.js"></script>
@@ -29,6 +30,7 @@
     <script src="web/js/Controller/homeCtrl.js"></script>
 </head>
 <body ng-controller="indexCtrl">
+<div class="index">
     <div>
         <md-content>
             <md-toolbar>
@@ -36,10 +38,10 @@
                     <md-button aria-label="Accueil" ng-click="toHome()">
                         Home
                     </md-button>
-                        <md-input-container>
-                            <label>Find a serie</label>
-                            <input type="text"/>
-                        </md-input-container>
+                    <md-input-container>
+                        <label>Find a serie</label>
+                        <input type="text"/>
+                    </md-input-container>
                     <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()" style="margin-left: 50%">
                         Sign in
                     </md-button>
@@ -50,18 +52,21 @@
             </md-toolbar>
         </md-content>
     </div>
-    <div style="float: right; height:inherit;">
-        <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2" style="float: right; height: inherit">
-            <form>
-                <md-input-container>
-                    <label for="testInput">Test input</label>
-                    <input id="testInput" ng-model="data" md-autofocus type="text">
-                </md-input-container>
-            </form>
-            yolo
+    <div class="sidenav" layout="row" flex>
+        <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
+            <div class="menu">
+                <form>
+                    <md-input-container>
+                        <label for="testInput">Test input</label>
+                        <input id="testInput" ng-model="data" md-autofocus type="text">
+                    </md-input-container>
+                </form>
+                Séries les plus vues :
+            </div>
         </md-sidenav>
     </div>
-    <div class="view" ng-view flex>
+</div>
+    <div class="view" ng-view>
     </div>
 </body>
 </html>

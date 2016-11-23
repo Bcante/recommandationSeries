@@ -4,3 +4,23 @@ md-toolbar  {
     color: #70a23e;
 }
 
+body{
+    height: 100%;
+}
+
+.index{
+}
+.sidenav{
+    margin-left: 5%;
+    float: right;
+    border: solid 10px red;
+}
+.menu{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.view{
+    position: relative;
+    z-index: 1;
+}
