@@ -18,10 +18,10 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         });
     });
 
-    $scope.displaySeriesByGenre = function (genre) {
+    $scope.displaySeriesByGenre = function (genreId) {
         $http({
             method: 'GET',
-            url: 'home/infoSeriesByGenre/'+genre.name
+            url: 'home/infoSeriesByGenre/'+genreId
         })
         .success(function(data, status, headers, config) {
             $scope.infoSeriesGenres = data;

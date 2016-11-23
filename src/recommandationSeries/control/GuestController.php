@@ -30,12 +30,9 @@ class GuestController extends AbstractController {
         return $seriesJson;
     }
 
-    public function getInfoByGenre($genre) {
-        $idGenre = Genres::where( "name", $genre )->get () [0];
-        $idGenre = $idGenre->id;
-
+    public function getInfoByGenre($genreId) {
         // select * from `series` inner join `seriesgenres` on `id` = `series_id` where `genre_id` = 16 order by `name` asc
-        $series = Series::join('seriesgenres', 'id', '=', 'series_id')->orderBy('name', 'ASC')->where('genre_id', '=', $idGenre)->get();
+        $series = Series::join('seriesgenres', 'id', '=', 'series_id')->orderBy('name', 'ASC')->where('genre_id', '=', $genreId)->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
