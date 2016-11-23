@@ -7,7 +7,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         url : 'home/genres'
     })
     .success(function(data, status, headers, config) {
-        $scope.genresArray = arraySortByName(data);
+        $scope.genresArray = data;
 
         $http({
             method: 'GET',
@@ -31,15 +31,5 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
             $scope.infoSeriesGenres = data;
         });*/
     };
-
-
-    // homeController functions
-    function arraySortByName(data) {
-        var array = [];
-        for(var i = 0 in data) {
-            array.push(data[i].name);
-        }
-        return array.sort();
-    }
 
 }]);

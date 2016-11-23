@@ -12,7 +12,7 @@ class GuestController extends AbstractController {
 	}
 
 	public function getGenresSeries() {
-        $genres = Genres::select('name')->get();
+        $genres = Genres::orderBy('name', 'ASC')->get();
         $genreJson = json_encode($genres);
         return $genreJson;
 	}
@@ -25,7 +25,8 @@ class GuestController extends AbstractController {
 	}
 
     public function getAllSeries() {
-        $series = Series::select('name', 'poster_path')->get();
+		$series = Series::orderBy('name', 'ASC')->get();
+        // $series = Series::select('name', 'poster_path')->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
