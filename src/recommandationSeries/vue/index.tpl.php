@@ -58,7 +58,7 @@
             <div class="menu">
                 <form>
                     <md-input-container>
-                        <label for="testInput">Input Test</label>
+                        <label for="testInput"> Test Input</label>
                         <input id="testInput" ng-model="data" md-autofocus type="text">
                     </md-input-container>
                 </form>
