@@ -37,14 +37,14 @@ $app->get('/series/:serieId', function($serieId) {
     echo $guestContr->getInfoSerie($serieId);
 });
 
-$app->post('/inscription', function() {
+$app->post('/registration', function() {
     $guestContr = new GuestController();
-    $guestContr->inscription();
+    echo $guestContr->registration();
 });
 
 $app->post('/connexion', function() {
     $guestContr = new GuestController();
-    $guestContr->inscription();
+    $guestContr->authentication();
 });
 
 $app->run();
