@@ -40,8 +40,10 @@
                         Home
                     </md-button>
                     <md-input-container>
-                        <label>Find a serie</label>
-                        <input type="text"/>
+                        <form name="formSearch">
+                            <label>Find a serie</label>
+                            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
+                        </form>
                     </md-input-container>
                     <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()" style="margin-left: 50%">
                         Sign in
@@ -56,7 +58,7 @@
     <div class="sidenav" layout="row" flex>
         <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
             <div class="menu">
-                <h3>Séries les plus populaires</h3>
+                <h3>Series most popular</h3>
                 <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                     <span ng-click="displayASerie(popularSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />

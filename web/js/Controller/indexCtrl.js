@@ -24,4 +24,8 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     .success(function(data, status, headers, config) {
         $scope.popularSeries = data;
     });
+
+    $scope.inputSearchChange = function () {
+        console.log($scope.inputSearch);
+    }
 }]);
