@@ -32,7 +32,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
                 url: 'serieSearch/' + $scope.inputSearch
             })
             .success(function (data, status, headers, config) {
-                console.log(data);
+                $scope.serieSearch = data;
             });
         }
     }

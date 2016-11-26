@@ -44,6 +44,15 @@
                             <label>Find a serie</label>
                             <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
                         </form>
+                        <md-content style="z-index:100">
+                            <md-list flex>
+                                <md-list-item class="md-3-line" ng-repeat="serie in serieSearch" ng-click="null">
+                                    <div class="md-list-item-text" layout="column">
+                                        <span>{{ serie.name }}</span>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
                     </md-input-container>
                     <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()" style="margin-left: 50%">
                         Sign in
