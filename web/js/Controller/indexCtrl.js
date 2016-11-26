@@ -15,5 +15,13 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.home = false;
     $scope.toHome = function () {
         $location.path('/home');
-    }
+    };
+
+    $http({
+        method: 'GET',
+        url : 'home/popularSeries'
+    })
+    .success(function(data, status, headers, config) {
+        $scope.popularSeries = data;
+    });
 }]);

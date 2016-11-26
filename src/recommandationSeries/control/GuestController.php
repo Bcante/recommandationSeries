@@ -13,6 +13,12 @@ class GuestController extends AbstractController {
 		parent::__construct ();
 	}
 
+    public function getPopularSeries() {
+        $popularSeries = Series::orderBy('popularity', 'DESC')->take(5)->get();
+        $popularSeriesJson = json_encode($popularSeries);
+        return $popularSeriesJson;
+    }
+
 	public function getGenresSeries() {
         $genres = Genres::orderBy('name', 'ASC')->get();
         $genreJson = json_encode($genres);

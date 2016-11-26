@@ -16,6 +16,11 @@ $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
 
+$app->get('/home/popularSeries', function () {
+    $guestContr = new GuestController();
+    echo $guestContr->getPopularSeries();
+});
+
 $app->get('/home/genres', function() {
     $guestContr = new GuestController();
     echo $guestContr->getGenresSeries();
