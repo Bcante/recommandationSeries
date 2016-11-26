@@ -37,6 +37,16 @@ $app->get('/series/:serieId', function($serieId) {
     echo $guestContr->getInfoSerie($serieId);
 });
 
+$app->post('/registration', function() {
+    $guestContr = new GuestController();
+    echo $guestContr->registration();
+});
+
+$app->post('/connexion', function() {
+    $guestContr = new GuestController();
+    $guestContr->authentication();
+});
+
 $app->run();
 
 ?>

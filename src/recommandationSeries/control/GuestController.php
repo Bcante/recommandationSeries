@@ -3,7 +3,9 @@
 namespace recommandationSeries\control;
 
 use recommandationSeries\model\Genres;
+use recommandationSeries\model\Users;
 use recommandationSeries\model\Series;
+use recommandationSeries\utils\Authentication;
 
 class GuestController extends AbstractController {
 
@@ -41,6 +43,16 @@ class GuestController extends AbstractController {
         $serie = Series::orderBy('name', 'ASC')->where('id', '=', $serieId)->get();
         $serieJson = json_encode($serie);
         return $serieJson;
+    }
+
+    public function registration() {
+	    // Remplir le register par tous le post
+        Authentication::register();
+    }
+
+    public function authentication() {
+        // Remplir le authenticate par tous le post
+        Authentication::authenticate();
     }
 
 }
