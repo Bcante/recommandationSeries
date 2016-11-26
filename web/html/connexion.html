@@ -6,17 +6,17 @@
                     Connexion
                 </md-card-title-text>
                 <md-card-content>
-                    <form ng-submit="connexion()">
+                    <form name="connexionForm" ng-submit="connexion()" novalidate>
                         <md-input-container class="md-block">
-                            <label>Nom d'utilisateur</label>
-                            <input ng-model="username" type="text">
+                            <label>Email</label>
+                            <input ng-model="email" type="email" required>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Mot de passe</label>
-                            <input ng-model="password" type="password">
+                            <input ng-model="password" type="password" required>
                         </md-input-container>
                         <md-card-actions>
-                            <md-button class="md-primary" ng-click="toConnect()">
+                            <md-button class="md-primary" ng-disabled="!connexionForm.$valid" ng-click="toConnect()">
                                 Se connecter
                             </md-button>
                         </md-card-actions>
