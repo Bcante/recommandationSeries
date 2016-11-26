@@ -19,6 +19,12 @@ class GuestController extends AbstractController {
         return $popularSeriesJson;
     }
 
+    public function getSearchSerie($serieName) {
+        $searchSerie = Series::orderBy('name', 'ASC')->where('name', 'LIKE', $serieName.'%')->take(10)->get();
+        $searchSerieJson = json_encode($searchSerie);
+        return $searchSerieJson;
+    }
+
 	public function getGenresSeries() {
         $genres = Genres::orderBy('name', 'ASC')->get();
         $genreJson = json_encode($genres);

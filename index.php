@@ -21,6 +21,11 @@ $app->get('/home/popularSeries', function () {
     echo $guestContr->getPopularSeries();
 });
 
+$app->get('/serieSearch/:serieName', function($serieName) {
+    $guestContr = new GuestController();
+    echo $guestContr->getSearchSerie($serieName);
+});
+
 $app->get('/home/genres', function() {
     $guestContr = new GuestController();
     echo $guestContr->getGenresSeries();

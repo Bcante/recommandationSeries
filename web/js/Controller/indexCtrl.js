@@ -26,6 +26,14 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     });
 
     $scope.inputSearchChange = function () {
-        console.log($scope.inputSearch);
+        if($scope.inputSearch != "") {
+            $http({
+                method: 'GET',
+                url: 'serieSearch/' + $scope.inputSearch
+            })
+            .success(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
     }
 }]);
