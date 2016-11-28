@@ -47,9 +47,15 @@ $app->get('/series/:serieId', function($serieId) {
     echo $guestContr->getInfoSerie($serieId);
 });
 
-$app->post('/registration', function() {
+$app->post('/registration', function() use ($app) {
+    $param = json_decode($app->request->getBody());
+    $username = $param->username;
+    $password = $param->password;
+    $password_confirm = $param->password_confirm;
+    $email = $param->email;
+
     $guestContr = new GuestController();
-    echo $guestContr->registration();
+    echo $guestContr->registration($username, $password, $password_confirm, $email);
 });
 
 $app->post('/connexion', function() {
