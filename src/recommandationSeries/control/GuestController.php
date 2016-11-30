@@ -59,7 +59,7 @@ class GuestController extends AbstractController {
 
     public function registration($username, $password, $password_confirm, $email) {
 	    // Remplir le register par tous le post
-        Authentication::register();
+        Authentication::register($username, $password, $password_confirm, $email);
     }
 
     /*public function authentication() {
