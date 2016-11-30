@@ -47,6 +47,21 @@ $app->get('/series/:serieId', function($serieId) {
     echo $guestContr->getInfoSerie($serieId);
 });
 
+$app->get('/series/creator/:serieId', function($serieId) {
+    $guestContr = new GuestController();
+    echo $guestContr->getCreator($serieId);
+});
+
+$app->get('/series/seasons/:serieId', function($serieId) {
+    $guestContr = new GuestController();
+    echo $guestContr->getSeasons($serieId);
+});
+
+$app->get('/series/seasons/id/:seasonId', function($seasonId) {
+    $guestContr = new GuestController();
+    echo $guestContr->getEpisodes($seasonId);
+});
+
 $app->post('/registration', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $username = $param->username;

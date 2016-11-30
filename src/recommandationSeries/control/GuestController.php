@@ -6,6 +6,7 @@ use recommandationSeries\model\Genres;
 use recommandationSeries\model\Users;
 use recommandationSeries\model\Series;
 use recommandationSeries\utils\Authentication;
+use recommandationSeries\model\Seasons;
 
 class GuestController extends AbstractController {
 
@@ -39,7 +40,7 @@ class GuestController extends AbstractController {
 	}
 
     public function getAllSeries() {
-		$series = Series::orderBy('name', 'ASC')->get();
+		$series = Series::orderBy('name', 'ASC')->select('name', 'poster_path', 'id')->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
@@ -52,9 +53,46 @@ class GuestController extends AbstractController {
     }
 
     public function getInfoSerie($serieId) {
-        $serie = Series::orderBy('name', 'ASC')->where('id', '=', $serieId)->get();
+        $serie = Series::/*join('seriescreators', 'series.id', '=', 'seriescreators.series_id')
+                            ->join('creators', 'seriescreators.creator_id', '=', 'creators.id')
+                            /*->join('seriesseasons', 'seriesseasons.season_id', '=', 'series.id')
+                            ->join('seasons', 'seasons.id', '=', 'seriesseasons.season_id')
+                            ->join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
+                            ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')*/
+                            where('series.id', '=', $serieId)
+                            ->get();
         $serieJson = json_encode($serie);
         return $serieJson;
+    }
+
+    public function getCreator($serieId) {
+        $creator = Series::join('seriescreators', 'series.id', '=', 'seriescreators.series_id')
+                            ->join('creators', 'seriescreators.creator_id', '=', 'creators.id')
+                            ->select('creators.name')
+                            ->where('series.id', '=', $serieId)
+                            ->get();
+        $creatorJson = json_encode($creator);
+        return $creatorJson;
+    }
+
+    public function getSeasons($serieId) {
+        $season = Series::join('seriesseasons', 'seriesseasons.series_id', '=', 'series.id')
+                            ->join('seasons', 'seasons.id', '=', 'seriesseasons.season_id')
+                            ->select('seasons.name', 'seasons.id')
+                            ->where('series.id', '=', $serieId)
+                            ->get();
+        $seasonJson = json_encode($season);
+        return $seasonJson;
+    }
+
+    public function getEpisodes($seasonId) {
+        $episodes = Seasons::join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
+                            ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')
+                            ->select('episodes.name', 'episodes.air_date')
+                            ->where('seasons.id', '=', $seasonId)
+                            ->get();
+        $episodesJson = json_encode($episodes);
+        return $episodesJson;
     }
 
     public function registration($username, $password, $password_confirm, $email) {

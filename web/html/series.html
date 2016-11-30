@@ -2,11 +2,29 @@
     <div>
         <md-content>
             <img src="https://image.tmdb.org/t/p/w300{{ poster }}">
-            {{ name }}
+            {{ serieName }}
             Overview : {{ overview }}
             Number of seasons : {{ numberOfSeasons }}
-            Number of episodes : {{ numberOfEpisodes }}
             Popularity : {{ popularity }}
+
+            Creator : {{ creatorName }}
+
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displayEpisodes(season.id)">
+                    <md-content class="md-padding">
+                        <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+                            <md-list layout-padding>
+                                <md-list-item  ng-repeat="episode in episodesArray" class="md-3-line">
+                                    {{ episode.name }}
+                                    <div class="md-list-item-text">
+                                        <h3>Air Date : {{ episode.air_date }}</h3>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
         </md-content>
     </div>
 </section>
