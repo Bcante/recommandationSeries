@@ -1,7 +1,12 @@
 <section class="series">
     <div>
         <md-content>
-            {{ serieName }}
+            <img src="https://image.tmdb.org/t/p/w300{{ poster }}">
+            {{ name }}
+            Overview : {{ overview }}
+            Number of seasons : {{ numberOfSeasons }}
+            Number of episodes : {{ numberOfEpisodes }}
+            Popularity : {{ popularity }}
         </md-content>
     </div>
 </section>

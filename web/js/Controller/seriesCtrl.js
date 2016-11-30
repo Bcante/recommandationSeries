@@ -8,8 +8,14 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         method: 'GET',
         url: 'series/' + $scope.idSerie
     }).success(function (data, status, headers, config) {
-        $scope.serieName = data[0].name;
-        console.log(data[0].name);
+        data = data[0];
+
+        $scope.name = data.name;
+        $scope.poster = data.poster_path;
+        $scope.numberOfEpisodes = data.number_of_episodes;
+        $scope.numberOfSeasons = data.number_of_seasons;
+        $scope.overview = data.overview;
+        $scope.popularity = data.popularity;
     });
 
 }]);
