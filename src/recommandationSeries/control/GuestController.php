@@ -15,52 +15,59 @@ class GuestController extends AbstractController {
 	}
 
     public function getPopularSeries() {
-        $popularSeries = Series::orderBy('popularity', 'DESC')->take(5)->get();
+        $popularSeries = Series::orderBy('popularity', 'DESC')
+                                ->select('name', 'poster_path')
+                                ->take(5)
+                                ->get();
         $popularSeriesJson = json_encode($popularSeries);
         return $popularSeriesJson;
     }
 
     public function getSearchSerie($serieName) {
-        $searchSerie = Series::orderBy('name', 'ASC')->where('name', 'LIKE', $serieName.'%')->take(10)->get();
+        $searchSerie = Series::orderBy('name', 'ASC')
+                                ->where('name', 'LIKE', $serieName.'%')
+                                ->select('name')
+                                ->take(10)
+                                ->get();
         $searchSerieJson = json_encode($searchSerie);
         return $searchSerieJson;
     }
 
 	public function getGenresSeries() {
-        $genres = Genres::orderBy('name', 'ASC')->get();
+        $genres = Genres::orderBy('name', 'ASC')
+                        ->get();
         $genreJson = json_encode($genres);
         return $genreJson;
 	}
 
-	public function testGetSeriesEtGenres() {
+	/*public function testGetSeriesEtGenres() {
 		$series = Series::with('genres')->first();
 		
 		//$genreJson = json_encode($series);
 		return "$series";
-	}
+	}*/
 
     public function getAllSeries() {
-		$series = Series::orderBy('name', 'ASC')->select('name', 'poster_path', 'id')->get();
+		$series = Series::orderBy('name', 'ASC')
+                        ->select('name', 'poster_path', 'id')
+                        ->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
 
     public function getInfoByGenre($genreId) {
-        // select * from `series` inner join `seriesgenres` on `id` = `series_id` where `genre_id` = 16 order by `name` asc
-        $series = Series::join('seriesgenres', 'id', '=', 'series_id')->orderBy('name', 'ASC')->where('genre_id', '=', $genreId)->get();
+        $series = Series::join('seriesgenres', 'id', '=', 'series_id')
+                        ->orderBy('name', 'ASC')
+                        ->select('name', 'poster_path', 'id')
+                        ->where('genre_id', '=', $genreId)
+                        ->get();
         $seriesJson = json_encode($series);
         return $seriesJson;
     }
 
     public function getInfoSerie($serieId) {
-        $serie = Series::/*join('seriescreators', 'series.id', '=', 'seriescreators.series_id')
-                            ->join('creators', 'seriescreators.creator_id', '=', 'creators.id')
-                            /*->join('seriesseasons', 'seriesseasons.season_id', '=', 'series.id')
-                            ->join('seasons', 'seasons.id', '=', 'seriesseasons.season_id')
-                            ->join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
-                            ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')*/
-                            where('series.id', '=', $serieId)
-                            ->get();
+        $serie = Series::where('series.id', '=', $serieId)
+                        ->get();
         $serieJson = json_encode($serie);
         return $serieJson;
     }
@@ -78,6 +85,7 @@ class GuestController extends AbstractController {
     public function getSeasons($serieId) {
         $season = Series::join('seriesseasons', 'seriesseasons.series_id', '=', 'series.id')
                             ->join('seasons', 'seasons.id', '=', 'seriesseasons.season_id')
+                            ->orderBy('seasons.number', 'ASC')
                             ->select('seasons.name', 'seasons.id')
                             ->where('series.id', '=', $serieId)
                             ->get();
@@ -88,6 +96,7 @@ class GuestController extends AbstractController {
     public function getEpisodes($seasonId) {
         $episodes = Seasons::join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
                             ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')
+                            ->orderBy('episodes.number', 'ASC')
                             ->select('episodes.name', 'episodes.air_date')
                             ->where('seasons.id', '=', $seasonId)
                             ->get();
