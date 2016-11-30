@@ -29,9 +29,10 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     };
 
     $scope.displayASerie = function (serieId) {
+        // using cookies
         localStorage.setItem('idSerie',serieId);
+        // redirection
         $location.path('/series');
-        // il faut envoyer vers display(serieId) qui se trouve dans seriesCtrl
     }
 
 }]);
