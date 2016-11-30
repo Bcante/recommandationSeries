@@ -6,7 +6,7 @@ var app = angular.module('routeAppControllers');
 
 app.service("serviceAjax",['$http','$location', function ($http,$location) {
 
-    function display(serieId) {
+    function displayASerie(serieId) {
         return $http({
             method: 'GET',
             url: 'series/' + serieId

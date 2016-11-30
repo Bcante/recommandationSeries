@@ -1,6 +1,6 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
+app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
 
     $http({
         method: 'GET',
@@ -29,7 +29,8 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     };
 
     $scope.displayASerie = function (serieId) {
-        console.log(serieId)
+        localStorage.setItem('idSerie',serieId);
+        $location.path('/series');
         // il faut envoyer vers display(serieId) qui se trouve dans seriesCtrl
     }
 

@@ -2,10 +2,14 @@ var app = angular.module('routeAppControllers');
 
 app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
 
+    $scope.idSerie = localStorage.getItem('idSerie');
 
-        serviceAjax.display(serieId).success(function (data, status, headers, config) {
-            console.log(data);
-            $scope.serieName = data.name;
-        });
+    $http({
+        method: 'GET',
+        url: 'series/' + $scope.idSerie
+    }).success(function (data, status, headers, config) {
+        $scope.serieName = data[0].name;
+        console.log(data[0].name);
+    });
 
 }]);
