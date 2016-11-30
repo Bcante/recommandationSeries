@@ -29,6 +29,7 @@
     <script src="web/js/Controller/registrationCtrl.js"></script>
     <script src="web/js/Controller/homeCtrl.js"></script>
     <script src="web/js/Controller/seriesCtrl.js"></script>
+    <script src="web/js/service/serviceAjax.js"></script>
 </head>
 <body ng-controller="indexCtrl">
 <div class="index">
