@@ -55,7 +55,8 @@
                             </md-list>
                         </md-content>
                     </md-input-container>
-                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()" style="margin-left: 50%">
+                    <span flex></span>
+                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
                         Sign in
                     </md-button>
                     <md-button class="md-raised" aria-label="Inscription" ng-click="toRegistrate()">

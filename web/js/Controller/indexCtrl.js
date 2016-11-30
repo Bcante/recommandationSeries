@@ -33,6 +33,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
             })
             .success(function (data, status, headers, config) {
                 $scope.serieSearch = data;
+                console.log(data);
             });
         }
     }
