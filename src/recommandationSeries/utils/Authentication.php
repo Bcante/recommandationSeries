@@ -53,9 +53,19 @@ class Authentication {
                     echo "The password should be 8 letters long, contain a lowercase and a uppercase letter";
                     $inscOk = false;
                 }
+
+                if ($inscOk) {
+                    // Final check: Both emails and username can't be found in our DB
+                    $sameName = Users::where('name', '=', $username)->count();
+                    $sameMail = Users::where('email', '=', $email)->count();
+
+                    if($sameName == 1 or $sameMail ==1) {
+                        echo "This username or mail is already in use";
+                    }
+                }
             }
+
         }
-        // Now that the inputs are sanitzed, we can check if they meet our policies
 
 
         return $inscOk;
