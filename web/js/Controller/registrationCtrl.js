@@ -7,7 +7,7 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
             data: {
                 username: $scope.username,
                 password: $scope.password,
-                confirm_password: $scope.confirm_password,
+                password_confirm : $scope.confirm_password,
                 email : $scope.email
             },
             url: 'registration'

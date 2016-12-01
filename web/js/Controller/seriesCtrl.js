@@ -38,10 +38,19 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         console.log(seasonId);
         $http({
             method: 'GET',
-            url: 'series/seasons/id/'+seasonId
+            url: 'series/episodes/'+seasonId
         }).success(function (data, status, headers, config) {
-            console.log(data);
             $scope.episodesArray = data;
+        });
+    };
+
+    $scope.displayActors = function (episodeId) {
+        $http({
+            method : 'GET',
+            url: 'series/actors/'+episodeId
+        })
+        .success(function (data, status, headers, config) {
+            console.log(data);
         });
     }
 

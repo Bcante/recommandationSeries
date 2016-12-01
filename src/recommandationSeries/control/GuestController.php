@@ -5,8 +5,12 @@ namespace recommandationSeries\control;
 use recommandationSeries\model\Genres;
 use recommandationSeries\model\Users;
 use recommandationSeries\model\Series;
-use recommandationSeries\utils\Authentication;
 use recommandationSeries\model\Seasons;
+use recommandationSeries\model\Actors;
+
+
+use recommandationSeries\utils\Authentication;
+
 
 class GuestController extends AbstractController {
 
@@ -97,11 +101,21 @@ class GuestController extends AbstractController {
         $episodes = Seasons::join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
                             ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')
                             ->orderBy('episodes.number', 'ASC')
-                            ->select('episodes.name', 'episodes.air_date')
+                            ->select('episodes.name', 'episodes.air_date', 'episodes.id')
                             ->where('seasons.id', '=', $seasonId)
                             ->get();
         $episodesJson = json_encode($episodes);
         return $episodesJson;
+    }
+
+    public function getActors($episodeId) {
+        $actors = Actors::join('episodesactors', 'actors.id', '=', 'episodesactors.actor_id')
+                        ->join('episodes', 'episodesactors.episode_id', '=', 'episodes.id')
+                        ->select('actors.name')
+                        ->where('episode_id', '=', $episodeId)
+                        ->get();
+        $actorsJson = json_encode($actors);
+        return $actorsJson;
     }
 
     public function registration($username, $password, $password_confirm, $email) {
