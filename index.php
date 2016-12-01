@@ -57,9 +57,14 @@ $app->get('/series/seasons/:serieId', function($serieId) {
     echo $guestContr->getSeasons($serieId);
 });
 
-$app->get('/series/seasons/id/:seasonId', function($seasonId) {
+$app->get('/series/episodes/:seasonId', function($seasonId) {
     $guestContr = new GuestController();
     echo $guestContr->getEpisodes($seasonId);
+});
+
+$app->get('/series/actors/:episodeId', function($episodeId) {
+    $guestContr = new GuestController();
+    echo $guestContr->getActors($episodeId);
 });
 
 $app->post('/registration', function() use ($app) {
