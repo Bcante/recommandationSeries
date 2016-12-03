@@ -3,8 +3,18 @@ namespace recommandationSeries\utils;
 use recommandationSeries\model\Users;
 
 class Authentication {
-    public static function authenticate($name, $password) {
-
+    public static function authenticate($mail, $password) {
+        $connexionOK = true;
+        // user names are unique therefore we can directly search for a matching username 
+        // in the DB
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Invalid mail";
+            $connexionOK = false;
+        }
+        else {
+            $sameName = Users::where('mail', '=', $mail)->get();
+            echo $sameName;    
+        }
     }
 
     public static function register($username, $password, $password_confirm, $email) {
