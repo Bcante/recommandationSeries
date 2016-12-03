@@ -20,17 +20,17 @@ class Authentication {
         }
         // Second level: Filter and sanitize incoming inputs
         else {
-            if (!filter_var($username, FILTER_VALDATE_STRING)) {
+            if (filter_var($username,FILTER_SANITIZE_STRING) !== $username) {
                 echo "Invalid username";
                 $inscOk = false;
             }
 
-            if (!filter_var($password, FILTER_VALDATE_STRING)) {
+            if (filter_var($password,FILTER_SANITIZE_STRING) !== $password) {
                 echo "Invalid password";
                 $inscOk = false;
             }
 
-            if (!filter_var($password_confirm, FILTER_VALDATE_STRING)) {
+            if (filter_var($password_confirm,FILTER_SANITIZE_STRING) !== $password_confirm) {
                 echo "Invalid password confirmation";
                 $inscOk = false;
             }
@@ -49,7 +49,7 @@ class Authentication {
                     echo "The two passwords didn't match";
                     $inscOk = false;
                 }
-                if (!preg_match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", $password)) {
+                if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $password)) {
                     echo "The password should be 8 letters long, contain a lowercase and a uppercase letter";
                     $inscOk = false;
                 }
@@ -61,14 +61,19 @@ class Authentication {
 
                     if($sameName == 1 or $sameMail ==1) {
                         echo "This username or mail is already in use";
+                        $inscOk = false;
+                    }
+                    else {
+                        $newUser = new Users;
+                        $newUser->email=$email;
+                        $newUser->name=$username;
+                        $newUser->password=$password;
+                        $newUser->save();
                     }
                 }
             }
 
         }
-
-
-        return $inscOk;
     }
 }
 ?>
