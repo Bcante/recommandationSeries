@@ -28,9 +28,14 @@ class Authentication {
                 }
                 else {
                     echo "Invalide email / password";
+                    $connexionOK = false;
                 }
             }
+            else {
+                $connexionOK = false;
+            }
         }
+        return $connexionOK;
     }
 
     public static function register($username, $password, $password_confirm, $email) {
@@ -99,6 +104,7 @@ class Authentication {
                 }
             }
         }
+        return inscOk;
     }
 }
 ?>
