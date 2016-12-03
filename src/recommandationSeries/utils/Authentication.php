@@ -104,7 +104,7 @@ class Authentication {
                 }
             }
         }
-        return inscOk;
+        return $inscOk;
     }
 }
 ?>
