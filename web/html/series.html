@@ -3,7 +3,7 @@
         <md-content>
             <md-card>
                 <md-card-title-text style="margin-bottom: 20px">
-                    <span class="md-headline">{{ serieName }}</span>
+                    <span class="md-headline" style="padding: 5px">{{ serieName }}</span>
                 </md-card-title-text>
                 <div layout="row" flex>
                     <div id="content">
@@ -20,7 +20,7 @@
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displayEpisodes(season.id)">
-                        <md-content class="md-padding">
+                        <md-content class="md-padding" >
                             <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                                     <div  ng-repeat="episode in episodesArray" style="width: 100%">
                                         {{ episode.name }}
