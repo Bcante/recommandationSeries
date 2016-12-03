@@ -26,9 +26,10 @@
 
                         <md-input-container class="md-block">
                             <label>Mot de passe</label>
-                            <input ng-minlength="6" ng-model="password" name="password" type="password" required>
+                            <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="password" name="password" type="password" required>
                             <div ng-messages="registrationForm.password.$error">
                                 <div ng-message="required">This is required.</div>
+                                <div ng-message="pattern">Password do not match with pattern.</div>
                                 <div ng-message="minlength">Password is too short.</div>
                             </div>
                         </md-input-container>
