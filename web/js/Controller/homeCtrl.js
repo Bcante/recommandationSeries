@@ -21,7 +21,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     $scope.displaySeriesByGenre = function (genreId) {
         $http({
             method: 'GET',
-            url: 'home/infoSeriesByGenre/'+genreId
+            url: 'home/seriesByGenre/'+genreId
         })
         .success(function(data, status, headers, config) {
             $scope.infoSeriesGenres = data;

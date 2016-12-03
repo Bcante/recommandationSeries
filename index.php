@@ -79,9 +79,9 @@ $app->get('/home/allSeries', function() {
     echo $commonController->getAllSeries();
 });
 
-$app->get('/home/infoSeriesByGenre/:genre', function($genre) {
+$app->get('/home/seriesByGenre/:genre', function($genre) {
     global $commonController;
-    echo $commonController->getInfoByGenre($genre);
+    echo $commonController->getByGenre($genre);
 });
 
 $app->get('/series/:serieId', function($serieId) {

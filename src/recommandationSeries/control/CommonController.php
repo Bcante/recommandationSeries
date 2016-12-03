@@ -48,7 +48,7 @@ class CommonController extends AbstractController {
         return $genreJson;
     }
 
-    public function getInfoByGenre($genreId) {
+    public function getByGenre($genreId) {
         $series = Series::join('seriesgenres', 'id', '=', 'series_id')
             ->orderBy('name', 'ASC')
             ->select('name', 'poster_path', 'id')
