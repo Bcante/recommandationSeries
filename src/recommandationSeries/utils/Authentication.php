@@ -3,7 +3,7 @@ namespace recommandationSeries\utils;
 use recommandationSeries\model\Users;
 
 class Authentication {
-    public static function authenticate($mail, $password) {
+    public static function authenticate($email, $password) {
         $connexionOK = true;
         // user names are unique therefore we can directly search for a matching username 
         // in the DB
@@ -11,9 +11,25 @@ class Authentication {
             echo "Invalid mail";
             $connexionOK = false;
         }
-        else {
-            $sameName = Users::where('mail', '=', $mail)->get();
-            echo $sameName;    
+
+        if (filter_var($password,FILTER_SANITIZE_STRING) !== $password) {
+            echo "Invalid password";
+            $connexionOK = false;
+        }
+
+        if ($connexionOK) {
+            $found = Users::where('email', '=', "$email")->count();
+            if ($found === 1 ) {
+                $usr = Users::where('email', '=', "$email")->first();
+                if ($password === $usr->password) {
+                    echo "Successful loggin";
+                    session_start();
+                    // Define what do we want to store in the session variable
+                }
+                else {
+                    echo "Invalide email / password";
+                }
+            }
         }
     }
 
@@ -82,7 +98,6 @@ class Authentication {
                     }
                 }
             }
-
         }
     }
 }

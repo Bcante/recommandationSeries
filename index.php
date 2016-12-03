@@ -84,7 +84,7 @@ $app->post('/connexion', function() use ($app) {
     $email = $param->email;
 
     $guestContr = new GuestController();
-    $guestContr->authentication($mail,$password);
+    $guestContr->authentication($email,$password);
 });
 
 $app->run();
