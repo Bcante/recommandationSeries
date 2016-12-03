@@ -31,6 +31,10 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     $scope.displayASerie = function (serieId) {
         localStorage.setItem('idSerie',serieId);
         $location.path('/series');
+    };
+
+    if(localStorage.getItem('connected')) {
+        $scope.connected = true;
     }
 
 }]);

@@ -33,6 +33,6 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             controller : 'indexCtrl'
         });
 
-    $mdThemingProvider.theme('default').primaryPalette('red')
-        .accentPalette('green').dark();
+    $mdThemingProvider.theme('default').primaryPalette('teal')
+        .accentPalette('amber').dark();
 }]);

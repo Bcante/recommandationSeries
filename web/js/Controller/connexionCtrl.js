@@ -13,6 +13,10 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
             if(data == false) {
                 $scope.connexionError = "Invalid email / password"
             }
+            else {
+                localStorage.setItem('connected', true);
+                $location.path('/home');
+            }
         });
     }
 }]);
