@@ -3,21 +3,29 @@
         <md-card class="md-primary">
             <md-card-title>
                 <md-card-title-text>
-                    Connexion
+                    Sign in
                 </md-card-title-text>
                 <md-card-content>
-                    <form name="connexionForm" ng-submit="connexion()" novalidate>
+                    <form name="connexionForm" ng-submit="connexion()">
                         <md-input-container class="md-block">
                             <label>Email</label>
-                            <input ng-model="email" type="email" required>
+                            <input ng-model="email" name="email" type="email" required>
+                            <div ng-messages="connexionForm.email.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </md-input-container>
+
                         <md-input-container class="md-block">
-                            <label>Mot de passe</label>
-                            <input ng-model="password" type="password" required>
+                            <label>Password</label>
+                            <input ng-model="password" name="password" type="password" required>
+                            <div ng-messages="connexionForm.password.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </md-input-container>
+
                         <md-card-actions>
                             <md-button class="md-primary" ng-disabled="!connexionForm.$valid" ng-click="toConnect()">
-                                Se connecter
+                                Sign in
                             </md-button>
                         </md-card-actions>
                     </form>
