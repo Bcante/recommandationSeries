@@ -4,6 +4,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
 
     $scope.idSerie = localStorage.getItem('idSerie');
 
+    // serie info
     $http({
         method: 'GET',
         url: 'series/' + $scope.idSerie
@@ -16,22 +17,24 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.numberOfSeasons = data.number_of_seasons;
         $scope.overview = data.overview;
         $scope.popularity = data.popularity;
+    });
 
-        $http({
-            method: 'GET',
-            url : 'series/creator/'+$scope.idSerie
-        })
-        .success(function (data, status, headers, config) {
-            $scope.creatorName = data[0].name;
+    // creator
+    $http({
+        method: 'GET',
+        url : 'series/creator/'+$scope.idSerie
+    })
+    .success(function (data, status, headers, config) {
+        $scope.creatorName = data[0].name;
+    });
 
-            $http({
-                method: 'GET',
-                url : 'series/seasons/'+$scope.idSerie
-            })
-            .success(function (data, status, headers, config) {
-                $scope.seasonsArray = data;
-            });
-        });
+    // seasons
+    $http({
+        method: 'GET',
+        url : 'series/seasons/'+$scope.idSerie
+    })
+    .success(function (data, status, headers, config) {
+        $scope.seasonsArray = data;
     });
 
     $scope.displayEpisodes = function (seasonId) {
@@ -39,7 +42,8 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $http({
             method: 'GET',
             url: 'series/episodes/'+seasonId
-        }).success(function (data, status, headers, config) {
+        })
+        .success(function (data, status, headers, config) {
             $scope.episodesArray = data;
         });
     };

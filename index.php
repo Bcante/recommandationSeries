@@ -52,6 +52,11 @@ $app->get('/series/creator/:serieId', function($serieId) {
     echo $guestContr->getCreator($serieId);
 });
 
+$app->get('/series/companie/:serieId', function($serieId) {
+    $guestContr = new GuestController();
+    echo $guestContr->getCompanie($serieId);
+});
+
 $app->get('/series/seasons/:serieId', function($serieId) {
     $guestContr = new GuestController();
     echo $guestContr->getSeasons($serieId);
