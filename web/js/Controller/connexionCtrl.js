@@ -10,7 +10,9 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
             url: 'connexion'
         })
         .success(function (data, status, headers, config) {
-            console.log(data);
-        })
+            if(data == false) {
+                $scope.connexionError = "Invalid email / password"
+            }
+        });
     }
 }]);
