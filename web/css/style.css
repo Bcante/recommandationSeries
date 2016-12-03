@@ -13,7 +13,7 @@ body{
 .sidenav{
     margin-left: 5%;
     float: right;
-    border: solid 10px red;
+
     height: 100%;
 }
 .menu{
@@ -24,4 +24,11 @@ body{
 .view{
     position: relative;
     z-index: 1;
+}
+
+#poster{
+    float: right;
+}
+
+#content{
 }
