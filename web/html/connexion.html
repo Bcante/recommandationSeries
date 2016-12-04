@@ -7,25 +7,25 @@
                 </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    <form name="connexionForm" ng-submit="connexion()">
+                    <form name="connectionForm" ng-submit="connection()">
                         <md-input-container class="md-block">
                             <label>Email</label>
-                            <input ng-model="email" name="email" type="email" md-no-asterisk required>
-                            <div ng-messages="connexionForm.email.$error">
+                            <input ng-model="connection.email" name="email" type="email" md-no-asterisk required>
+                            <div ng-messages="connectionForm.email.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
                             <label>Password</label>
-                            <input ng-model="password" name="password" type="password" md-no-asterisk required>
-                            <div ng-messages="connexionForm.password.$error">
+                            <input ng-model="connection.password" name="password" type="password" md-no-asterisk required>
+                            <div ng-messages="connectionForm.password.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
                         </md-input-container>
 
                         <md-card-actions>
-                            <md-button class="md-primary" ng-disabled="!connexionForm.$valid" ng-click="toConnect()">
+                            <md-button class="md-primary" ng-disabled="!connectionForm.$valid" ng-click="toConnect()">
                                 Sign in
                             </md-button>
                         </md-card-actions>
