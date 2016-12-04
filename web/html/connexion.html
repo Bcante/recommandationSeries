@@ -10,7 +10,7 @@
                     <form name="connexionForm" ng-submit="connexion()">
                         <md-input-container class="md-block">
                             <label>Email</label>
-                            <input ng-model="email" name="email" type="email" required>
+                            <input ng-model="email" name="email" type="email" md-no-asterisk required>
                             <div ng-messages="connexionForm.email.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
@@ -18,7 +18,7 @@
 
                         <md-input-container class="md-block">
                             <label>Password</label>
-                            <input ng-model="password" name="password" type="password" required>
+                            <input ng-model="password" name="password" type="password" md-no-asterisk required>
                             <div ng-messages="connexionForm.password.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
