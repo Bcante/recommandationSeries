@@ -2,6 +2,10 @@ var app = angular.module('routeAppControllers');
 
 app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
 
+    /**
+     * for ng-model
+     * @type {{username: string, email: string, password: string, confirm_password: string}}
+     */
     $scope.registration = {
         username : "",
         email : "",
@@ -9,11 +13,11 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
         confirm_password : ""
     };
 
+    /**
+     * function with register datas
+     */
     $scope.toRegistrate = function() {
-        /*console.log($scope.registration.username);
-        console.log($scope.registration.password);
-        console.log($scope.registration.confirm_password);
-        console.log($scope.registration.email);*/
+        // ajax with datas send in server
         $http({
             method: 'POST',
             data: {
@@ -30,11 +34,11 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
     }
 }]);
 
+/**
+ * directive for inscription form
+ * check if password and confirm_password are equals
+ */
 app.directive('equalsTo', [function () {
-    /*
-     * <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="password" name="password" type="password" required>
-     * <input ng-model="confirm_password" type="password" name="confirm_password" required equals-to="registrationForm.password">
-     */
     return {
         restrict: 'A',
         scope: true,

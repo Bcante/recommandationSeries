@@ -2,9 +2,12 @@ var app = angular.module('routeAppControllers');
 
 app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
 
+    // recover idSerie from cookie
     $scope.idSerie = localStorage.getItem('idSerie');
 
-    // serie info
+    /**
+     * ajax to recover serie info
+     */
     $http({
         method: 'GET',
         url: 'series/' + $scope.idSerie
@@ -19,7 +22,9 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.popularity = data.popularity;
     });
 
-    // creator
+    /**
+     * ajax to recover serie creator
+     */
     $http({
         method: 'GET',
         url : 'series/creator/'+$scope.idSerie
@@ -28,7 +33,9 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.creatorName = data[0].name;
     });
 
-    // seasons
+    /**
+     * ajax to recover season
+     */
     $http({
         method: 'GET',
         url : 'series/seasons/'+$scope.idSerie
@@ -37,8 +44,12 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.seasonsArray = data;
     });
 
+
+    /**
+     * Viewing episodes from a sesaon
+     * @param seasonId id of the selected season
+     */
     $scope.displayEpisodes = function (seasonId) {
-        console.log(seasonId);
         $http({
             method: 'GET',
             url: 'series/episodes/'+seasonId
@@ -48,6 +59,10 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
+    /**
+     * Viewing actors from an episode
+     * @param episodeId id of the selected episode
+     */
     $scope.displayActors = function (episodeId) {
         $http({
             method : 'GET',

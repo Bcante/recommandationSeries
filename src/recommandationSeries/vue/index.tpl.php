@@ -35,30 +35,7 @@
 <div class="index">
     <div>
         <md-content>
-            <md-toolbar ng-if="{{connected}}">
-                <div class="md-toolbar-tools">
-                    <md-button aria-label="Accueil" ng-click="toHome()">
-                        Home
-                    </md-button>
-                    <md-input-container>
-                        <form name="formSearch">
-                            <label>Find a serie</label>
-                            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
-                        </form>
-                        <md-content>
-                            <md-list flex>
-                                <md-list-item class="md-3-line" ng-repeat="serie in serieSearch" ng-click="null">
-                                    <div class="md-list-item-text" layout="column">
-                                        <span>{{ serie.name }}</span>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>
-                    </md-input-container>
-                    <span flex></span>
-                </div>
-            </md-toolbar>
-            <md-toolbar ng-else>
+            <md-toolbar>
                 <div class="md-toolbar-tools">
                     <md-button aria-label="Accueil" ng-click="toHome()">
                         Home

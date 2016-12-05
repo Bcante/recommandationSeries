@@ -6,6 +6,10 @@ var app = angular.module('MyApp',[
     'ngMessages',
     'ngAnimate'
 ]);
+
+/**
+ * Routes
+ */
 app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdThemingProvider){
     $routeProvider
         .when('/connexion',{
@@ -33,6 +37,9 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             controller : 'indexCtrl'
         });
 
+    /**
+     * Theme and colors
+     */
     $mdThemingProvider.theme('default').primaryPalette('teal')
         .accentPalette('amber').dark();
 }]);

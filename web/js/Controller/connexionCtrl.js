@@ -6,7 +6,9 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
         password : ""
     };
 
+    // function to connect a user
     $scope.toConnect = function() {
+        // ajax with datas send in server
         $http({
             method: 'POST',
             data: {
