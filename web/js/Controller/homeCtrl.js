@@ -3,6 +3,13 @@ var app = angular.module('routeAppControllers');
 app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
 
     /**
+     * function to display series by block of 20
+     */
+    $scope.loadMore = function () {
+        $scope.totalDisplayed += 20;
+    };
+
+    /**
      * ajax to recover genres
      */
     $http({
@@ -21,6 +28,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         url: 'home/allSeries'
     })
     .success(function(data, status, headers, config) {
+        $scope.totalDisplayed = 20;
         $scope.allSeries = data;
     });
 
@@ -33,6 +41,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
             url: 'home/seriesByGenre/'+genreId
         })
         .success(function(data, status, headers, config) {
+            $scope.totalDisplayed = 20;
             $scope.infoSeriesGenres = data;
         });
     };
