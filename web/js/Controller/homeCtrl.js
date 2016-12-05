@@ -45,9 +45,20 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         $location.path('/series');
     };
 
-    if(localStorage.getItem('connected')) {
-        console.log(localStorage.getItem('connected'));
-        $scope.connected = true;
+    /**
+     * function which using cookie to display or not HTML elements
+     */
+    if(localStorage.getItem('connected') == null) {
+        $scope.connected = false;
+        localStorage.setItem('connected', false);
+        console.log('not exists '+ localStorage.getItem('connected'));
     }
-
+    else if (localStorage.getItem('connected') == 'false') {
+        $scope.connected = false;
+        console.log('not connected ' + localStorage.getItem('connected'));
+    }
+    else if (localStorage.getItem('connected') == 'true') {
+        $scope.connected = true;
+        console.log('connected ' + localStorage.getItem('connected'));
+    }
 }]);

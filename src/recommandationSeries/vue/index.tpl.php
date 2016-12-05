@@ -30,6 +30,8 @@
     <script src="web/js/Controller/homeCtrl.js"></script>
     <script src="web/js/Controller/seriesCtrl.js"></script>
     <script src="web/js/service/serviceAjax.js"></script>
+
+    <script src="web/js/jquery.js"></script>
 </head>
 <body ng-controller="indexCtrl">
 <div class="index">
@@ -56,12 +58,19 @@
                         </md-content>
                     </md-input-container>
                     <span flex></span>
-                    <md-button class="md-raised" aria-label="Connexion" ng-click="toConnect()">
-                        Sign in
-                    </md-button>
-                    <md-button class="md-raised" aria-label="Inscription" ng-click="toRegistrate()">
-                        Sign up
-                    </md-button>
+                    <div ng-show="!connected">
+                        <md-button class="md-raised" aria-label="Sign in" ng-click="toConnect()">
+                            Sign in
+                        </md-button>
+                        <md-button class="md-raised" aria-label="Sign up" ng-click="toRegistrate()">
+                            Sign up
+                        </md-button>
+                    </div>
+                    <div ng-show="connected">
+                        <md-button class="md-raised" aria-label="Sign out" ng-click="toDisconnect()">
+                            Sign out
+                        </md-button>
+                    </div>
                 </div>
             </md-toolbar>
         </md-content>
