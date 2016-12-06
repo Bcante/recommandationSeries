@@ -24,14 +24,17 @@
     <!-- Custom Script -->
     <script src="web/js/app.js"></script>
 
+    <!-- Controllers -->
     <script src="web/js/Controller/indexCtrl.js"></script>
     <script src="web/js/Controller/connexionCtrl.js"></script>
     <script src="web/js/Controller/registrationCtrl.js"></script>
     <script src="web/js/Controller/homeCtrl.js"></script>
     <script src="web/js/Controller/seriesCtrl.js"></script>
-    <script src="web/js/service/serviceAjax.js"></script>
+    <script src="web/js/Controller/trackCtrl.js"></script>
 
-    <script src="web/js/jquery.js"></script>
+    <!-- Services -->
+    <script src="web/js/service/serviceSerie.js"></script>
+    <script src="web/js/service/serviceConnection.js"></script>
 </head>
 <body ng-controller="indexCtrl">
 <div class="index">
@@ -41,6 +44,9 @@
                 <div class="md-toolbar-tools">
                     <md-button aria-label="Accueil" ng-click="toHome()">
                         Home
+                    </md-button>
+                    <md-button ng-show="connected" aria-label="My tracking" ng-click="toTrack()">
+                        My tracking
                     </md-button>
                     <md-input-container>
                         <form name="formSearch">

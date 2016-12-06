@@ -24,7 +24,7 @@ class CommonController extends AbstractController {
 
     public function getPopularSeries() {
         $popularSeries = Series::orderBy('popularity', 'DESC')
-            ->select('name', 'poster_path')
+            ->select('name', 'poster_path', 'id')
             ->take(5)
             ->get();
         $popularSeriesJson = json_encode($popularSeries);

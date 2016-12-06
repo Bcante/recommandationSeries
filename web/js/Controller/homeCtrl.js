@@ -1,6 +1,6 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
+app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceSerie) {
 
     /**
      * ajax to recover genres
@@ -43,8 +43,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
      * @param serieId id of the selected serie
      */
     $scope.displayASerie = function (serieId) {
-        localStorage.setItem('idSerie',serieId);
-        $location.path('/series');
+        serviceSerie.loadSeriePage(serieId);
     };
 
     /**

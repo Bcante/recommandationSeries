@@ -1,5 +1,5 @@
 var app = angular.module('routeAppControllers',[]);
-app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
+app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
     $scope.connect = false;
     $scope.toConnect = function () {
@@ -14,6 +14,10 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.home = false;
     $scope.toHome = function () {
         $location.path('/home');
+    };
+
+    $scope.toTrack = function () {
+        $location.path('/myTracking');
     };
 
     $http({
@@ -44,20 +48,9 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
         $location.path('/home');
     };
 
-    /**
-     * function which using cookie to display or not HTML elements
-     */
-    if(localStorage.getItem('connected') == null) {
-        $scope.connected = false;
-        localStorage.setItem('connected', false);
-        console.log('not exists '+ localStorage.getItem('connected'));
-    }
-    else if (localStorage.getItem('connected') == 'false') {
-        $scope.connected = false;
-        console.log('not connected ' + localStorage.getItem('connected'));
-    }
-    else if (localStorage.getItem('connected') == 'true') {
-        $scope.connected = true;
-        console.log('connected ' + localStorage.getItem('connected'));
-    }
+    $scope.displayASerie = function (serieId) {
+        serviceSerie.loadSeriePage(serieId);
+    };
+
+    $scope.connected = serviceConnection.getConnectionStatus();
 }]);

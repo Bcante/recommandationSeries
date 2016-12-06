@@ -3,7 +3,7 @@
         <md-content>
             <md-card>
                 <md-card-title-text style="margin-bottom: 20px">
-                    <span class="md-headline" style="padding: 5px">{{ serieName }}</span>
+                    <span class="md-headline" style="padding: 5px">{{ serieName }}</span><md-button ng-show="connected" class='md-raised'>Seen</md-button>
                 </md-card-title-text>
                 <div layout="row" flex>
                     <div id="content">
@@ -27,6 +27,7 @@
                                         <ul>
                                             <li>{{ episode.air_date }}</li>
                                             <li ng-mouseover="displayActors(episode.id)">Show actors</li>
+                                            <li ng-show="connected"><md-button class='md-raised'>Seen</md-button></li>
                                         </ul>
                                         <div class="md-list-item-text">
                                             <h3></h3>
@@ -35,7 +36,6 @@
                                         <md-divider></md-divider>
                                     </div>
                             </div>
-
                         </md-content>
                     </md-tab>
                 </md-tabs>
