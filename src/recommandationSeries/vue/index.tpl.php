@@ -67,7 +67,10 @@
                         </md-button>
                     </div>
                     <div ng-show="connected">
-                        <md-button class="md-raised" aria-label="Sign out" ng-click="toDisconnect()">
+                        <md-button class="md-raised" aria-label="Profil" ng-click="goToProfil()">
+                            Profil
+                        </md-button>
+                        <md-button class="md-raised" aria-label="Sign out" ng-click="disconnect()">
                             Sign out
                         </md-button>
                     </div>

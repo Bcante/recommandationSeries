@@ -3,13 +3,6 @@ var app = angular.module('routeAppControllers');
 app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceAjax',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceAjax) {
 
     /**
-     * function to display series by block of 20
-     */
-    $scope.loadMore = function () {
-        $scope.totalDisplayed += 20;
-    };
-
-    /**
      * ajax to recover genres
      */
     $http({
@@ -42,7 +35,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         })
         .success(function(data, status, headers, config) {
             $scope.totalDisplayed = 20;
-            $scope.infoSeriesGenres = data;
+            $scope.seriesByGenre = data;
         });
     };
 
@@ -55,19 +48,10 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     };
 
     /**
-     * function which using cookie to display or not HTML elements
+     * function to display series by block of 20
      */
-    if(localStorage.getItem('connected') == null) {
-        $scope.connected = false;
-        localStorage.setItem('connected', false);
-        console.log('not exists '+ localStorage.getItem('connected'));
-    }
-    else if (localStorage.getItem('connected') == 'false') {
-        $scope.connected = false;
-        console.log('not connected ' + localStorage.getItem('connected'));
-    }
-    else if (localStorage.getItem('connected') == 'true') {
-        $scope.connected = true;
-        console.log('connected ' + localStorage.getItem('connected'));
-    }
+    $scope.loadMore = function () {
+        $scope.totalDisplayed += 20;
+    };
+
 }]);

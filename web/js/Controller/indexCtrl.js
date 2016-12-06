@@ -36,5 +36,28 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
                 console.log(data);
             });
         }
+    };
+
+    $scope.disconnect = function () {
+        localStorage.removeItem('connected');
+        location.reload();
+        $location.path('/home');
+    };
+
+    /**
+     * function which using cookie to display or not HTML elements
+     */
+    if(localStorage.getItem('connected') == null) {
+        $scope.connected = false;
+        localStorage.setItem('connected', false);
+        console.log('not exists '+ localStorage.getItem('connected'));
+    }
+    else if (localStorage.getItem('connected') == 'false') {
+        $scope.connected = false;
+        console.log('not connected ' + localStorage.getItem('connected'));
+    }
+    else if (localStorage.getItem('connected') == 'true') {
+        $scope.connected = true;
+        console.log('connected ' + localStorage.getItem('connected'));
     }
 }]);

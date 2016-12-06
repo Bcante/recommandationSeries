@@ -26,6 +26,7 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
                 $location.path('/home');
             }
             localStorage.setItem('connected', true);
+            location.reload();
             $location.path('/home');
         });
     }
