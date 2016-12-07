@@ -1,6 +1,8 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceSerie) {
+app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceSerie', 'serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceSerie, serviceConnection) {
+
+    $scope.connected = serviceConnection.getConnectionStatus();
 
     /**
      * ajax to recover genres

@@ -1,6 +1,10 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
+app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval, serviceConnection) {
+
+    if(serviceConnection.getConnectionStatus()) {
+        $scope.connected = true;
+    }
 
     /**
      * for ng-model

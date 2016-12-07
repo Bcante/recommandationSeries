@@ -22,6 +22,10 @@ app.service("serviceConnection",['$http','$location', function ($http,$location)
                 console.log('connected ' + localStorage.getItem('connected'));
             }
             return boolean;
+        },
+
+        redirectionConnectionPage : function () {
+            $location.path('/connexion');
         }
     }
 }]);

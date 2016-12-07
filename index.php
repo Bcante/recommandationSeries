@@ -49,7 +49,8 @@ else {
         $email = $param->email;
 
         global $guestController;
-        $guestController->authentication($email,$password);
+        echo true;
+        // echo $guestController->authentication($email,$password);
     });
 }
 

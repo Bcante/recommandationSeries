@@ -20,6 +20,10 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
         $location.path('/myTracking');
     };
 
+    $scope.goToProfil = function () {
+        $location.path('/myProfil');
+    };
+
     $http({
         method: 'GET',
         url : 'home/popularSeries'

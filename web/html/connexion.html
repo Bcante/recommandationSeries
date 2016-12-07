@@ -1,5 +1,10 @@
 <section class="connexion">
-    <div>
+    <div ng-show="connected">
+        <md-card class="md-primary">
+            Already connected
+        </md-card>
+    </div>
+    <div ng-show="!connected">
         <md-card class="md-primary">
             <md-card-title>
                 <md-card-title-text>
@@ -28,6 +33,10 @@
                             <md-button class="md-primary" ng-disabled="!connectionForm.$valid" ng-click="toConnect()">
                                 Sign in
                             </md-button>
+                        </md-card-actions>
+
+                        <md-card-actions>
+                                <span md-colors="{color: 'red'}">{{ connectionError }}</span>
                         </md-card-actions>
                     </form>
 

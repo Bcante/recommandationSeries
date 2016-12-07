@@ -1,10 +1,14 @@
 var app = angular.module('routeAppControllers');
-app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval) {
+app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
 
     $scope.connection = {
         email : "",
         password : ""
     };
+
+    if(serviceConnection.getConnectionStatus()) {
+        $scope.connected = true;
+    }
 
     // function to connect a user
     $scope.toConnect = function() {
@@ -18,16 +22,19 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
             url: 'connexion'
         })
         .success(function (data, status, headers, config) {
+            console.log(data);
             if(data == false) {
                 $scope.connectionError = "Invalid email / password"
             }
             else {
+                console.log('ok');
                 localStorage.setItem('connected', true);
+                location.reload();
                 $location.path('/home');
             }
-            localStorage.setItem('connected', true);
+            /*localStorage.setItem('connected', true);
             location.reload();
-            $location.path('/home');
+            $location.path('/home');*/
         });
     }
 }]);

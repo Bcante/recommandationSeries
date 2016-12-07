@@ -19,7 +19,7 @@ class GuestController extends AbstractController {
 
     public function authentication($email, $password) {
         // Remplir le authenticate par tous le post
-        Authentication::authenticate($email, $password);
+        return Authentication::authenticate($email, $password);
     }
 
 }

@@ -36,6 +36,10 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             templateUrl : 'web/html/myTracking.html',
             controller : 'trackCtrl'
         })
+        .when('/myProfil', {
+            templateUrl : 'web/html/myProfil.html',
+            controller : 'profilCtrl'
+        })
         .otherwise('/', {
             templateUrl : 'web/html/index.tpl.php',
             controller : 'indexCtrl'

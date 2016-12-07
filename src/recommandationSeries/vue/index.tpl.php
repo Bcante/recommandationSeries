@@ -31,6 +31,7 @@
     <script src="web/js/Controller/homeCtrl.js"></script>
     <script src="web/js/Controller/seriesCtrl.js"></script>
     <script src="web/js/Controller/trackCtrl.js"></script>
+    <script src="web/js/Controller/profilCtrl.js"></script>
 
     <!-- Services -->
     <script src="web/js/service/serviceSerie.js"></script>
