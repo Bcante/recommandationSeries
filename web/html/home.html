@@ -20,9 +20,9 @@
                         <h1 class="md-display-2">{{ genre.name }}</h1>
                         <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="infoSerie in seriesByGenre | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                                <span ng-click="displayASerie(infoSerie.id)">
-                                    <img src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
-                                    {{ infoSerie.name }}
+                                <span>
+                                    <img ng-click="displayASerie(infoSerie.id)" src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
+                                    <span ng-click="displayASerie(serie.id)">{{ infoSerie.name }}</span> <md-button ng-show="connected" class='md-raised'>Follow</md-button>
                                 </span>
                             </md-whiteframe>
                         </div>
