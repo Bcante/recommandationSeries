@@ -2,10 +2,6 @@
 
 require "vendor/autoload.php";
 
-use \recommandationSeries\control\GuestController;
-use \recommandationSeries\control\CommonController;
-use \recommandationSeries\control\LoggedController;
-
 \conf\DbConf::init();
 
 $app = new \Slim\Slim(
@@ -15,15 +11,6 @@ $app = new \Slim\Slim(
 );
 
 session_start();
-
-global $commonController;
-$commonController = new CommonController();
-
-global $guestController;
-$guestController = new GuestController();
-
-global $loggedController;
-$loggedController = new LoggedController();
 
 include("src/recommandationSeries/routes/commonRoutes.php");
 

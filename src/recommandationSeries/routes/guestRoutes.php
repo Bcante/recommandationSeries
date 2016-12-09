@@ -1,5 +1,10 @@
 <?php
 
+use \recommandationSeries\control\GuestController;
+
+global $guestController;
+$guestController = new GuestController();
+
 $app->post('/registration', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $username = $param->username;

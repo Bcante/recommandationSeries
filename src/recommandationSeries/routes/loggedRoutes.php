@@ -1,5 +1,9 @@
 <?php
 
+use \recommandationSeries\control\LoggedController;
+
+global $loggedController;
+$loggedController = new LoggedController();
 
 $app->get('/disconnect', function() {
     session_destroy();

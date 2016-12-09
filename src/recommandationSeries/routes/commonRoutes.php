@@ -1,5 +1,10 @@
 <?php
 
+use \recommandationSeries\control\CommonController;
+
+global $commonController;
+$commonController = new CommonController();
+
 $app->get('/user/connectionStatus', function() {
     if(isset($_SESSION['user_id'])) echo true;
     else echo false;
