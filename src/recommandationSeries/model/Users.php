@@ -14,6 +14,11 @@ class Users extends Model{
 	public function usersEpisodes(){
 		return $this->hasMany('\model\UsersEpisodes','user_id');
 	}
+
+	//relation Users <> Episodes
+	public function series() {
+		return $this->belongsToMany('\recommandationSeries\model\Series', 'userseries', 'user_id', 'serie_id');
+	}
 	
 }
 ?>

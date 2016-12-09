@@ -7,6 +7,8 @@ use recommandationSeries\model\Actors;
 use recommandationSeries\model\Genres;
 use recommandationSeries\model\Seasons;
 use recommandationSeries\model\Series;
+use recommandationSeries\model\Users;
+
 
 class CommonController extends AbstractController {
 
@@ -105,6 +107,15 @@ class CommonController extends AbstractController {
             ->get();
         $actorsJson = json_encode($actors);
         return $actorsJson;
+    }
+
+    public function followSerie($serieId) {
+        /** Utilisation :
+            Pour attacher un utilisateur i a une série s
+            $users = Users::find(i);
+            $users->series()->attach(s);
+        **/
+        echo "yeaaaaaBOYE";
     }
 
 }
