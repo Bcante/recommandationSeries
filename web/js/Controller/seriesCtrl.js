@@ -2,6 +2,11 @@ var app = angular.module('routeAppControllers');
 
 app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+        });
+
     // recover idSerie from cookie
     $scope.idSerie = localStorage.getItem('idSerie');
 
@@ -85,6 +90,4 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
     /*$scope.unfollowASerie = function(serieId) {
         serviceSerie.unfollowASerie(serieId);
      */
-
-    $scope.connected = serviceConnection.getConnectionStatus();
 }]);

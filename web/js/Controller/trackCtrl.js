@@ -2,7 +2,10 @@ var app = angular.module('routeAppControllers');
 
 app.controller('trackCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
 
-    $scope.connected = serviceConnection.getConnectionStatus();
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+        });
 
     if(serviceConnection.getConnectionStatus()) {
 
@@ -10,6 +13,5 @@ app.controller('trackCtrl',['$scope','$location','$http','$rootScope','$window',
 
     $scope.connect = function() {
         serviceConnection.redirectionConnectionPage();
-        // $location.path('/connexion');
     }
 }]);

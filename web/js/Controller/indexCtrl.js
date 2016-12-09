@@ -1,6 +1,11 @@
 var app = angular.module('routeAppControllers',[]);
 app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+        });
+
     $scope.connect = false;
     $scope.toConnect = function () {
         $location.path('/connexion');
@@ -60,6 +65,4 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.displayASerie = function (serieId) {
         serviceSerie.loadSeriePage(serieId);
     };
-
-    $scope.connected = serviceConnection.getConnectionStatus();
 }]);

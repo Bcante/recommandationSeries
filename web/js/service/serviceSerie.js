@@ -9,8 +9,8 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
         },
 
         followASerie : function(serieId) {
-            var tmp = serviceConnection.getUserId();
-            tmp.success(function(data) {
+            serviceConnection.getUserId()
+            .success(function(data) {
                 $http({
                     method : 'PUT',
                     data : {
@@ -23,9 +23,9 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
                     console.log('ok');
                 });
             });
-        }
+        },
 
-        /*unfollowASerie : function(serieId) {
+        unfollowASerie : function(serieId) {
             var tmp = serviceConnection.getUserId();
             tmp.success(function(data) {
                 $http({
@@ -46,7 +46,7 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
             var tmp = serviceConnection.getUserId();
             return tmp.success(function(data) {
                 $http({
-                    method : 'PUT',
+                    method : 'GET',
                     data : {
                         serieId : serieId,
                         userId : data
@@ -54,7 +54,7 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
                     url : 'checkIfFollow/'
                 })
             });
-        }*/
+        }
 
     }
 

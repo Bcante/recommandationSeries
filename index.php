@@ -16,15 +16,6 @@ $app = new \Slim\Slim(
 
 session_start();
 
-$app->get('/checkConnection', function() {
-    if(isset($_SESSION['user_id'])) {
-        echo true;
-    }
-    else {
-        echo false;
-    }
-});
-
 global $commonController;
 $commonController = new CommonController();
 
@@ -38,6 +29,10 @@ if(isset($_SESSION['user_id'])) {
     // routes when user is connected
     // $loggedController
 
+    $app->get('/disconnect', function() {
+        session_destroy();
+    });
+
     $app->get('/user/id/', function() {
         echo $_SESSION['user_id'];
     });
@@ -47,9 +42,17 @@ if(isset($_SESSION['user_id'])) {
         $userId = $param->userId;
         $serieId = $param->serieId;
 
-        /*global $loggedController;
-        echo $loggedController->followASerie($userId, $serieId);*/
-        echo 'ok';
+        global $loggedController;
+        echo $loggedController->followASerie($userId, $serieId);
+    });
+
+    $app->get('/checkIfFollow', function() use ($app) {
+        $param = json_decode($app->request->getBody());
+        $userId = $param->userId;
+        $serieId = $param->serieId;
+
+        global $loggedController;
+        echo $loggedController->checkIfFollow($userId, $serieId);
     });
 }
 else {
@@ -73,14 +76,17 @@ else {
         $email = $param->email;
 
         global $guestController;
-        /*echo */ var_dump($guestController->authentication($email,$password));
+        echo $guestController->authentication($email, $password);
     });
 }
 
-// commons routes
+/*
+ * COMMON ROUTES
+ */
 
-$app->get('/disconnect', function() {
-    session_destroy();
+$app->get('/user/connectionStatus', function() {
+    if(isset($_SESSION['user_id'])) echo true;
+    else echo false;
 });
 
 $app->get('/',function() use ($app){

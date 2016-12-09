@@ -6,9 +6,10 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
         password : ""
     };
 
-    if(serviceConnection.getConnectionStatus()) {
-        $scope.connected = true;
-    }
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+        });
 
     // function to connect a user
     $scope.toConnect = function() {
@@ -23,7 +24,7 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
         })
         .success(function (data, status, headers, config) {
             console.log(data);
-            if(data == false) {
+            if(data != 1) {
                 $scope.connectionError = "Invalid email / password"
             }
             else {
@@ -31,9 +32,6 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
                 location.reload();
                 $location.path('/home');
             }
-            localStorage.setItem('connected', true);
-            location.reload();
-            $location.path('/home');
         });
     }
 }]);

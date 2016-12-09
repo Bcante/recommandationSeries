@@ -1,6 +1,7 @@
 <?php
+
 namespace recommandationSeries\utils;
-use Illuminate\Support\Facades\Session;
+
 use recommandationSeries\model\Users;
 
 class Authentication {
@@ -10,12 +11,12 @@ class Authentication {
         // user names are unique therefore we can directly search for a matching username 
         // in the DB
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Invalid mail";
+            // echo "Invalid mail";
             $connexionOK = false;
         }
 
         if (filter_var($password,FILTER_SANITIZE_STRING) !== $password) {
-            echo "Invalid password";
+            // echo "Invalid password";
             $connexionOK = false;
         }
 
@@ -24,12 +25,12 @@ class Authentication {
             if ($found === 1 ) {
                 $usr = Users::where('email', '=', "$email")->first();
                 if ($password === $usr->password) {
-                    echo "Successful loggin";
+                    // echo "Successful loggin";
                     Authentication::loadProfile($usr->id);
                     // Define what do we want to store in the session variable
                 }
                 else {
-                    echo "Invalide email / password";
+                    // echo "Invalide email / password";
                     $connexionOK = false;
                 }
             }

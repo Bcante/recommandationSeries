@@ -2,7 +2,10 @@ var app = angular.module('routeAppControllers');
 
 app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceSerie', 'serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceSerie, serviceConnection) {
 
-    $scope.connected = serviceConnection.getConnectionStatus();
+    serviceConnection.getConnectionStatus()
+    .success(function (data) {
+        $scope.connected = data == 1 ? true : false;
+    });
 
     /**
      * ajax to recover genres
@@ -56,7 +59,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     };
 
     /**
-     *
+     * function to follow a serie
      */
     $scope.followASerie = function (serieId) {
         var tmp = serviceConnection.getUserId();
@@ -75,8 +78,15 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         });
     };
 
-    /*$scope.followASerie = function(serieId) {
-        serviceSerie.followASerie(serieId);
+    /*$scope.unfollowASerie = function(serieId) {
+        serviceSerie.unfollowASerie(serieId);
+    };*/
+
+    /*$scope.followOrNot = function (serieId) {
+        serviceSerie.checkIfFollow(serieId)
+            .success(function(data) {
+                return data;
+            })
     };*/
 
 }]);

@@ -2,7 +2,10 @@ var app = angular.module('routeAppControllers');
 
 app.controller('profilCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
 
-    $scope.connected = serviceConnection.getConnectionStatus();
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+        });
 
     if(serviceConnection.getConnectionStatus()) {
         
