@@ -1,8 +1,10 @@
 <?php
 namespace recommandationSeries\utils;
+use Illuminate\Support\Facades\Session;
 use recommandationSeries\model\Users;
 
 class Authentication {
+
     public static function authenticate($email, $password) {
         $connexionOK = true;
         // user names are unique therefore we can directly search for a matching username 
@@ -23,7 +25,7 @@ class Authentication {
                 $usr = Users::where('email', '=', "$email")->first();
                 if ($password === $usr->password) {
                     echo "Successful loggin";
-                    session_start();
+                    Authentication::loadProfile($usr->id);
                     // Define what do we want to store in the session variable
                 }
                 else {
@@ -36,6 +38,12 @@ class Authentication {
             }
         }
         return $connexionOK;
+    }
+
+    public static function loadProfile($id) {
+        session_destroy();
+        session_start();
+        $_SESSION['user_id'] = $id;
     }
 
     public static function register($username, $password, $password_confirm, $email) {

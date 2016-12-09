@@ -20,6 +20,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.numberOfSeasons = data.number_of_seasons;
         $scope.overview = data.overview;
         $scope.popularity = data.popularity;
+        $scope.serieId = data.id;
     });
 
     /**
@@ -72,6 +73,18 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
             console.log(data);
         });
     };
+
+    /*$scope.checkIfFollow = function (serieId) {
+        $scope.followed = serviceSerie.checkIfFollow(serieId).success(function(data) { return data; });
+    };*/
+
+    /*$scope.followASerie = function(serieId) {
+     serviceSerie.followASerie(serieId);
+     };*/
+
+    /*$scope.unfollowASerie = function(serieId) {
+        serviceSerie.unfollowASerie(serieId);
+     */
 
     $scope.connected = serviceConnection.getConnectionStatus();
 }]);

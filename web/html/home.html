@@ -10,7 +10,7 @@
                                 <span class="serieBloc">
                                     <img ng-click="displayASerie(serie.id)" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"> <br />
                                     <div>
-                                        <span ng-click="displayASerie(serie.id)">{{ serie.name }}</span> <md-button ng-show="connected" class='md-raised'>Follow</md-button>
+                                        <span ng-click="displayASerie(serie.id)">{{ serie.name }}</span> <md-button ng-show="connected" ng-click='followASerie(serie.id)' class='md-raised'>Follow</md-button>
                                     </div>
                                 </span>
                             </md-whiteframe>

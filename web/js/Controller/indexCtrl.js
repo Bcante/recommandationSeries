@@ -41,15 +41,20 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
             })
             .success(function (data, status, headers, config) {
                 $scope.serieSearch = data;
-                console.log(data);
             });
         }
     };
 
     $scope.disconnect = function () {
-        localStorage.removeItem('connected');
-        location.reload();
-        $location.path('/home');
+        $http({
+            method: 'GET',
+            url : 'disconnect'
+        })
+        .success(function (data, status, headers, config) {
+            localStorage.removeItem('connected');
+            location.reload();
+            $location.path('/home');
+        });
     };
 
     $scope.displayASerie = function (serieId) {

@@ -55,4 +55,28 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         $scope.totalDisplayed += 20;
     };
 
+    /**
+     *
+     */
+    $scope.followASerie = function (serieId) {
+        var tmp = serviceConnection.getUserId();
+        tmp.success(function(data) {
+            $http({
+                method : 'PUT',
+                data : {
+                    serieId : serieId,
+                    userId : data
+                },
+                url : 'followASerie/'
+            })
+            .success(function(data, status, headers, config) {
+                console.log('ok');
+            });
+        });
+    };
+
+    /*$scope.followASerie = function(serieId) {
+        serviceSerie.followASerie(serieId);
+    };*/
+
 }]);

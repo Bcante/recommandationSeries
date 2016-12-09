@@ -4,7 +4,7 @@ require "vendor/autoload.php";
 
 use \recommandationSeries\control\GuestController;
 use \recommandationSeries\control\CommonController;
-use recommandationSeries\control\LoggedController;
+use \recommandationSeries\control\LoggedController;
 
 \conf\DbConf::init();
 
@@ -13,6 +13,17 @@ $app = new \Slim\Slim(
         'templates.path' => './src/recommandationSeries/vue'
     )
 );
+
+session_start();
+
+$app->get('/checkConnection', function() {
+    if(isset($_SESSION['user_id'])) {
+        echo true;
+    }
+    else {
+        echo false;
+    }
+});
 
 global $commonController;
 $commonController = new CommonController();
@@ -26,7 +37,20 @@ $loggedController = new LoggedController();
 if(isset($_SESSION['user_id'])) {
     // routes when user is connected
     // $loggedController
-    global $loggedController;
+
+    $app->get('/user/id/', function() {
+        echo $_SESSION['user_id'];
+    });
+
+    $app->put('/followASerie/', function() use ($app){
+        $param = json_decode($app->request->getBody());
+        $userId = $param->userId;
+        $serieId = $param->serieId;
+
+        /*global $loggedController;
+        echo $loggedController->followASerie($userId, $serieId);*/
+        echo 'ok';
+    });
 }
 else {
     // routes when user is not connected
@@ -49,13 +73,16 @@ else {
         $email = $param->email;
 
         global $guestController;
-        echo true;
-        // echo $guestController->authentication($email,$password);
+        /*echo */ var_dump($guestController->authentication($email,$password));
     });
 }
 
+// commons routes
 
-// common routes
+$app->get('/disconnect', function() {
+    session_destroy();
+});
+
 $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
