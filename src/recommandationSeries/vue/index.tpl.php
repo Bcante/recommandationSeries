@@ -26,7 +26,7 @@
 
     <!-- Controllers -->
     <script src="web/js/controller/indexCtrl.js"></script>
-    <script src="web/js/controller/connexionCtrl.js"></script>
+    <script src="web/js/controller/connectionCtrl.js"></script>
     <script src="web/js/controller/registrationCtrl.js"></script>
     <script src="web/js/controller/homeCtrl.js"></script>
     <script src="web/js/controller/seriesCtrl.js"></script>

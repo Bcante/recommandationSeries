@@ -1,5 +1,5 @@
 var app = angular.module('routeAppControllers');
-app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
+app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
 
     $scope.connection = {
         email : "",
@@ -20,11 +20,11 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
                 password: $scope.connection.password,
                 email : $scope.connection.email
             },
-            url: 'connexion'
+            url: 'connection'
         })
         .success(function (data, status, headers, config) {
             if(data != 1) {
-                $scope.connectionError = "Invalid email / password"
+                $scope.connectionError = "Invalid email / password";
             }
             else {
                 location.reload();

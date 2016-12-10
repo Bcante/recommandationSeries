@@ -5,23 +5,19 @@ use \recommandationSeries\control\CommonController;
 global $commonController;
 $commonController = new CommonController();
 
-$app->get('/user/connectionStatus', function() {
-    if(isset($_SESSION['user_id'])) echo true;
-    else echo false;
-});
-
+/*
+ * default route
+ */
 $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
 
+/*
+ * Routes related to home page
+ */
 $app->get('/home/popularSeries', function () {
     global $commonController;
     echo $commonController->getPopularSeries();
-});
-
-$app->get('serie/serieSearch/:serieName', function($serieName) {
-    global $commonController;
-    echo $commonController->getSearchSerie($serieName);
 });
 
 $app->get('/home/genres', function() {
@@ -39,6 +35,17 @@ $app->get('/home/seriesByGenre/:genre', function($genre) {
     echo $commonController->getByGenre($genre);
 });
 
+/*
+ * Routes related to user
+ */
+$app->get('/user/connectionStatus', function() {
+    if(isset($_SESSION['user_id'])) echo true;
+    else echo false;
+});
+
+/*
+ * Routes related to series
+ */
 $app->get('/serie/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getInfoSerie($serieId);
@@ -62,4 +69,9 @@ $app->get('/serie/episodes/:seasonId', function($seasonId) {
 $app->get('/serie/actors/:episodeId', function($episodeId) {
     global $commonController;
     echo $commonController->getActors($episodeId);
+});
+
+$app->get('serie/serieSearch/:serieName', function($serieName) {
+    global $commonController;
+    echo $commonController->getSearchSerie($serieName);
 });

@@ -5,6 +5,9 @@ use \recommandationSeries\control\GuestController;
 global $guestController;
 $guestController = new GuestController();
 
+/*
+ * Route used for registration
+ */
 $app->post('/registration', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $username = $param->username;
@@ -16,7 +19,10 @@ $app->post('/registration', function() use ($app) {
     echo $guestController->registration($username, $password, $password_confirm, $email);
 });
 
-$app->post('/connexion', function() use ($app) {
+/*
+ * Route used for connection
+ */
+$app->post('/connection', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $password = $param->password;
     $email = $param->email;

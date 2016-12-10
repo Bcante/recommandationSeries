@@ -12,9 +12,9 @@ var app = angular.module('MyApp',[
  */
 app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdThemingProvider){
     $routeProvider
-        .when('/connexion',{
-            templateUrl: 'web/html/connexion.html',
-            controller : 'connexionCtrl'
+        .when('/connection',{
+            templateUrl: 'web/html/connection.html',
+            controller : 'connectionCtrl'
         })
         .when('/registration', {
             templateUrl: 'web/html/registration.html',

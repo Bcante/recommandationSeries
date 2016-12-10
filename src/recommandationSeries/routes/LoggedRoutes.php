@@ -5,14 +5,16 @@ use \recommandationSeries\control\LoggedController;
 global $loggedController;
 $loggedController = new LoggedController();
 
+/*
+ * Route used for disconnection
+ */
 $app->get('/disconnect', function() {
     session_destroy();
 });
 
-$app->get('/user/id/', function() {
-    echo $_SESSION['user_id'];
-});
-
+/*
+ * Routes related to series
+ */
 $app->put('/serie/followASerie/:serieId', function($serieId) {
     $userId = $_SESSION['user_id'];
 
@@ -27,6 +29,9 @@ $app->get('/serie/checkIfFollow/:serieId', function($serieId) {
     echo $loggedController->checkIfFollow($userId, $serieId);
 });
 
+/*
+ * Routes related to user
+ */
 $app->get('/user/seriesFollowed/', function() {
     $userId = $_SESSION['user_id'];
 

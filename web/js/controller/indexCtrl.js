@@ -8,7 +8,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
 
     $scope.connect = false;
     $scope.toConnect = function () {
-        $location.path('/connexion');
+        $location.path('/connection');
     };
 
     $scope.registrate = false;
