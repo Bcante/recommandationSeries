@@ -3103,7 +3103,7 @@
 
 
     function jqLiteController(element, name) {
-        return jqLiteInheritedData(element, '$' + (name || 'ngController') + 'Controller');
+        return jqLiteInheritedData(element, '$' + (name || 'ngController') + 'controller');
     }
 
     function jqLiteInheritedData(element, name, value) {
@@ -8267,7 +8267,7 @@
 
                         if (transcludeControllers) {
                             for (var controllerName in transcludeControllers) {
-                                $linkNode.data('$' + controllerName + 'Controller', transcludeControllers[controllerName].instance);
+                                $linkNode.data('$' + controllerName + 'controller', transcludeControllers[controllerName].instance);
                             }
                         }
 
@@ -9035,7 +9035,7 @@
                                 // If the controller constructor has a return value, overwrite the instance
                                 // from setupControllers
                                 controller.instance = controllerResult;
-                                $element.data('$' + controllerDirective.name + 'Controller', controllerResult);
+                                $element.data('$' + controllerDirective.name + 'controller', controllerResult);
                                 controller.bindingInfo.removeWatches && controller.bindingInfo.removeWatches();
                                 controller.bindingInfo =
                                     initializeDirectiveBindings(controllerScope, attrs, controller.instance, bindings, controllerDirective);
@@ -9166,13 +9166,13 @@
                         }
 
                         if (!value) {
-                            var dataName = '$' + name + 'Controller';
+                            var dataName = '$' + name + 'controller';
                             value = inheritType ? $element.inheritedData(dataName) : $element.data(dataName);
                         }
 
                         if (!value && !optional) {
                             throw $compileMinErr('ctreq',
-                                "Controller '{0}', required by directive '{1}', can't be found!",
+                                "controller '{0}', required by directive '{1}', can't be found!",
                                 name, directiveName);
                         }
                     } else if (isArray(require)) {
@@ -9213,7 +9213,7 @@
                         // Instead, we save the controllers for the element in a local hash and attach to .data
                         // later, once we have the actual element.
                         elementControllers[directive.name] = controllerInstance;
-                        $element.data('$' + directive.name + 'Controller', controllerInstance.instance);
+                        $element.data('$' + directive.name + 'controller', controllerInstance.instance);
                     }
                     return elementControllers;
                 }
@@ -9998,7 +9998,7 @@
         /**
          * @ngdoc method
          * @name $controllerProvider#has
-         * @param {string} name Controller name to check.
+         * @param {string} name controller name to check.
          */
         this.has = function(name) {
             return controllers.hasOwnProperty(name);
@@ -10007,9 +10007,9 @@
         /**
          * @ngdoc method
          * @name $controllerProvider#register
-         * @param {string|Object} name Controller name, or an object map of controllers where the keys are
+         * @param {string|Object} name controller name, or an object map of controllers where the keys are
          *    the names and the values are the constructors.
-         * @param {Function|Array} constructor Controller constructor fn (optionally decorated with DI
+         * @param {Function|Array} constructor controller constructor fn (optionally decorated with DI
          *    annotations in the array notation).
          */
         this.register = function(name, constructor) {

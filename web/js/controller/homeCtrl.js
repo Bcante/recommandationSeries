@@ -28,6 +28,11 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     .success(function(data, status, headers, config) {
         $scope.totalDisplayed = 20;
         $scope.allSeries = data;
+        /*serviceSerie.checkIfFollow()
+            .success(function(data) {
+                // verifiez que ça retourne bien true ou false
+                $scope.followOrNot = data;
+            });*/
     });
 
     /**
@@ -62,19 +67,15 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
      * function to follow a serie
      */
     $scope.followASerie = function (serieId) {
-        var tmp = serviceConnection.getUserId();
-        tmp.success(function(data) {
-            $http({
-                method : 'PUT',
-                data : {
-                    serieId : serieId,
-                    userId : data
-                },
-                url : 'followASerie/'
-            })
-            .success(function(data, status, headers, config) {
-                console.log('ok');
-            });
+        $http({
+            method : 'PUT',
+            /*data : {
+                serieId : serieId
+            },*/
+            url : 'followASerie/'+serieId
+        })
+        .success(function(data, status, headers, config) {
+            console.log('ok');
         });
     };
 

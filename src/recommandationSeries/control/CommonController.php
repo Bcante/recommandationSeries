@@ -109,13 +109,4 @@ class CommonController extends AbstractController {
         return $actorsJson;
     }
 
-    public function followSerie($serieId) {
-        /** Utilisation :
-            Pour attacher un utilisateur i a une série s
-            $users = Users::find(i);
-            $users->series()->attach(s);
-        **/
-        echo "yeaaaaaBOYE";
-    }
-
 }

@@ -26,12 +26,6 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.overview = data.overview;
         $scope.popularity = data.popularity;
         $scope.serieId = data.id;
-        serviceSerie.checkIfFollow()
-            .success(function(data) {
-                // verifiez que ça retourne bien true ou false
-               $scope.followOrNot = data;
-            });
-
     });
 
     /**

@@ -13,10 +13,8 @@ $app->get('/user/id/', function() {
     echo $_SESSION['user_id'];
 });
 
-$app->put('/followASerie/', function() use ($app){
-    $param = json_decode($app->request->getBody());
-    $userId = $param->userId;
-    $serieId = $param->serieId;
+$app->put('/followASerie/:serieId', function($serieId) {
+    $userId = $_SESSION['user_id'];
 
     global $loggedController;
     echo $loggedController->followASerie($userId, $serieId);

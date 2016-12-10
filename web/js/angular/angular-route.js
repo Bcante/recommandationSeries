@@ -75,7 +75,7 @@
          *
          *    Object properties:
          *
-         *    - `controller` – `{(string|function()=}` – Controller fn that should be associated with
+         *    - `controller` – `{(string|function()=}` – controller fn that should be associated with
          *      newly created scope or the name of a {@link angular.Module#controller registered
    *      controller} if passed as a string.
          *    - `controllerAs` – `{string=}` – An identifier name for a reference to the controller.

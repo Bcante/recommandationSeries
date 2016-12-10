@@ -43,8 +43,8 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
         },
 
         checkIfFollow : function(serieId) {
-            var tmp = serviceConnection.getUserId();
-            return tmp.success(function(data) {
+            serviceConnection.getUserId()
+            .success(function(data) {
                 $http({
                     method : 'GET',
                     data : {
