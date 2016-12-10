@@ -42,7 +42,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
         if($scope.inputSearch != "") {
             $http({
                 method: 'GET',
-                url: 'serieSearch/' + $scope.inputSearch
+                url: 'serie/serieSearch/' + $scope.inputSearch
             })
             .success(function (data, status, headers, config) {
                 $scope.serieSearch = data;
@@ -56,7 +56,6 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
             url : 'disconnect'
         })
         .success(function (data, status, headers, config) {
-            localStorage.removeItem('connected');
             location.reload();
             $location.path('/home');
         });

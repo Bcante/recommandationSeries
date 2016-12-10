@@ -15,7 +15,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
      */
     $http({
         method: 'GET',
-        url: 'series/' + $scope.idSerie
+        url: 'serie/' + $scope.idSerie
     }).success(function (data, status, headers, config) {
         data = data[0];
 
@@ -33,7 +33,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
      */
     $http({
         method: 'GET',
-        url : 'series/creator/'+$scope.idSerie
+        url : 'serie/creator/'+$scope.idSerie
     })
     .success(function (data, status, headers, config) {
         $scope.creatorName = data[0].name;
@@ -44,7 +44,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
      */
     $http({
         method: 'GET',
-        url : 'series/seasons/'+$scope.idSerie
+        url : 'serie/seasons/'+$scope.idSerie
     })
     .success(function (data, status, headers, config) {
         $scope.seasonsArray = data;
@@ -58,7 +58,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
     $scope.displayEpisodes = function (seasonId) {
         $http({
             method: 'GET',
-            url: 'series/episodes/'+seasonId
+            url: 'serie/episodes/'+seasonId
         })
         .success(function (data, status, headers, config) {
             $scope.episodesArray = data;
@@ -72,7 +72,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
     $scope.displayActors = function (episodeId) {
         $http({
             method : 'GET',
-            url: 'series/actors/'+episodeId
+            url: 'serie/actors/'+episodeId
         })
         .success(function (data, status, headers, config) {
             console.log(data);

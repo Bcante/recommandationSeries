@@ -11,21 +11,21 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
         followASerie : function(serieId) {
             $http({
                 method : 'PUT',
-                url : 'followASerie/'+serieId
+                url : 'serie/followASerie/'+serieId
             });
         },
 
         unfollowASerie : function(serieId) {
             $http({
                 method : 'PUT',
-                url : 'unfollowASerie/'+serieId
+                url : 'serie/unfollowASerie/'+serieId
             });
         },
 
         checkIfFollow : function(serieId) {
             $http({
                 method : 'GET',
-                url : 'checkIfFollow/'+serieId
+                url : 'serie/checkIfFollow/'+serieId
             })
         }
 

@@ -19,7 +19,7 @@ $app->get('/home/popularSeries', function () {
     echo $commonController->getPopularSeries();
 });
 
-$app->get('/serieSearch/:serieName', function($serieName) {
+$app->get('serie/serieSearch/:serieName', function($serieName) {
     global $commonController;
     echo $commonController->getSearchSerie($serieName);
 });
@@ -39,27 +39,27 @@ $app->get('/home/seriesByGenre/:genre', function($genre) {
     echo $commonController->getByGenre($genre);
 });
 
-$app->get('/series/:serieId', function($serieId) {
+$app->get('/serie/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getInfoSerie($serieId);
 });
 
-$app->get('/series/creator/:serieId', function($serieId) {
+$app->get('/serie/creator/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getCreator($serieId);
 });
 
-$app->get('/series/seasons/:serieId', function($serieId) {
+$app->get('/serie/seasons/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getSeasons($serieId);
 });
 
-$app->get('/series/episodes/:seasonId', function($seasonId) {
+$app->get('/serie/episodes/:seasonId', function($seasonId) {
     global $commonController;
     echo $commonController->getEpisodes($seasonId);
 });
 
-$app->get('/series/actors/:episodeId', function($episodeId) {
+$app->get('/serie/actors/:episodeId', function($episodeId) {
     global $commonController;
     echo $commonController->getActors($episodeId);
 });

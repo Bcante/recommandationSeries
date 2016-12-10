@@ -23,12 +23,10 @@ app.controller('connexionCtrl',['$scope','$location','$http','$rootScope','$wind
             url: 'connexion'
         })
         .success(function (data, status, headers, config) {
-            console.log(data);
             if(data != 1) {
                 $scope.connectionError = "Invalid email / password"
             }
             else {
-                localStorage.setItem('connected', true);
                 location.reload();
                 $location.path('/home');
             }
