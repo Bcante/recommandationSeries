@@ -25,13 +25,13 @@
     <script src="web/js/app.js"></script>
 
     <!-- Controllers -->
-    <script src="web/js/Controller/indexCtrl.js"></script>
-    <script src="web/js/Controller/connexionCtrl.js"></script>
-    <script src="web/js/Controller/registrationCtrl.js"></script>
-    <script src="web/js/Controller/homeCtrl.js"></script>
-    <script src="web/js/Controller/seriesCtrl.js"></script>
-    <script src="web/js/Controller/trackCtrl.js"></script>
-    <script src="web/js/Controller/profilCtrl.js"></script>
+    <script src="web/js/controller/indexCtrl.js"></script>
+    <script src="web/js/controller/connexionCtrl.js"></script>
+    <script src="web/js/controller/registrationCtrl.js"></script>
+    <script src="web/js/controller/homeCtrl.js"></script>
+    <script src="web/js/controller/seriesCtrl.js"></script>
+    <script src="web/js/controller/trackCtrl.js"></script>
+    <script src="web/js/controller/profilCtrl.js"></script>
 
     <!-- Services -->
     <script src="web/js/service/serviceSerie.js"></script>

@@ -26,6 +26,12 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.overview = data.overview;
         $scope.popularity = data.popularity;
         $scope.serieId = data.id;
+        serviceSerie.checkIfFollow()
+            .success(function(data) {
+                // verifiez que ça retourne bien true ou false
+               $scope.followOrNot = data;
+            });
+
     });
 
     /**
@@ -79,15 +85,25 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
+
     /*$scope.checkIfFollow = function (serieId) {
         $scope.followed = serviceSerie.checkIfFollow(serieId).success(function(data) { return data; });
     };*/
 
-    /*$scope.followASerie = function(serieId) {
-     serviceSerie.followASerie(serieId);
-     };*/
-
-    /*$scope.unfollowASerie = function(serieId) {
-        serviceSerie.unfollowASerie(serieId);
+    /**
+     * function to follow a serie (using serviceSerie)
+     * @param serieId, serie to follow
      */
+    $scope.followASerie = function(serieId) {
+        serviceSerie.followASerie(serieId);
+     };
+
+    /**
+     * function to unfollow a serie (using serviceSerie)
+     * @param serieId, serie to unfollow
+     */
+    $scope.unfollowASerie = function(serieId) {
+        serviceSerie.unfollowASerie(serieId);
+
+    };
 }]);
