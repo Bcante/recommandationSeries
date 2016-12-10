@@ -17,14 +17,19 @@ $app->put('/followASerie/:serieId', function($serieId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
-    echo $loggedController->followASerie($userId, $serieId);
+    $loggedController->followASerie($userId, $serieId);
 });
 
-$app->get('/checkIfFollow', function() use ($app) {
-    $param = json_decode($app->request->getBody());
-    $userId = $param->userId;
-    $serieId = $param->serieId;
+$app->get('/checkIfFollow/:serieId', function($serieId) {
+    $userId = $_SESSION['user_id'];
 
     global $loggedController;
     echo $loggedController->checkIfFollow($userId, $serieId);
+});
+
+$app->get('/user/seriesFollowed/', function() {
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->seriesFollowed($userId);
 });

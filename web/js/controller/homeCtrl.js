@@ -28,11 +28,13 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     .success(function(data, status, headers, config) {
         $scope.totalDisplayed = 20;
         $scope.allSeries = data;
-        /*serviceSerie.checkIfFollow()
+        /*data.forEach(function(serie) {
+            serviceSerie.checkIfFollow(serie.id)
             .success(function(data) {
                 // verifiez que ça retourne bien true ou false
                 $scope.followOrNot = data;
-            });*/
+            });
+        });*/
     });
 
     /**
@@ -64,30 +66,17 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     };
 
     /**
-     * function to follow a serie
+     * function to follow a serie (using serviceSerie)
      */
     $scope.followASerie = function (serieId) {
-        $http({
-            method : 'PUT',
-            /*data : {
-                serieId : serieId
-            },*/
-            url : 'followASerie/'+serieId
-        })
-        .success(function(data, status, headers, config) {
-            console.log('ok');
-        });
+        serviceSerie.followASerie(serieId);
     };
 
-    /*$scope.unfollowASerie = function(serieId) {
+    /**
+     * function to unfollow a serie (using serviceSerie)
+     */
+    $scope.unfollowASerie = function(serieId) {
         serviceSerie.unfollowASerie(serieId);
-    };*/
-
-    /*$scope.followOrNot = function (serieId) {
-        serviceSerie.checkIfFollow(serieId)
-            .success(function(data) {
-                return data;
-            })
-    };*/
+    };
 
 }]);
