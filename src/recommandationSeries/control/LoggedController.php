@@ -10,6 +10,14 @@ class LoggedController extends AbstractController {
     public function __construct() {
         parent::__construct();
     }
+    
+    /** 
+     * Handy method used to check if a user is following a given serie
+     * Return 1 if he's following the serie, 0 otherwise
+     **/
+    public function isFollowing($userId, $serieId) {
+        return Users::find($userId)->series()->where('serie_id','=',$serieId)->count();
+    }
 
     /**
      * Save in database the serie followed by the user
@@ -20,8 +28,10 @@ class LoggedController extends AbstractController {
         /**
          * using series(), which is a method in the Model "Series"
          */
-        $users = Users::find($userId);
-        $users->series()->attach($serieId);
+        if ($this->isFollowing($userId, $serieId) === 0) {
+            $users = Users::find($userId);
+            $users->series()->attach($serieId);
+        }
     }
 
     /**
@@ -57,8 +67,10 @@ class LoggedController extends AbstractController {
      * $userId & $serieId
      **/
     public function unfollowASerie($userId, $serieId) {
-        $users = Users::find($userId);
-        $users->series()->detach($serieId);
+        if ($this->isFollowing($userId, $serieId) === 1) {
+            $users = Users::find($userId);
+            $users->series()->detach($serieId);    
+        }
     }
 }
 

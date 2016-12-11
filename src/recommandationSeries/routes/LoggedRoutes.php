@@ -45,5 +45,3 @@ $app->get('/user/seriesFollowed/', function() {
     global $loggedController;
     echo $loggedController->seriesFollowed($userId);
 });
-
-
