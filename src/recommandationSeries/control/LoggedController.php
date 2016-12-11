@@ -21,7 +21,7 @@ class LoggedController extends AbstractController {
 
     /**
      * Check if a User is following a given serie.
-     * Return true if there is one line in table user_serie with 
+     * Return true if there is one row in table user_serie with 
      * the id of the serie, and of the user
     **/
     public function checkIfFollow($userId, $serieId) {
@@ -36,6 +36,10 @@ class LoggedController extends AbstractController {
         }
     }
 
+    /** 
+     * For a given $userId, check which series
+     * he is currently following 
+     **/
     public function seriesFollowed($userId) {
         // need poster_path, id, name of the serie
         $series = Users::find($userId)->series()->select('series.name', 'poster_path', 'series.id')->get();
@@ -43,8 +47,14 @@ class LoggedController extends AbstractController {
         return $seriesJson;
     }
 
-    public function unFollowASerie($userId, $serieId) {
-
+    /**
+     * Delete the link between a user and a serie, by 
+     * deleting the row in user_serie containing 
+     * $userId & $serieId
+     **/
+    public function unfollowASerie($userId, $serieId) {
+        $users = Users::find($userId);
+        $users->series()->detach($serieId);
     }
 }
 

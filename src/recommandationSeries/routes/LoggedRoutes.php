@@ -19,7 +19,7 @@ $app->put('/serie/followASerie/:serieId', function($serieId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
-    $loggedController->followASerie($userId, $serieId);
+    echo $loggedController->followASerie($userId, $serieId);
 });
 
 $app->get('/serie/checkIfFollow/:serieId', function($serieId) {
@@ -27,6 +27,13 @@ $app->get('/serie/checkIfFollow/:serieId', function($serieId) {
 
     global $loggedController;
     echo $loggedController->checkIfFollow($userId, $serieId);
+});
+
+$app->put('/serie/unfollowASerie/:serieId', function($serieId) {
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->unfollowASerie($userId, $serieId);
 });
 
 /*
@@ -38,3 +45,5 @@ $app->get('/user/seriesFollowed/', function() {
     global $loggedController;
     echo $loggedController->seriesFollowed($userId);
 });
+
+
