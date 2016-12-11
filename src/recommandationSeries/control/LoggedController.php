@@ -38,6 +38,9 @@ class LoggedController extends AbstractController {
 
     public function seriesFollowed($userId) {
         // need poster_path, id, name of the serie
+        $series = Users::find($userId)->series()->select('series.name', 'poster_path', 'series.id')->get();
+        $seriesJson = json_encode($series);
+        return $seriesJson;
     }
 
     public function unFollowASerie($userId, $serieId) {
