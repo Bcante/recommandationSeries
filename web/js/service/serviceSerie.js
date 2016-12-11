@@ -8,27 +8,6 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
             $location.path('/series');
         },
 
-        followASerie : function(serieId) {
-            $http({
-                method : 'PUT',
-                url : 'serie/followASerie/'+serieId
-            });
-        },
-
-        unfollowASerie : function(serieId) {
-            $http({
-                method : 'PUT',
-                url : 'serie/unfollowASerie/'+serieId
-            });
-        },
-
-        checkIfFollow : function(serieId) {
-            $http({
-                method : 'GET',
-                url : 'serie/checkIfFollow/'+serieId
-            })
-        }
-
     }
 
 }]);

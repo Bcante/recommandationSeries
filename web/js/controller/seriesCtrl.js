@@ -26,6 +26,15 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.overview = data.overview;
         $scope.popularity = data.popularity;
         $scope.serieId = data.id;
+
+        $http({
+            method: 'GET',
+            url: 'serie/checkIfFollow/' + data.id
+        })
+        .success(function (data, status, headers, config) {
+            console.log(data);
+            $scope.followOrNot = data;
+        });
     });
 
     /**
@@ -36,7 +45,7 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         url : 'serie/creator/'+$scope.idSerie
     })
     .success(function (data, status, headers, config) {
-        $scope.creatorName = data[0].name;
+        $scope.creatorName = data.name;
     });
 
     /**
@@ -79,17 +88,18 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
-
-    /*$scope.checkIfFollow = function (serieId) {
-        $scope.followed = serviceSerie.checkIfFollow(serieId).success(function(data) { return data; });
-    };*/
-
     /**
      * function to follow a serie (using serviceSerie)
      * @param serieId, serie to follow
      */
     $scope.followASerie = function(serieId) {
-        serviceSerie.followASerie(serieId);
+        $http({
+            method : 'PUT',
+            url : 'serie/followASerie/'+serieId
+        })
+        .success(function (data, status, headers, config) {
+            location.reload();
+        });
      };
 
     /**
@@ -97,7 +107,12 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
      * @param serieId, serie to unfollow
      */
     $scope.unfollowASerie = function(serieId) {
-        serviceSerie.unfollowASerie(serieId);
-
+        $http({
+            method : 'DELETE',
+            url : 'serie/unfollowASerie/'+serieId
+        })
+        .success(function (data, status, headers, config) {
+            location.reload();
+        });
     };
 }]);

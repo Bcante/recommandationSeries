@@ -28,13 +28,6 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     .success(function(data, status, headers, config) {
         $scope.totalDisplayed = 20;
         $scope.allSeries = data;
-        /*data.forEach(function(serie) {
-            serviceSerie.checkIfFollow(serie.id)
-            .success(function(data) {
-                // verifiez que ça retourne bien true ou false
-                $scope.followOrNot = data;
-            });
-        });*/
     });
 
     /**
@@ -51,7 +44,7 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
         });
     };
 
-    /** using cookie with serieId
+    /** using serviceSerie to display serie page
      * @param serieId id of the selected serie
      */
     $scope.displayASerie = function (serieId) {
@@ -63,20 +56,6 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
      */
     $scope.loadMore = function () {
         $scope.totalDisplayed += 20;
-    };
-
-    /**
-     * function to follow a serie (using serviceSerie)
-     */
-    $scope.followASerie = function (serieId) {
-        serviceSerie.followASerie(serieId);
-    };
-
-    /**
-     * function to unfollow a serie (using serviceSerie)
-     */
-    $scope.unfollowASerie = function(serieId) {
-        serviceSerie.unfollowASerie(serieId);
     };
 
 }]);

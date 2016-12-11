@@ -11,6 +11,11 @@ class LoggedController extends AbstractController {
         parent::__construct();
     }
 
+    /**
+     * Save in database the serie followed by the user
+     * @param $userId, id user
+     * @param $serieId, id serie
+     */
     public function followASerie($userId, $serieId) {
         /**
          * using series(), which is a method in the Model "Series"
@@ -25,13 +30,12 @@ class LoggedController extends AbstractController {
      * the id of the serie, and of the user
     **/
     public function checkIfFollow($userId, $serieId) {
-        $users = Users::find($userId)->series()->where('serie_id','=',$serieId)->count();
+        $users = Users::find($userId)->series()->where('serie_id', '=', $serieId)->count();
         if ($users === 1) {
-            $thereIsOne = json_encode("true");
+            $thereIsOne = json_encode(true);
             return $thereIsOne;
-        }
-        else if ($users === 0) {
-            $thereIsNone = json_encode("false");
+        } else if ($users === 0) {
+            $thereIsNone = json_encode(false);
             return $thereIsNone;
         }
     }
