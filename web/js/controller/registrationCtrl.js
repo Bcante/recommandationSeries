@@ -34,7 +34,12 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
             url: 'registration'
         })
         .success(function (data, status, headers, config) {
-            console.log(data);
+            if(data == "") {
+                $location.path('/connection');
+            }
+            else {
+                $scope.errors = data;
+            }
         });
     }
 }]);
