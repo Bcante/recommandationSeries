@@ -4,7 +4,6 @@
             <md-card>
                 <md-card-title-text style="margin-bottom: 20px">
                     <span class="md-headline" style="padding: 5px">{{ serieName }}</span>
-                    <!--<md-button ng-show="connected" class='md-raised' ng-click="followASerie(serieId)">Follow</md-button>-->
                     <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class='md-raised'>Follow</md-button>
                     <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' class='md-raised'>Unfollow</md-button>
                 </md-card-title-text>
@@ -30,7 +29,8 @@
                                         <ul>
                                             <li>{{ episode.air_date }}</li>
                                             <li ng-mouseover="displayActors(episode.id)">Show actors</li>
-                                            <li ng-show="connected"><md-button class='md-raised'>Seen</md-button></li>
+                                            <li ng-show="connected && episodeSeen == 'false'" ng-click="seeEpisode(episode.id)"><md-button class='md-raised'>Seen</md-button></li>
+                                            <li ng-show="connected && episodeSeen == 'true'" ng-click="seeEpisode(episode.id)"><md-button class='md-raised md-primary'>Seen</md-button></li>
                                         </ul>
                                         <div class="md-list-item-text">
                                             <h3></h3>

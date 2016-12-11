@@ -2,6 +2,7 @@ var app = angular.module('routeAppControllers');
 
 app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
+    $scope.episodeSeen = 'false';
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
@@ -115,4 +116,8 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
             location.reload();
         });
     };
+
+    $scope.seeEpisode = function(episodeId) {
+        $scope.episodeSeen = 'true';
+    }
 }]);
