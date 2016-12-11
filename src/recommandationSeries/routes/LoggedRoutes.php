@@ -29,7 +29,7 @@ $app->get('/serie/checkIfFollow/:serieId', function($serieId) {
     echo $loggedController->checkIfFollow($userId, $serieId);
 });
 
-$app->put('/serie/unfollowASerie/:serieId', function($serieId) {
+$app->delete('/serie/unfollowASerie/:serieId', function($serieId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
