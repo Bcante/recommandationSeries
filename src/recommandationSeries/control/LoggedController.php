@@ -19,14 +19,30 @@ class LoggedController extends AbstractController {
         $users->series()->attach($serieId);
     }
 
+    /**
+     * Check if a User is following a given serie.
+     * Return true if there is one line in table user_serie with 
+     * the id of the serie, and of the user
+    **/
     public function checkIfFollow($userId, $serieId) {
-
+        $users = Users::find($userId)->series()->where('serie_id','=',$serieId)->count();
+        if ($users === 1) {
+            $thereIsOne = json_encode("true");
+            return $thereIsOne;
+        }
+        else if ($users === 0) {
+            $thereIsNone = json_encode("false");
+            return $thereIsNone;
+        }
     }
 
     public function seriesFollowed($userId) {
         // need poster_path, id, name of the serie
     }
 
+    public function unFollowASerie($userId, $serieId) {
+
+    }
 }
 
 ?>
