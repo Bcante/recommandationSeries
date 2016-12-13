@@ -36,12 +36,3 @@ $app->delete('/serie/unfollowASerie/:serieId', function($serieId) {
     echo $loggedController->unfollowASerie($userId, $serieId);
 });
 
-/*
- * Routes related to user
- */
-$app->get('/user/seriesFollowed/', function() {
-    $userId = $_SESSION['user_id'];
-
-    global $loggedController;
-    echo $loggedController->seriesFollowed($userId);
-});
