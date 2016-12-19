@@ -1,8 +1,5 @@
 var app = angular.module('routeAppControllers');
 
-var episodeData
-    , episodeActors;
-
 app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$mdToast,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
     serviceConnection.getConnectionStatus()
@@ -165,7 +162,8 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url : 'episode/'+episodeId
         })
         .success(function (data) {
-            episodeData = data;
+            $rootScope.episodeData = data;
+            $rootScope.episodeTitle = data[0].name;
 
             $http({
                 method : 'GET',
@@ -176,7 +174,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
                 data.forEach(function(actorName) {
                     name += actorName.name + ", "
                 });
-                episodeActors = name.substring(0, name.length-2);
+                $rootScope.episodeActors = name.substring(0, name.length-2);
             });
 
             $mdToast.show({
@@ -189,7 +187,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     }
 }])
 
-.controller('ToastCtrl', function($scope, $mdToast, $mdDialog) {
+.controller('ToastCtrl', function($scope,$rootScope, $mdToast, $mdDialog) {
 
     var isDlgOpen;
 
@@ -210,8 +208,8 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         $mdDialog
             .show($mdDialog
                 .alert()
-                .title('Actors')
-                .textContent(episodeActors)
+                .title($rootScope.episodeTitle + 'Actors')
+                .textContent($rootScope.episodeActors)
                 .ok('Ok')
                 .targetEvent(e)
             )
@@ -227,8 +225,8 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         $mdDialog
             .show($mdDialog
                 .alert()
-                .title('Synopsis')
-                .textContent(episodeData[0].overview)
+                .title($rootScope.episodeTitle + ' : Synopsis')
+                .textContent($rootScope.episodeData[0].overview)
                 .ok('Ok')
                 .targetEvent(e)
             )
