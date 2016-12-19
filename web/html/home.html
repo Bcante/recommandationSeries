@@ -8,9 +8,9 @@
                         <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="serie in allSeries | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                                 <span class="serieBloc">
-                                    <img ng-click="displayASerie(serie.id)" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"> <br />
+                                    <img ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"> <br />
                                     <div>
-                                        <span ng-click="displayASerie(serie.id)">{{ serie.name }}</span>
+                                        <span ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);">{{ serie.name }}</span>
                                     </div>
                                 </span>
                             </md-whiteframe>
@@ -23,9 +23,9 @@
                         <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="infoSerie in seriesByGenre | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                                 <span class="serieBloc">
-                                    <img ng-click="displayASerie(infoSerie.id)" src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
+                                    <img ng-click="displayASerie(infoSerie.id)" onclick="window.top.window.scrollTo(0,0);" src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
                                     <div>
-                                        <span ng-click="displayASerie(serie.id)">{{ infoSerie.name }}</span>
+                                        <span ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);">{{ infoSerie.name }}</span>
                                     </div>
                                 </span>
                             </md-whiteframe>

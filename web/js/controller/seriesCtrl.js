@@ -45,7 +45,12 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         url : 'serie/creator/'+$scope.idSerie
     })
     .success(function (data, status, headers, config) {
-        $scope.creatorName = data.name;
+        var creator = "";
+        data.forEach(function(d) {
+            console.log(d.name);
+            creator += d.name + ", ";
+        });
+        $scope.creatorName = creator.substring(0,creator.length-2);
     });
 
     /**
