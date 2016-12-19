@@ -57,5 +57,11 @@ $app->get('/user/seriesFollowed/', function() {
 });
 
 $app->post('user/modifiedProfil/', function() {
+    //BenitoPepito property
+});
 
+$app->get('/user/favoritesSeries/', function() {
+    $userId = $_SESSION['user_id'];
+    global $loggedController;
+    echo $loggedController->checkFavGenre($userId);
 });

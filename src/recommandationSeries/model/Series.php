@@ -20,5 +20,10 @@ class Series extends Model{
 		return $this->belongsToMany('\recommandationSeries\model\Users', 'userseries', 'serie_id', 'user_id');
 	}
 
+	//relation Series <> Genres
+	public function genres() {	
+		return $this->belongsToMany('\recommandationSeries\model\Genres', 'usergenres', 'serie_id', 'genre_id');
+	}
+
 }
 ?>
