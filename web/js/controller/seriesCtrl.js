@@ -2,7 +2,6 @@ var app = angular.module('routeAppControllers');
 
 app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
-    $scope.episodeSeen = 'false';
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
@@ -28,13 +27,15 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         $scope.popularity = data.popularity;
         $scope.serieId = data.id;
 
-        $http({
-            method: 'GET',
-            url: 'serie/checkIfFollow/' + data.id
-        })
-        .success(function (data, status, headers, config) {
-            $scope.followOrNot = data;
-        });
+        if($scope.connected) {
+            $http({
+                method: 'GET',
+                url: 'serie/checkIfFollow/' + data.id
+            })
+                .success(function (data, status, headers, config) {
+                    $scope.followOrNot = data;
+                });
+        }
     });
 
     /**
@@ -47,7 +48,6 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
     .success(function (data, status, headers, config) {
         var creator = "";
         data.forEach(function(d) {
-            console.log(d.name);
             creator += d.name + ", ";
         });
         $scope.creatorName = creator.substring(0,creator.length-2);
@@ -121,18 +121,20 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
-    $scope.checkIfSaw = function (episodeId) {
-        $http({
-            method : 'GET',
-            url : 'episode/checkIfSaw/'+episodeId
-        })
-        .success(function(data) {
-            var u;
-            if(data == "false") u = false;
-            else if (data == "true") u = true;
-            return u
-        });
-    };
+    if($scope.connected) {
+        $scope.checkIfSaw = function (episodeId) {
+            $http({
+                method: 'GET',
+                url: 'episode/checkIfSaw/' + episodeId
+            })
+                .success(function (data) {
+                    var u;
+                    if (data == "false") u = false;
+                    else if (data == "true") u = true;
+                    return u
+                });
+        };
+    }
 
     $scope.seeEpisode = function(episodeId) {
         $http({
