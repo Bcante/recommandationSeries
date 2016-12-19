@@ -76,6 +76,9 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         })
         .success(function (data, status, headers, config) {
             $scope.episodesArray = data;
+            angular.forEach($scope.episodesArray,function (value,key) {
+               value.saw = $scope.checkIfSaw(value,value.id);
+            });
         });
     };
 
@@ -124,33 +127,40 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     /**
      * function which checked if an episode has benn see
      */
-    if($scope.connected) {
-        $scope.checkIfSaw = function (episodeId) {
+        $scope.checkIfSaw = function (value,episodeId) {
             $http({
                 method: 'GET',
                 url: 'episode/checkIfSaw/' + episodeId
             })
                 .success(function (data) {
-                    var u;
-                    if (data == "false") u = false;
-                    else if (data == "true") u = true;
-                    return u
-                });
+                    if(data=="false"){
+                        value.saw = false;
+                    }else{
+                        value.saw = true;
+                    }
+                }).error(function (data) {
+                console.log(data);
+            })
         };
-    }
+
 
     /**
      * function to save if a episode has been see
      * @param episodeId, id episode
      */
     $scope.seeEpisode = function(episodeId) {
+        console.log("reload2")
         $http({
             method : 'PUT',
-            url : 'episode/checkIfSaw'+episodeId
+            url : 'episode/checkIfSaw/'+episodeId
         })
         .success(function (data, status, headers, config) {
+            console.log("reload")
             location.reload();
-        });
+        })
+            .error(function (data) {
+                alert(data);
+            });
     }
 
     /**

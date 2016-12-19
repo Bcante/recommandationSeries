@@ -24,14 +24,15 @@
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displayEpisodes(season.id)">
                         <md-content class="md-padding" >
                             <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
-                                <div ng-repeat="episode in episodesArray" style="width: 100%">
-                                    {{ episode.name }}
-                                    <ul ng-init="episode.saw = checkIfSaw(episode.id)">
+                                <div ng-repeat="episode in episodesArray" style="width: 100%" >
+                                    <span></span>
+                                    {{episode.name}}
+                                    <ul>
                                         <li>
                                             <md-button class='md-raised' onclick="window.top.window.scrollTo(0,0);" ng-click="episodeMoreInfo(episode.id)">More Info</md-button>
                                         </li>
                                         <li>{{ episode.air_date }}</li>
-                                        <div ng-if="connected && followOrNot == 'true'">
+                                        <div ng-if="connected">
                                             <li ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></li>
                                             <li ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></li>
                                         </div>
