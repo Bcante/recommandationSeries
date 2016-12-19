@@ -86,6 +86,20 @@ class LoggedController extends AbstractController {
     public function checkIfSaw($userId, $episodeId) {
         return json_encode(true);
     }
+
+    /**
+     * For a given user, check his favorite genre 
+     *
+     *
+    **/
+    public function checkFavGenre($userId) {
+        $favoritesSeries = Users::find($userId)
+                            ->series()
+                            ->genres()
+                            ->get();
+        $favoritesSeriesJson = json_encode($favoritesSeries);
+        return $seriesJson;
+    }
 }
 
 ?>
