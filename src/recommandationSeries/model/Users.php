@@ -19,6 +19,5 @@ class Users extends Model{
 	public function series() {
 		return $this->belongsToMany('\recommandationSeries\model\Series', 'userseries', 'user_id', 'serie_id');
 	}
-	
 }
 ?>

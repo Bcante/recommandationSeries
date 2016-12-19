@@ -15,14 +15,14 @@ class Series extends Model{
 		return $this->belongsTo('\recommandationSeries\model\Genres', 'seriesgenres', 'serie_id', 'genre_id');
 	}*/
 
-	//relation Users <> Episodes
+	//relation Séries <> Users
 	public function users() {	
 		return $this->belongsToMany('\recommandationSeries\model\Users', 'userseries', 'serie_id', 'user_id');
 	}
 
 	//relation Series <> Genres
 	public function genres() {	
-		return $this->belongsToMany('\recommandationSeries\model\Genres', 'usergenres', 'serie_id', 'genre_id');
+		return $this->belongsToMany('\recommandationSeries\model\Genres', 'seriesgenres', 'series_id', 'genre_id');
 	}
 
 }

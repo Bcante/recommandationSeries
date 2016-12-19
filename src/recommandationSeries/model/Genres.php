@@ -18,7 +18,7 @@ class Genres extends Model {
 
     //relation Genres <> Series
 	public function series() {
-		return $this->belongsToMany('\recommandationSeries\model\Series', 'usersgenres', 'genre_id', 'serie_id');
+		return $this->belongsToMany('\recommandationSeries\model\Series', 'seriesgenres', 'genre_id', 'series_id');
 	}
 }
 

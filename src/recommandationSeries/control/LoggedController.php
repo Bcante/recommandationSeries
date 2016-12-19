@@ -4,6 +4,9 @@ namespace recommandationSeries\control;
 
 
 use recommandationSeries\model\Users;
+use recommandationSeries\model\Series;
+use recommandationSeries\model\Genres;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class LoggedController extends AbstractController {
 
@@ -93,12 +96,37 @@ class LoggedController extends AbstractController {
      *
     **/
     public function checkFavGenre($userId) {
-        $favoritesSeries = Users::find($userId)
-                            ->series()
-                            ->genres()
-                            ->get();
-        $favoritesSeriesJson = json_encode($favoritesSeries);
-        return $seriesJson;
+        /**$a = Users::find($userId)->series()->select('serie_id')->get();
+        $b = json_encode($a); 
+        
+        $resultingArray= array();
+        foreach ($a as $p) {
+           array_push($resultingArray,$p->serie_id); 
+        }
+        //var_dump($resultingArray);
+
+        $b = Series::find(36)->users();
+        json_encode($b);
+        //var_dump($b);
+        $c = Users::find(6)->genres()->get();
+        json_encode($c);
+        var_dump($c);
+
+        //print_r(json_encode(Series::find(36)->genres()->get()));**/
+        // Tableau d'users?
+        $creator = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
+            ->join('series', 'seriesgenres.series_id', '=', 'series.id')
+            ->join('userseries','series.id','userseries.serie_id')
+            ->join('users','users.id','=','userseries.user_id')
+            ->where('userseries.user_id', '=', $userId)
+            ->select('genres.name','count')
+            ->groupBy('genres.name')
+            ->count();
+
+        var_dump(DB::table('series')->get());
+        
+        $killme=json_encode($creator);
+        var_dump($killme);
     }
 }
 
