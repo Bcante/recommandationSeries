@@ -75,3 +75,13 @@ $app->get('/serie/serieSearch/:serieName', function($serieName) {
     global $commonController;
     echo $commonController->getSearchSerie($serieName);
 });
+
+
+
+/*
+ * Routes related to episodes
+ */
+$app->get('/episode/:episodeId', function($episodeId) {
+    global $commonController;
+    echo $commonController->getEpisodeInfo($episodeId);
+});

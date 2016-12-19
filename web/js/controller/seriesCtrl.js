@@ -1,6 +1,9 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
+var episodeData
+    , episodeActors;
+
+app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$mdToast,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
     serviceConnection.getConnectionStatus()
         .success(function (data) {
@@ -121,6 +124,9 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
+    /**
+     * function which checked if an episode has benn see
+     */
     if($scope.connected) {
         $scope.checkIfSaw = function (episodeId) {
             $http({
@@ -136,6 +142,10 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         };
     }
 
+    /**
+     * function to save if a episode has been see
+     * @param episodeId, id episode
+     */
     $scope.seeEpisode = function(episodeId) {
         $http({
             method : 'PUT',
@@ -145,4 +155,85 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
             location.reload();
         });
     }
-}]);
+
+    /**
+     *
+     */
+    $scope.episodeMoreInfo = function(episodeId) {
+        $http({
+            method: 'GET',
+            url : 'episode/'+episodeId
+        })
+        .success(function (data) {
+            episodeData = data;
+
+            $http({
+                method : 'GET',
+                url: 'serie/actors/'+episodeId
+            })
+            .success(function (data, status, headers, config) {
+                var name = "";
+                data.forEach(function(actorName) {
+                    name += actorName.name + ", "
+                });
+                episodeActors = name.substring(0, name.length-2);
+            });
+
+            $mdToast.show({
+                hideDelay: '5000',
+                position: 'top right',
+                controller: 'ToastCtrl',
+                templateUrl: 'toast-template.html'
+            });
+        });
+    }
+}])
+
+.controller('ToastCtrl', function($scope, $mdToast, $mdDialog) {
+
+    var isDlgOpen;
+
+    $scope.closeToast = function() {
+        if (isDlgOpen) return;
+
+        $mdToast
+            .hide()
+            .then(function() {
+                isDlgOpen = false;
+            });
+    };
+
+    $scope.openActors = function(e) {
+        if ( isDlgOpen ) return;
+        isDlgOpen = true;
+
+        $mdDialog
+            .show($mdDialog
+                .alert()
+                .title('Actors')
+                .textContent(episodeActors)
+                .ok('Ok')
+                .targetEvent(e)
+            )
+            .then(function() {
+                isDlgOpen = false;
+            })
+    };
+
+    $scope.openMoreInfo = function(e) {
+        if ( isDlgOpen ) return;
+        isDlgOpen = true;
+
+        $mdDialog
+            .show($mdDialog
+                .alert()
+                .title('Synopsis')
+                .textContent(episodeData[0].overview)
+                .ok('Ok')
+                .targetEvent(e)
+            )
+            .then(function() {
+                isDlgOpen = false;
+            })
+    };
+});
