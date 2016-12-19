@@ -30,9 +30,9 @@
                                 <p>{{ seasonOverview }}</p>
                                 <p>
                                     <md-input-container flex="50">
-                                        <label>Episodes name</label>
-                                        <md-select ng-repeat="episode in episodes">
-                                            <md-option ng-click="displayEpisode(episode.id)">{{ episode.name }}</md-option>
+                                        <label>Episodes names</label>
+                                        <md-select  ng-model="episode.name">
+                                            <md-option ng-repeat="episode in episodes" ng-click="displayEpisode(episode.id)">{{ episode.name }}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </p>
