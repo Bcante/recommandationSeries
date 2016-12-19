@@ -119,12 +119,10 @@ class LoggedController extends AbstractController {
             ->join('userseries','series.id','userseries.serie_id')
             ->join('users','users.id','=','userseries.user_id')
             ->where('userseries.user_id', '=', $userId)
-            ->select('genres.name','count')
+            ->select('genres.name', DB::raw('count(*) as total'))
             ->groupBy('genres.name')
-            ->count();
+            ->get();
 
-        var_dump(DB::table('series')->get());
-        
         $killme=json_encode($creator);
         var_dump($killme);
     }
