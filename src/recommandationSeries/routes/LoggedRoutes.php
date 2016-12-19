@@ -37,6 +37,16 @@ $app->delete('/serie/unfollowASerie/:serieId', function($serieId) {
 });
 
 /*
+ * Routes related to episodes
+ */
+$app->get('/episode/checkIfSaw/:episodeId', function($episodeId) {
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->checkIfSaw($userId, $episodeId);
+});
+
+/*
  * Routes related to user
  */
 $app->get('/user/seriesFollowed/', function() {

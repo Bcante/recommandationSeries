@@ -76,6 +76,10 @@ class LoggedController extends AbstractController {
             $users->series()->detach($serieId);    
         }
     }
+
+    public function checkIfSaw($userId, $episodeId) {
+        return json_encode(true);
+    }
 }
 
 ?>

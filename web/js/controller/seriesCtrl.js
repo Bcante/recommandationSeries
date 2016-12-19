@@ -33,7 +33,6 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
             url: 'serie/checkIfFollow/' + data.id
         })
         .success(function (data, status, headers, config) {
-            console.log(data);
             $scope.followOrNot = data;
         });
     });
@@ -117,7 +116,26 @@ app.controller('seriesCtrl',['$scope','$location','$http','$rootScope','$window'
         });
     };
 
+    $scope.checkIfSaw = function (episodeId) {
+        $http({
+            method : 'GET',
+            url : 'episode/checkIfSaw/'+episodeId
+        })
+        .success(function(data) {
+            var u;
+            if(data == "false") u = false;
+            else if (data == "true") u = true;
+            return u
+        });
+    };
+
     $scope.seeEpisode = function(episodeId) {
-        $scope.episodeSeen = 'true';
+        $http({
+            method : 'PUT',
+            url : 'episode/checkIfSaw'+episodeId
+        })
+        .success(function (data, status, headers, config) {
+            location.reload();
+        });
     }
 }]);
