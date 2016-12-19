@@ -64,22 +64,51 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         $scope.seasonsArray = data;
     });
 
-
     /**
-     * Viewing episodes from a sesaon
-     * @param seasonId id of the selected season
+     * Function to display seasons details
+     * @param seasonId, id season
      */
-    $scope.displayEpisodes = function (seasonId) {
+    $scope.displaySeasonsDetails = function (seasonId) {
         $http({
             method: 'GET',
-            url: 'serie/episodes/'+seasonId
+            url: 'serie/seasons/details/'+seasonId
         })
         .success(function (data, status, headers, config) {
-            $scope.episodesArray = data;
-            angular.forEach($scope.episodesArray,function (value,key) {
-               value.saw = $scope.checkIfSaw(value,value.id);
-            });
+            data = data[0];
+            $scope.seasonOverview = data.overview;
+            $scope.seasonPoster = data.poster_path;
+            $scope.seasonName = data.name;
+            $scope.seasonAirDate = data.air_date;
+
+            /**
+             * Viewing episodes from a sesaon
+             * @param seasonId id of the selected season
+             */
+            $http({
+                method: 'GET',
+                url: 'serie/episodes/'+seasonId
+            })
+            .success(function (data, status, headers, config) {
+                $scope.episodes = data;
+            })
         });
+    };
+
+    /**
+     * function to display episodes details
+     * @param episodeId, episode id
+     */
+    $scope.showEpisode = false;
+    $scope.displayEpisode = function(episodeId) {
+        $http({
+            method: 'GET',
+            url: 'episode/'+episodeId
+        })
+        .success(function (data, status, headers, config) {
+            $scope.showEpisode = true;
+            data = data[0];
+            $scope.episodes = data;
+        })
     };
 
     /**
@@ -127,40 +156,33 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     /**
      * function which checked if an episode has benn see
      */
-        $scope.checkIfSaw = function (value,episodeId) {
+    if($scope.connected) {
+        $scope.checkIfSaw = function (episodeId) {
             $http({
                 method: 'GET',
                 url: 'episode/checkIfSaw/' + episodeId
             })
                 .success(function (data) {
-                    if(data=="false"){
-                        value.saw = false;
-                    }else{
-                        value.saw = true;
-                    }
-                }).error(function (data) {
-                console.log(data);
-            })
+                    var res;
+                    if (data == "false") res = false;
+                    else if (data == "true") res = true;
+                    return res;
+                });
         };
-
+    }
 
     /**
      * function to save if a episode has been see
      * @param episodeId, id episode
      */
     $scope.seeEpisode = function(episodeId) {
-        console.log("reload2")
         $http({
             method : 'PUT',
             url : 'episode/checkIfSaw/'+episodeId
         })
         .success(function (data, status, headers, config) {
-            console.log("reload")
             location.reload();
-        })
-            .error(function (data) {
-                alert(data);
-            });
+        });
     }
 
     /**

@@ -88,6 +88,14 @@ class CommonController extends AbstractController {
         return $seasonJson;
     }
 
+    public function getSeasonsDetails($seasonId) {
+        $season = Seasons::select('id', 'name', 'overview', 'poster_path', 'air_date')
+                        ->where('id', '=', $seasonId)
+                        ->get();
+        $seasonJson = json_encode($season);
+        return $seasonJson;
+    }
+
     public function getEpisodes($seasonId) {
         $episodes = Seasons::join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
             ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')

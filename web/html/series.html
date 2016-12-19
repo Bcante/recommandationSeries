@@ -8,41 +8,46 @@
                     <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' class='md-raised'>Unfollow</md-button>
                 </md-card-title-text>
                 <div layout="row" flex>
+                    <md-card-title-media>
+                        <img class="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
+                    </md-card-title-media>
                     <div id="content">
                         Overview : {{ overview }}<br><br>
                         Number of seasons : {{ numberOfSeasons }}<br><br>
                         Popularity : {{ popularity }}<br><br>
                         Creator : {{ creatorName }}
                     </div><br>
-                    <md-card-title-media>
-                        <img id="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
-                    </md-card-title-media>
                 </div>
             </md-card>
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
-                    <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displayEpisodes(season.id)">
-                        <md-content class="md-padding" >
-                            <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
-                                <div ng-repeat="episode in episodesArray" style="width: 100%" >
-                                    <span></span>
-                                    {{episode.name}}
-                                    <ul>
-                                        <li>
-                                            <md-button class='md-raised' onclick="window.top.window.scrollTo(0,0);" ng-click="episodeMoreInfo(episode.id)">More Info</md-button>
-                                        </li>
-                                        <li>{{ episode.air_date }}</li>
-                                        <div ng-if="connected">
-                                            <li ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></li>
-                                            <li ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></li>
-                                        </div>
-                                    </ul>
-                                    <div class="md-list-item-text">
-                                        <h3></h3>
-                                        <h3 ></h3>
+                    <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displaySeasonsDetails(season.id)">
+                        <md-content class="md-padding">
+                            <div class="md-padding seasonDetails">
+                                <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
+                                <p>{{ seasonName }}</p>
+                                <p>Air date : {{ seasonAirDate }}</p>
+                                <p>{{ seasonOverview }}</p>
+                                <p>
+                                    <md-input-container flex="50">
+                                        <label>Episodes name</label>
+                                        <md-select ng-repeat="episode in episodes">
+                                            <md-option ng-click="displayEpisode(episode.id)">{{ episode.name }}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </p>
+                            </div>
+
+                            <div ng-show="showEpisode" class="md-padding episodeDetails">
+                                <img class="poster" src="https://image.tmdb.org/t/p/w300{{ episodePoster }}">
+                                <p>{{ episodeName }}
+                                    <div ng-if="connected && followOrNot == 'true'">
+                                        <span ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></span>
+                                        <span ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></span>
                                     </div>
-                                    <md-divider></md-divider>
-                                </div>
+                                </p>
+                                <p>{{ episodeAirDate }}</p>
+                                <p>{{ episodeOverview }}</p>
                             </div>
                         </md-content>
                     </md-tab>
@@ -53,7 +58,6 @@
 
     <script type="text/ng-template" id="toast-template.html">
         <md-toast>
-            <span class="md-toast-text" flex>{{ toastTitle }}</span>
             <md-button class="md-highlight" ng-click="openMoreInfo($event)">
                 Synopsis
             </md-button>

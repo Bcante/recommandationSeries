@@ -44,10 +44,20 @@ body{
     z-index: 1;
 }
 
-#poster{
-    float: right;
+.poster{
+    float: left;
 }
 
 #content{
     padding:5px;
+}
+
+.seasonDetails {
+    width: 45%;
+    float: left;
+}
+
+.episodeDetails {
+    width : 45%;
+    float: right;
 }

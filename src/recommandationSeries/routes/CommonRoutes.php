@@ -85,3 +85,12 @@ $app->get('/episode/:episodeId', function($episodeId) {
     global $commonController;
     echo $commonController->getEpisodeInfo($episodeId);
 });
+
+
+/*
+ * Routes related to seasons
+ */
+$app->get('/serie/seasons/details/:seasonId', function($seasonId) {
+    global $commonController;
+    echo $commonController->getSeasonsDetails($seasonId);
+});
