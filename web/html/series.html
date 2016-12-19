@@ -27,8 +27,10 @@
                                 <div ng-repeat="episode in episodesArray" style="width: 100%">
                                     {{ episode.name }}
                                     <ul ng-init="episode.saw = checkIfSaw(episode.id)">
+                                        <li>
+                                            <md-button class='md-raised' onclick="window.top.window.scrollTo(0,0);" ng-click="episodeMoreInfo(episode.id)">More Info</md-button>
+                                        </li>
                                         <li>{{ episode.air_date }}</li>
-                                        <li ng-mouseover="displayActors(episode.id)">Show actors</li>
                                         <div ng-if="connected && followOrNot == 'true'">
                                             <li ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></li>
                                             <li ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></li>
@@ -47,4 +49,20 @@
             </md-card>
         </md-content>
     </div>
+
+    <script type="text/ng-template" id="toast-template.html">
+        <md-toast>
+            <span class="md-toast-text" flex>{{ toastTitle }}</span>
+            <md-button class="md-highlight" ng-click="openMoreInfo($event)">
+                Synopsis
+            </md-button>
+            <md-button class="md-highlight" ng-click="openActors($event)">
+                Actors
+            </md-button>
+            <md-button ng-click="closeToast()">
+                Close
+            </md-button>
+        </md-toast>
+    </script>
+
 </section>

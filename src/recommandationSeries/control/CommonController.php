@@ -7,7 +7,7 @@ use recommandationSeries\model\Actors;
 use recommandationSeries\model\Genres;
 use recommandationSeries\model\Seasons;
 use recommandationSeries\model\Series;
-use recommandationSeries\model\Users;
+use recommandationSeries\model\Episodes;
 
 
 class CommonController extends AbstractController {
@@ -107,6 +107,15 @@ class CommonController extends AbstractController {
             ->get();
         $actorsJson = json_encode($actors);
         return $actorsJson;
+    }
+
+    public function getEpisodeInfo($episodeId) {
+        $episode = Episodes::select('name', 'overview')
+                            ->where('id', '=', $episodeId)
+                            ->get();
+        $episodeJson = json_encode($episode);
+        return $episodeJson;
+
     }
 
 }
