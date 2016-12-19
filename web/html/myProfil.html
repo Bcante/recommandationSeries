@@ -1,7 +1,19 @@
 <section class="tracking">
     <div ng-show='connected'>
-        <md-card class="md-primary">
-            <span>Connecté</span>
+        <md-card class="md-padding">
+            <md-card-title>
+                <md-card-title-text>
+                    Informations
+                </md-card-title-text>
+
+            </md-card-title>
+            <md-card-content>
+                <md-divider></md-divider>
+                <br>
+            <span>Username : {{username}}</span>
+                <br><br>
+            <span>Mail : {{email}}</span>
+        </md-card-content>
         </md-card>
     </div>
     <div ng-show='!connected'>

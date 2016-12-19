@@ -77,6 +77,12 @@ class LoggedController extends AbstractController {
         }
     }
 
+    /**
+     * Check if an episode is saw
+     * @param $userId, user id
+     * @param $episodeId, episode id
+     * @return string, true or false
+     */
     public function checkIfSaw($userId, $episodeId) {
         return json_encode(true);
     }

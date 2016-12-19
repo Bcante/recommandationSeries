@@ -19,6 +19,8 @@ if(isset($_SESSION['user_id'])) {
     // $loggedController
 
     include("src/recommandationSeries/routes/LoggedRoutes.php");
+    include("src/recommandationSeries/routes/UsersRoutes.php");
+
 }
 else {
     // routes when user is not connected
