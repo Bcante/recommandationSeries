@@ -8,6 +8,17 @@ app.controller('homeCtrl',['$scope','$location','$http','$rootScope','$window','
     });
 
     /**
+     * most popular series
+     */
+    $http({
+        method: 'GET',
+        url : 'home/popularSeries'
+    })
+    .success(function(data, status, headers, config) {
+        $scope.popularSeries = data;
+    });
+
+    /**
      * ajax to recover genres
      */
     $http({

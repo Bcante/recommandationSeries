@@ -18,6 +18,16 @@ app.service("serviceConnection",['$http','$location', function ($http,$location)
          */
         redirectionConnectionPage : function () {
             $location.path('/connection');
+        },
+
+        /**
+         * function to be disconnected
+         */
+        disconnect : function () {
+            $http({
+                method: 'GET',
+                url : 'disconnect'
+            });
         }
     }
 }]);

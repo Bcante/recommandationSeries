@@ -1,19 +1,65 @@
 <section class="tracking">
     <div ng-show='connected'>
         <md-card class="md-padding">
-            <md-card-title>
-                <md-card-title-text>
-                    Informations
-                </md-card-title-text>
+            <h1 class="md-display-2">My Profil</h1>
 
-            </md-card-title>
-            <md-card-content>
-                <md-divider></md-divider>
-                <br>
-            <span>Username : {{username}}</span>
-                <br><br>
-            <span>Mail : {{email}}</span>
-        </md-card-content>
+            <article>
+                <md-card-title>
+                    <md-card-title-text>
+                        Informations
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-divider></md-divider>
+                    <br>
+                    <span>Username : {{username}}</span>
+                        <br><br>
+                    <span>Mail : {{email}}</span>
+                </md-card-content>
+            </article>
+
+            <article>
+                <md-card-title>
+                    <md-card-title-text>
+                        Profil modification
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <form name="modificationForm" ng-submit="modification()">
+                        <md-input-container class="md-block">
+                            <label>Username</label>
+                            <input name="username" ng-model="modification.username" type="text">
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input ng-model="modification.email" name="email" type="email">
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Password</label>
+                            <input ng-model="modification.password" name="password" type="password">
+                            <!--ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/"-->
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Confirm password</label>
+                            <input ng-model="modification.confirm_password" type="password" name="confirm_password"/>
+                        </md-input-container>
+
+                        <md-card-actions>
+                            <md-button class="md-primary" ng-click="toModif()">
+                                Modify
+                            </md-button>
+                        </md-card-actions>
+
+                        <md-card-actions>
+                            <span md-colors="{color: 'red'}">{{ errorsModif }}</span>
+                        </md-card-actions>
+                    </form>
+                </md-card-content>
+            </article>
+
         </md-card>
     </div>
     <div ng-show='!connected'>

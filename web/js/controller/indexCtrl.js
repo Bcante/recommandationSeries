@@ -29,14 +29,6 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
         $location.path('/myProfil');
     };
 
-    $http({
-        method: 'GET',
-        url : 'home/popularSeries'
-    })
-    .success(function(data, status, headers, config) {
-        $scope.popularSeries = data;
-    });
-
     //
     $scope.inputSearchChange = function () {
         if($scope.inputSearch != "") {
@@ -46,22 +38,20 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
             })
             .success(function (data, status, headers, config) {
                 $scope.serieSearch = data;
+                console.log(data);
             });
         }
     };
 
     $scope.disconnect = function () {
-        $http({
-            method: 'GET',
-            url : 'disconnect'
-        })
-        .success(function (data, status, headers, config) {
-            location.reload();
-            $location.path('/home');
-        });
+        serviceConnection.disconnect();
+        location.reload();
+        $location.path('/home');
     };
 
     $scope.displayASerie = function (serieId) {
         serviceSerie.loadSeriePage(serieId);
     };
+
 }]);
+

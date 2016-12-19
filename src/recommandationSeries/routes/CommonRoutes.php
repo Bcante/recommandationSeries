@@ -71,7 +71,7 @@ $app->get('/serie/actors/:episodeId', function($episodeId) {
     echo $commonController->getActors($episodeId);
 });
 
-$app->get('serie/serieSearch/:serieName', function($serieName) {
+$app->get('/serie/serieSearch/:serieName', function($serieName) {
     global $commonController;
     echo $commonController->getSearchSerie($serieName);
 });

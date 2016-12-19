@@ -6,7 +6,7 @@ app.service("serviceSerie",['$http','$location','serviceConnection', function ($
         loadSeriePage : function (serieId) {
             localStorage.setItem('idSerie',serieId);
             $location.path('/series');
-        },
+        }
 
     }
 

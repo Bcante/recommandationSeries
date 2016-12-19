@@ -24,7 +24,7 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
     $scope.toRegistrate = function() {
         // ajax with datas send in server
         $http({
-            method: 'POST',
+            method: 'PUT',
             data: {
                 username: $scope.registration.username,
                 password: $scope.registration.password,

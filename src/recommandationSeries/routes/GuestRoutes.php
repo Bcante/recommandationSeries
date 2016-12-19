@@ -8,7 +8,7 @@ $guestController = new GuestController();
 /*
  * Route used for registration
  */
-$app->post('/registration', function() use ($app) {
+$app->put('/registration', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $username = $param->username;
     $password = $param->password;

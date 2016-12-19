@@ -39,67 +39,50 @@
 </head>
 <body ng-controller="indexCtrl">
 <div class="index">
-    <div>
-        <md-content>
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <md-button aria-label="Accueil" ng-click="toHome()">
-                        Home
-                    </md-button>
-                    <md-button ng-show="connected" aria-label="My tracking" ng-click="toTrack()">
-                        My tracking
-                    </md-button>
-                    <md-input-container>
-                        <form name="formSearch">
-                            <label>Find a serie</label>
-                            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
-                        </form>
-                        <md-content>
-                            <md-list flex>
-                                <md-list-item class="md-3-line" ng-repeat="serie in serieSearch" ng-click="null">
-                                    <div class="md-list-item-text" layout="column">
-                                        <span>{{ serie.name }}</span>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>
-                    </md-input-container>
-                    <span flex></span>
-                    <div ng-show="!connected">
-                        <md-button class="md-raised" aria-label="Sign in" ng-click="toConnect()">
-                            Sign in
-                        </md-button>
-                        <md-button class="md-raised" aria-label="Sign up" ng-click="toRegistrate()">
-                            Sign up
-                        </md-button>
-                    </div>
-                    <div ng-show="connected">
-                        <md-button class="md-raised" aria-label="Profil" ng-click="goToProfil()">
-                            Profil
-                        </md-button>
-                        <md-button class="md-raised" aria-label="Sign out" ng-click="disconnect()">
-                            Sign out
-                        </md-button>
-                    </div>
-                </div>
-            </md-toolbar>
-        </md-content>
-    </div>
-    <div class="sidenav" layout="row" flex>
-        <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
-            <div class="menu">
-                <h3>Most popular series</h3>
-                <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span ng-click="displayASerie(popularSerie.id)">
-                        <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />
-                        {{ popularSerie.name }}
-                    </span>
-                </md-whiteframe>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button aria-label="Accueil" ng-click="toHome()">
+                Home
+            </md-button>
+            <md-button ng-show="connected" aria-label="My tracking" ng-click="toTrack()">
+                My tracking
+            </md-button>
+            <md-input-container>
+                <form name="formSearch">
+                    <label>Find a serie</label>
+                    <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
+                </form>
+                <md-content>
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="serie in serieSearch" ng-click="null">
+                            <div class="md-list-item-text" layout="column">
+                                <span>{{ serie.name }}</span>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-input-container>
+            <span flex></span>
+            <div ng-show="!connected">
+                <md-button class="md-raised" aria-label="Sign in" ng-click="toConnect()">
+                    Sign in
+                </md-button>
+                <md-button class="md-raised" aria-label="Sign up" ng-click="toRegistrate()">
+                    Sign up
+                </md-button>
             </div>
-        </md-sidenav>
-    </div>
+            <div ng-show="connected">
+                <md-button class="md-raised" aria-label="Profil" ng-click="goToProfil()">
+                    Profil
+                </md-button>
+                <md-button class="md-raised" aria-label="Sign out" ng-click="disconnect()">
+                    Sign out
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-content class="view" ng-view>
+    </md-content>
 </div>
-    <div class="view" ng-view>
-    </div>
 </body>
 </html>
