@@ -114,6 +114,7 @@ class LoggedController extends AbstractController {
 
         //print_r(json_encode(Series::find(36)->genres()->get()));**/
         // Tableau d'users?
+        // Pour chaque genre, permet de retrouver le genre le plus vu
         $creator = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
             ->join('series', 'seriesgenres.series_id', '=', 'series.id')
             ->join('userseries','series.id','userseries.serie_id')
@@ -121,7 +122,7 @@ class LoggedController extends AbstractController {
             ->where('userseries.user_id', '=', $userId)
             ->select('genres.name', DB::raw('count(*) as total'))
             ->groupBy('genres.name')
-            ->get();
+            ->toSql();
 
         $killme=json_encode($creator);
         var_dump($killme);
