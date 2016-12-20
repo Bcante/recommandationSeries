@@ -145,11 +145,17 @@ class LoggedController extends AbstractController {
             ->toArray();
 
         $i = 0;
-        $foundMatch = false;    
-        while (($foundMatch === false) && ( $i < sizeof($topGenre))) {
+        $affFinal = array(); 
+        $acceptableSize = true;
+        
+        while (($acceptableSize !== true) && ( $i < sizeof($topGenre))) {
             $id = $topGenre[$i]['id'];
-            $foundMatch = $this->areSimilarShowAvailable($userId,$id);
+            $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
             $i++;
+            if (sizeof($affFinal) >= 5) {
+                $acceptableSize = true;
+                array_slice($affFinal,0,5);
+            }
         }
 
         if ($i === sizeof($topGenre)) {
@@ -161,7 +167,7 @@ class LoggedController extends AbstractController {
      * For a given userId and genreId, check if there is show that
      * our user haven't seen yet
      **/
-    public function areSimilarShowAvailable($userId, $genreId){
+    public function areSimilarShowAvailable($userId, $genreId, $affArray){
         $seenByUser = Genres::where('genres.id','=',$genreId)
                      ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
                      ->join('series','seriesgenres.series_id','=','series.id')
@@ -175,10 +181,17 @@ class LoggedController extends AbstractController {
                      ->toArray();
                     
         // At this point we have every ID of the series seen by our users, of the according genres. 
-        $lefts = Series::whereNotIn('id', $seenByUser)->select('id')->get();
-        var_dump(json_encode($lefts));
-        // Now we take every series of the same genre, and substract all series seen previously 
-        return true;
+        // Now we take every series of the same genre, and substract all series seen previously.
+
+        $relevantSeries = Series::whereNotIn('id', $seenByUser)
+                ->select('id')
+                ->orderBy('popularity','DESC')
+                ->get()
+                ->take(5)
+                ->toArray();
+
+        $res = array_merge($affArray, $relevantSeries);
+        return $res;
     }
 
 }
