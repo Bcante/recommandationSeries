@@ -100,7 +100,7 @@ class CommonController extends AbstractController {
         $episodes = Seasons::join('seasonsepisodes', 'seasons.id', '=', 'seasonsepisodes.season_id')
             ->join('episodes', 'seasonsepisodes.episode_id', '=', 'episodes.id')
             ->orderBy('episodes.number', 'ASC')
-            ->select('episodes.name', 'episodes.air_date', 'episodes.id')
+            ->select('episodes.name', 'episodes.air_date', 'episodes.id', 'episodes.number')
             ->where('seasons.id', '=', $seasonId)
             ->get();
         $episodesJson = json_encode($episodes);

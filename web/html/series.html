@@ -23,51 +23,37 @@
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displaySeasonsDetails(season.id)">
                         <md-content class="md-padding">
-                            <div class="md-padding seasonDetails">
+                            <md-card class="md-padding seasonDetails">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
-                                <p>{{ seasonName }}</p>
-                                <p>Air date : {{ seasonAirDate }}</p>
-                                <p>{{ seasonOverview }}</p>
+                                <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ seasonName }}</span></p>
+                                <p><span md-colors="{color: 'primary'}">Air date </span>: {{ seasonAirDate }}</p>
+                                <p><span md-colors="{color: 'primary'}">Overview : </span>{{ seasonOverview }}</p>
                                 <p>
                                     <md-input-container flex="50">
-                                        <label>Episodes names</label>
+                                        <label>Episodes</label>
                                         <md-select  ng-model="episode.name">
-                                            <md-option ng-repeat="episode in episodes" ng-click="displayEpisode(episode.id)">{{ episode.name }}</md-option>
+                                            <md-option ng-repeat="episode in episodes" ng-click="displayEpisode(episode.id)">{{ episode.number }} : {{ episode.name }}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </p>
-                            </div>
+                            </md-card>
 
-                            <div ng-show="showEpisode" class="md-padding episodeDetails">
+                            <md-card ng-show="showEpisode" class="md-padding episodeDetails">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w300{{ episodePoster }}">
-                                <p>{{ episodeName }}
-                                    <div ng-if="connected && followOrNot == 'true'">
+                                <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ episodeName }}</span>
+                                    <span ng-if="connected && followOrNot == 'true'">
                                         <span ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></span>
                                         <span ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></span>
-                                    </div>
+                                    </span>
                                 </p>
-                                <p>{{ episodeAirDate }}</p>
-                                <p>{{ episodeOverview }}</p>
-                            </div>
+                                <p><span md-colors="{color: 'primary'}">Air date</span> : {{ episodeAirDate }}</p>
+                                <p><span md-colors="{color: 'primary'}">Actors</span> : {{ episodeActors }} </p>
+                                <p><span md-colors="{color: 'primary'}">Overview </span>: {{ episodeOverview }}</p>
+                            </md-card>
                         </md-content>
                     </md-tab>
                 </md-tabs>
             </md-card>
         </md-content>
     </div>
-
-    <script type="text/ng-template" id="toast-template.html">
-        <md-toast>
-            <md-button class="md-highlight" ng-click="openMoreInfo($event)">
-                Synopsis
-            </md-button>
-            <md-button class="md-highlight" ng-click="openActors($event)">
-                Actors
-            </md-button>
-            <md-button ng-click="closeToast()">
-                Close
-            </md-button>
-        </md-toast>
-    </script>
-
 </section>

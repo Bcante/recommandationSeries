@@ -94,7 +94,7 @@ $app->get('/serie/serieSearch/:serieName', function($serieName) {
  */
 $app->get('/episode/:episodeId', function($episodeId) {
     global $commonController;
-    var_dump($commonController->getEpisodeInfo($episodeId));
+    // var_dump($commonController->getEpisodeInfo($episodeId));
     echo $commonController->getEpisodeInfo($episodeId);
 });
 
