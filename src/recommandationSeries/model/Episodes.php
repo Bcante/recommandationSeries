@@ -10,4 +10,7 @@ class Episodes extends Model {
     protected $primaryKey='id';
     public $timestamps=false;
 
+	public function users(){
+		return $this->belongsToMany('\model\Users','usersepisodes','episode_id','user_id');
+	}
 }

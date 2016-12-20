@@ -11,8 +11,8 @@ class Users extends Model{
     public $timestamps=false;
 
 	// Relation avec les Users Episodes
-	public function usersEpisodes(){
-		return $this->hasMany('\model\UsersEpisodes','user_id');
+	public function episodes(){
+		return $this->belongsToMany('\model\Episodes','usersepisodes','user_id','episode_id');
 	}
 
 	//relation Users <> Episodes
