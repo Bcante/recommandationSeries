@@ -115,6 +115,18 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             $scope.episodeOverview = data.overview;
             $scope.episodePoster = data.still_path;
             $scope.episodeId = data.id;
+
+            $http({
+                method : 'GET',
+                url: 'serie/actors/'+data.id
+            })
+            .success(function (data, status, headers, config) {
+                var name = "";
+                data.forEach(function(actorName) {
+                    name += actorName.name + ", "
+                });
+                $scope.episodeActors = name.substring(0, name.length-2);
+            });
         });
     };
 
@@ -191,86 +203,4 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             location.reload();
         });
     };
-
-    /**
-     *
-     */
-    $scope.episodeMoreInfo = function(episodeId) {
-        $http({
-            method: 'GET',
-            url : 'episode/'+episodeId
-        })
-        .success(function (data) {
-            $rootScope.episodeData = data;
-            $rootScope.episodeTitle = data[0].name;
-
-            $http({
-                method : 'GET',
-                url: 'serie/actors/'+episodeId
-            })
-            .success(function (data, status, headers, config) {
-                var name = "";
-                data.forEach(function(actorName) {
-                    name += actorName.name + ", "
-                });
-                $rootScope.episodeActors = name.substring(0, name.length-2);
-            });
-
-            $mdToast.show({
-                hideDelay: '5000',
-                position: 'top right',
-                controller: 'ToastCtrl',
-                templateUrl: 'toast-template.html'
-            });
-        });
-    }
 }])
-
-.controller('ToastCtrl', function($scope,$rootScope, $mdToast, $mdDialog) {
-
-    var isDlgOpen;
-
-    $scope.closeToast = function() {
-        if (isDlgOpen) return;
-
-        $mdToast
-            .hide()
-            .then(function() {
-                isDlgOpen = false;
-            });
-    };
-
-    $scope.openActors = function(e) {
-        if ( isDlgOpen ) return;
-        isDlgOpen = true;
-
-        $mdDialog
-            .show($mdDialog
-                .alert()
-                .title($rootScope.episodeTitle + 'Actors')
-                .textContent($rootScope.episodeActors)
-                .ok('Ok')
-                .targetEvent(e)
-            )
-            .then(function() {
-                isDlgOpen = false;
-            })
-    };
-
-    $scope.openMoreInfo = function(e) {
-        if ( isDlgOpen ) return;
-        isDlgOpen = true;
-
-        $mdDialog
-            .show($mdDialog
-                .alert()
-                .title($rootScope.episodeTitle + ' : Synopsis')
-                .textContent($rootScope.episodeData[0].overview)
-                .ok('Ok')
-                .targetEvent(e)
-            )
-            .then(function() {
-                isDlgOpen = false;
-            })
-    };
-});
