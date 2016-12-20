@@ -19,49 +19,16 @@ app.controller('profilCtrl',['$scope','$location','$http','$rootScope','$window'
         });
 
     $scope.toModify = function() {
-        var errorsArray = []
-            , username = $scope.modification.username
-            , email = $scope.modification.email
-            , password = $scope.modification.password
-            , confirm_password = $scope.modification.confirm_password;
-
-        if(username != null) {
-            if(username.length < 4) { errorsArray.push("Username is too short (min 4 chars)"); }
-        }
-        if(email != null) {
-            if(!email.test('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)')) {
-                errorsArray.push("Email is not valid");
-            }
-        }
-        if(password != null) {
-            if(password.length < 8) { errorsArray.push("Password is too short (min 8 chars)"); }
-            else if(!password.test("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")) { errorsArray.push("Password doesn't match with the pattern"); }
-            else if (password != confirm_password) { errorsArray.push("Passwords are differents"); }
-        }
-
-        if(errorsArray.length == 0) {
-            $http({
-                method : 'POST',
-                data : {
-                    username : username,
-                    password : password,
-                    email : email
-                },
-                url : 'user/modifiedProfil'
-            })
-            .success(function (data, status, headers, config) {
-                serviceConnection.disconnect();
-                serviceConnection.redirectionConnectionPage();
-            });
-        }
-        else {
-            var err = "";
-            errorsArray.forEach(function(error) {
-                console.log(error);
-                err += error + " / ";
-            });
-            $scope.errorsModif = err.substring(0,err.length-3);
-        }
+        $http({
+            method : 'POST',
+            data : {
+                password : $scope.modification.password
+            },
+            url : 'user/changePassoword'
+        })
+        .success(function (data, status, headers, config) {
+            $scope.successMessages = "Password has been changed";
+        });
     };
 
     if(serviceConnection.getConnectionStatus()) {
@@ -71,4 +38,28 @@ app.controller('profilCtrl',['$scope','$location','$http','$rootScope','$window'
     $scope.connect = function() {
         serviceConnection.redirectionConnectionPage();
     }
+}]);
+
+/**
+ * directive for inscription form
+ * check if password and confirm_password are equals
+ */
+app.directive('equalsTo', [function () {
+    return {
+        restrict: 'A',
+        scope: true,
+        require: 'ngModel',
+        link: function (scope, elem, attrs, control) {
+            var check = function () {
+                var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = "confirm_password"
+                var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = "password"
+                return v1 == v2;
+            };
+
+            scope.$watch(check, function (isValid) {
+                // Define if field is valid
+                control.$setValidity("equalsTo", isValid);
+            });
+        }
+    };
 }]);

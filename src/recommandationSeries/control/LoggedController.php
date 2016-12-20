@@ -194,6 +194,10 @@ class LoggedController extends AbstractController {
         return $res;
     }
 
+    public function changePassword($userId, $password) {
+        // Your turn Benito !!!
+    }
+
 }
 
 ?>

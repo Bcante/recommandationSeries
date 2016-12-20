@@ -70,8 +70,14 @@ $app->get('/user/seriesFollowed/', function() {
     echo $loggedController->seriesFollowed($userId);
 });
 
-$app->post('user/modifiedProfil/', function() {
-    //BenitoPepito property
+$app->post('user/changePassoword', function() use ($app){
+    $param = json_decode($app->request->getBody());
+    $password = $param->password;
+
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->changePassword($userId, $password);
 });
 
 $app->get('/user/favoritesSeries/', function() {
