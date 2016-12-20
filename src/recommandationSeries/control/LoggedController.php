@@ -129,9 +129,12 @@ class LoggedController extends AbstractController {
 
     /**
      * For a given user, check his favorites genres 
-     * and sort them into an array
+     * and sort them into an array. The most viewed genres
+     * will be at the begin of the array
+     * @param $userId, userId
+     * @return An array containing the ordered prefered genres
     **/
-    public function checkFavGenre() {
+    public function checkFavGenre($userId) {
         $topGenre = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
             ->join('series', 'seriesgenres.series_id', '=', 'series.id')
             ->join('userseries','series.id','userseries.serie_id')
@@ -147,15 +150,22 @@ class LoggedController extends AbstractController {
 
     /**
     * For a given user, find 5 movies he'll be interested into
+    * @param $userId, userId
+    * @return an array containing the id of 5 movies who couldn't interest him
+    * Explanation: 
+    * Firstly, we see what the user is interested into through the series he's following.
+    * More specifically, we check which genre is the most common. 
+    * For every genres he has interest into, we'll see if we can present them to him (through areSimilarShowAvailable method)
+    * Once we had collected enough data (= 5 movies), we trim the array to a max size of 5 (because we can't display more than 5 movies in his user space)
     **/
     public function giveMovieIdea($userId) {
-        $genres = checkFavGenre($userId);
+        $genres = $this->checkFavGenre($userId);
         $i = 0;
         $affFinal = array(); 
         $acceptableSize = false;
 
-        while (($acceptableSize !== true) && ( $i < sizeof($topGenre))) {
-            $id = $topGenre[$i]['id'];
+        while (($acceptableSize !== true) && ( $i < sizeof($genres))) {
+            $id = $genres[$i]['id'];
             echo "pour le genre: ".$id;
             $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
             $i++;
@@ -166,7 +176,7 @@ class LoggedController extends AbstractController {
             }
         }
 
-        if ($i === sizeof($topGenre)) {
+        if ($i === sizeof($genres)) {
             echo "Vous avez tout vu :( ";
         }
     }
@@ -174,6 +184,16 @@ class LoggedController extends AbstractController {
     /**
      * For a given userId and genreId, check if there is show that
      * our user haven't seen yet
+     * @param userId
+     * @param genreId
+     * @affArray the previous movies we already had
+     *
+     * @return a new array, containing both the previous movies found and the new ones.
+     * Explanation:
+     * We check the movies who are linked to the same genreId . 
+     * Then we remove every movie from this previous list, that has already been seen by the user($seenByUser)
+     * We take 5 movies (maximum, if there is less than 5 we'll take them all)
+     * from those movies, and we append them to the previous movies we selected.
      **/
     public function areSimilarShowAvailable($userId, $genreId, $affArray){
         $seenByUser = Genres::where('genres.id','=',$genreId)
@@ -199,7 +219,7 @@ class LoggedController extends AbstractController {
                 ->get()
                 ->take(5)
                 ->toArray();
-                
+
         $res = array_merge($affArray, $relevantSeries);
         return $res;
     }

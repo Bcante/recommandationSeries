@@ -74,8 +74,8 @@ $app->post('user/modifiedProfil/', function() {
     //BenitoPepito property
 });
 
-$app->get('/user/favoritesSeries/', function() {
+$app->get('/user/giveMovieIdea/', function() {
     $userId = $_SESSION['user_id'];
     global $loggedController;
-    echo $loggedController->checkFavGenre($userId);
+    echo $loggedController->giveMovieIdea($userId);
 });
