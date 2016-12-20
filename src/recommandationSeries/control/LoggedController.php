@@ -24,6 +24,14 @@ class LoggedController extends AbstractController {
         return Users::find($userId)->series()->where('serie_id','=',$serieId)->count();
     }
 
+    public function hasSeen($userId, $episodeId) {
+        $nb = Users::find($userId)
+            ->episodes()
+            ->where('usersepisodes.episode_id','=',$episodeId)
+            ->count();
+        return $nb;
+    }
+
     /**
      * Save in database the serie followed by the user
      * @param $userId, id user
@@ -90,27 +98,19 @@ class LoggedController extends AbstractController {
      */
     public function hasSeenEpisode($userId, $episodeId) {
         //$seen = Users::find($userId)->episodes()->where('episode_id','=',$episodeId)->count();
-        $nb = Users::find($userId)
-            ->episodes()
-            ->where('usersepisodes.episode_id','=',$episodeId)
-            ->count();
+        $nb = $this->hasSeen($userId,$episodeId);
 
-        $res = $nb === 0 ? json_encode(true) : json_encode(false);
+        $res = $nb === 1 ? json_encode(true) : json_encode(false);
         return $res;
-        /*if ($nb === 0) {
-            return json_encode(false);
-        }
-        else {
-            return json_encode(true);
-        }*/
     }
 
     /**
-     * save on database when an episode has benn saw
+     * save on database when an episode has benn seen
      * @param $userId, user id
      * @param $episodeId, episode id
      */
     public function seenEpisode($userId, $episodeId) {
+        // Check if the given episodeID was indeed seen
 
     }
 
