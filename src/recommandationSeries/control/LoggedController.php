@@ -157,7 +157,7 @@ class LoggedController extends AbstractController {
             $i++;
             if (sizeof($affFinal) >= 5) {
                 $acceptableSize = true;
-                array_slice($affFinal,0,5);
+                $affFinal=array_slice($affFinal,0,5);
                 echo "in the end";
                 var_dump($affFinal);
             }
