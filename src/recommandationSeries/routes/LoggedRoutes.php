@@ -43,7 +43,7 @@ $app->get('/episode/checkIfSaw/:episodeId', function($episodeId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
-    echo $loggedController->checkIfSaw($userId, $episodeId);
+    echo $loggedController->hasSeenEpisode($userId, $episodeId);
 });
 
 /*

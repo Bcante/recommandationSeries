@@ -88,7 +88,7 @@ class LoggedController extends AbstractController {
      * @param $episodeId, episode id
      * @return string, true or false
      */
-    public function checkIfSaw($userId, $episodeId) {
+    public function hasSeenEpisode($userId, $episodeId) {
         //$seen = Users::find($userId)->episodes()->where('episode_id','=',$episodeId)->count();
         $nb = Users::find($userId)
             ->episodes()
