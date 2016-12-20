@@ -128,9 +128,10 @@ class LoggedController extends AbstractController {
 
         $i = 0;
         $foundMatch = false;    
-        while ($foundMatch === false) {
+        while (($foundMatch === false) || ($i < 10)) {
             $id = $topGenre[$i]['id'];
             $foundMatch = $this->areSimilarShowAvailable($userId,$id);
+            $i++;
         }
 
         //$this->areSimilarShowAvailable(6,18);
@@ -140,11 +141,20 @@ class LoggedController extends AbstractController {
      * For a given userId and genreId, check if there is show that
      * our user haven't seen yet
      **/
-    public function areSimilarShowAvailable($userid, $genreId){
-      $available = Genres::where('id','=',$genreId)->get();
-      $availableJson = json_encode($available);
-      var_dump($availableJson);
-      return true;
+    public function areSimilarShowAvailable($userId, $genreId){
+        $seenByUser = Genres::where('genres.id','=',$genreId)
+                     ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
+                     ->join('series','seriesgenres.series_id','=','series.id')
+                     ->join('userseries','userseries.serie_id','=','series.id')
+                     ->where([
+                            ['userseries.user_id','=',$userId],
+                            ['genres.id','=',$genreId]
+                      ])
+                      ->count();
+                      // Donen pour l'user le nombre de fois qu'il regarde chaque genre
+        $seenByUserJson = json_encode($seenByUser);
+        var_dump($seenByUserJson);
+        return false;
     }
 
 }
