@@ -74,6 +74,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url: 'serie/seasons/details/'+seasonId
         })
         .success(function (data, status, headers, config) {
+            $scope.showEpisode = false;
             data = data[0];
             $scope.seasonOverview = data.overview;
             $scope.seasonPoster = data.poster_path;
@@ -115,18 +116,14 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             $scope.episodeId = data.id;
 
             /*
-            * Check if an episode has been seen
+            * Check if an episode has been see
              */
             $http({
                 method: 'GET',
                 url: 'episode/checkIfSaw/' + episodeId
             })
             .success(function (data) {
-                var res;
-                if (data == "false") res = false;
-                else if (data == "true") res = true;
-
-                $scope.episodeSeen = res;
+                $scope.episodeSeen = data == "true" ? true : false;
             });
 
             /*
@@ -198,7 +195,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url : 'episode/seen/'+episodeId
         })
         .success(function (data, status, headers, config) {
-            // location.reload();
+            $scope.episodeSeen = true;
         });
     };
 
@@ -212,7 +209,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url : 'episode/unseen/'+episodeId
         })
         .success(function(data, status, headers, config) {
-
+            $scope.episodeSeen = false;
         });
     }
 }]);

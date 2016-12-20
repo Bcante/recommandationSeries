@@ -39,7 +39,7 @@ $app->delete('/serie/unfollowASerie/:serieId', function($serieId) {
 /*
  * Routes related to episodes
  */
-$app->put('/episode/checkIfSaw/:episodeId', function($episodeId) {
+$app->get('/episode/checkIfSaw/:episodeId', function($episodeId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
@@ -53,7 +53,7 @@ $app->put('/episode/seen/:episodeId', function($episodeId) {
     echo $loggedController->seenEpisode($userId, $episodeId);
 });
 
-$app->get('/episode/unseen/:episodeId', function($episodeId) {
+$app->put('/episode/unseen/:episodeId', function($episodeId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
@@ -70,8 +70,14 @@ $app->get('/user/seriesFollowed/', function() {
     echo $loggedController->seriesFollowed($userId);
 });
 
-$app->post('user/modifiedProfil/', function() {
-    //BenitoPepito property
+$app->post('user/changePassoword', function() use ($app){
+    $param = json_decode($app->request->getBody());
+    $password = $param->password;
+
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->changePassword($userId, $password);
 });
 
 $app->get('/user/giveMovieIdea/', function() {
