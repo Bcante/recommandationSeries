@@ -138,23 +138,31 @@ class LoggedController extends AbstractController {
             ->join('userseries','series.id','userseries.serie_id')
             ->join('users','users.id','=','userseries.user_id')
             ->where('userseries.user_id', '=', $userId)
-            ->select('genres.id')
+            ->select('genres.id','genres.name',DB::raw('count(*)'))
             ->orderBy(DB::raw('count(*)'),'DESC')
-            ->groupBy('genres.id')
+            ->groupBy('genres.id','genres.name')
             ->get()
             ->toArray();
 
+        //var_dump($topGenre);
+        // TODO Split the part below in a different function
         $i = 0;
         $affFinal = array(); 
-        $acceptableSize = true;
-        
+        $acceptableSize = false;
+
         while (($acceptableSize !== true) && ( $i < sizeof($topGenre))) {
             $id = $topGenre[$i]['id'];
+            echo "pour le genre: ".$id;
             $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
             $i++;
             if (sizeof($affFinal) >= 5) {
                 $acceptableSize = true;
                 array_slice($affFinal,0,5);
+                echo "in the end";
+                var_dump($affFinal);
+            }
+            else {
+                echo "un tour de plus";
             }
         }
 
@@ -168,6 +176,9 @@ class LoggedController extends AbstractController {
      * our user haven't seen yet
      **/
     public function areSimilarShowAvailable($userId, $genreId, $affArray){
+        echo "<br>params: <br>";
+        echo $userId."<br>";
+        echo $genreId."<br>";
         $seenByUser = Genres::where('genres.id','=',$genreId)
                      ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
                      ->join('series','seriesgenres.series_id','=','series.id')
@@ -184,12 +195,20 @@ class LoggedController extends AbstractController {
         // Now we take every series of the same genre, and substract all series seen previously.
 
         $relevantSeries = Series::whereNotIn('id', $seenByUser)
+                ->join('seriesgenres','seriesgenres.series_id','=','series.id')
                 ->select('id')
+                ->where('seriesgenres.genre_id','=',$genreId)
                 ->orderBy('popularity','DESC')
                 ->get()
                 ->take(5)
                 ->toArray();
 
+        echo "mes relevant series sont: ";
+        var_dump($relevantSeries);
+
+        echo "je vais merge: ";
+        var_dump($affArray);
+        var_dump($relevantSeries);
         $res = array_merge($affArray, $relevantSeries);
         return $res;
     }
