@@ -150,11 +150,16 @@ class LoggedController extends AbstractController {
                             ['userseries.user_id','=',$userId],
                             ['genres.id','=',$genreId]
                       ])
-                      ->count();
-                      // Donen pour l'user le nombre de fois qu'il regarde chaque genre
-        $seenByUserJson = json_encode($seenByUser);
-        var_dump($seenByUserJson);
-        return false;
+                     ->select('series.id')
+                     ->get()
+                     ->toArray();
+                    
+        // At this point we have every ID of the series seen by our users, of the according genres
+                     var_dump(sizeof($seenByUser));
+        if(sizeof($seenByUser) === 0) {
+            return false;
+        }
+        else return true;
     }
 
 }
