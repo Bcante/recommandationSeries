@@ -90,9 +90,8 @@ class LoggedController extends AbstractController {
      */
     public function checkIfSaw($userId, $episodeId) {
         //$seen = Users::find($userId)->episodes()->where('episode_id','=',$episodeId)->count();
-            $la = Episodes::find(726)->get();
-            var_dump(json_encode($la));
-
+            $a = Users::find($userId)->episodes()->get();
+            $b = var_dump(json_encode($a));
     }
 
     /**

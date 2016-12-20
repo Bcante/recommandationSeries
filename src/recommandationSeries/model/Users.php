@@ -12,7 +12,7 @@ class Users extends Model{
 
 	// Relation avec les Users Episodes
 	public function episodes(){
-		return $this->belongsToMany('\model\Episodes','usersepisodes','user_id','episode_id');
+		return $this->belongsToMany('\recommandationSeries\model\Episodes','usersepisodes','user_id','episode_id');
 	}
 
 	//relation Users <> Episodes

@@ -11,6 +11,6 @@ class Episodes extends Model{
     public $timestamps=false;
 
 	public function users(){
-		return $this->belongsToMany('\model\Users','usersepisodes','episode_id','user_id');
+		return $this->belongsToMany('\recommandationSeries\model\Users','usersepisodes','episode_id','user_id');
 	}
 }
