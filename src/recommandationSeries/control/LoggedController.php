@@ -134,7 +134,9 @@ class LoggedController extends AbstractController {
             $i++;
         }
 
-        //$this->areSimilarShowAvailable(6,18);
+        if ($i === sizeof($topGenre)) {
+            echo "Vous avez tout vu :( ";
+        }
     }
 
     /**
@@ -155,7 +157,7 @@ class LoggedController extends AbstractController {
                      ->toArray();
                     
         // At this point we have every ID of the series seen by our users, of the according genres. 
-                     var_dump(sizeof($seenByUser));
+        var_dump(sizeof($seenByUser));
         return false;
     }
 
