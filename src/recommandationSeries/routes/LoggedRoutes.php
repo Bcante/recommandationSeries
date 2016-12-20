@@ -39,7 +39,7 @@ $app->delete('/serie/unfollowASerie/:serieId', function($serieId) {
 /*
  * Routes related to episodes
  */
-$app->get('/episode/checkIfSaw/:episodeId', function($episodeId) {
+$app->put('/episode/checkIfSaw/:episodeId', function($episodeId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
@@ -53,7 +53,7 @@ $app->put('/episode/seen/:episodeId', function($episodeId) {
     echo $loggedController->seenEpisode($userId, $episodeId);
 });
 
-$app->put('/episode/seen/:episodeId', function($episodeId) {
+$app->get('/episode/unseen/:episodeId', function($episodeId) {
     $userId = $_SESSION['user_id'];
 
     global $loggedController;

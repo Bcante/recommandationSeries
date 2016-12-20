@@ -105,13 +105,15 @@ class LoggedController extends AbstractController {
     }
 
     /**
-     * save on database when an episode has benn seen
+     * save on database when an episode has been seen
      * @param $userId, user id
      * @param $episodeId, episode id
      */
     public function seenEpisode($userId, $episodeId) {
-        // Check if the given episodeID was indeed seen
-
+        // Check if the given episodeID was indeed not seen yet
+        if ($this->hasSeen($userId, $episodeId) === 0) {
+            Users::find($userId)->episodes()->attach($episodeId);
+        }
     }
 
     /**
@@ -120,7 +122,9 @@ class LoggedController extends AbstractController {
      * @param $episodeId, episode id
      */
     public function unseenEpisode($userId, $episodeId) {
-
+        if ($this->hasSeen($userId, $episodeId) === 1) {
+            Users::find($userId)->episodes()->detach($episodeId);
+        }
     }
 
     /**
