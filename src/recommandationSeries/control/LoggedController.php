@@ -115,18 +115,38 @@ class LoggedController extends AbstractController {
         //print_r(json_encode(Series::find(36)->genres()->get()));**/
         // Tableau d'users?
         // Pour chaque genre, permet de retrouver le genre le plus vu
-        $creator = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
+        $topGenre = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
             ->join('series', 'seriesgenres.series_id', '=', 'series.id')
             ->join('userseries','series.id','userseries.serie_id')
             ->join('users','users.id','=','userseries.user_id')
             ->where('userseries.user_id', '=', $userId)
-            ->select('genres.name', DB::raw('count(*) as total'))
-            ->groupBy('genres.name')
-            ->toSql();
+            ->select('genres.id')
+            ->orderBy(DB::raw('count(*)'),'DESC')
+            ->groupBy('genres.id')
+            ->get()
+            ->toArray();
 
-        $killme=json_encode($creator);
-        var_dump($killme);
+        $i = 0;
+        $foundMatch = false;    
+        while ($foundMatch === false) {
+            $id = $topGenre[$i]['id'];
+            $foundMatch = $this->areSimilarShowAvailable($userId,$id);
+        }
+
+        //$this->areSimilarShowAvailable(6,18);
     }
+
+    /**
+     * For a given userId and genreId, check if there is show that
+     * our user haven't seen yet
+     **/
+    public function areSimilarShowAvailable($userid, $genreId){
+      $available = Genres::where('id','=',$genreId)->get();
+      $availableJson = json_encode($available);
+      var_dump($availableJson);
+      return true;
+    }
+
 }
 
 ?>
