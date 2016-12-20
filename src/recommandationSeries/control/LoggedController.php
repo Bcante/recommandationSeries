@@ -95,12 +95,32 @@ class LoggedController extends AbstractController {
             ->where('usersepisodes.episode_id','=',$episodeId)
             ->count();
 
-        if ($nb === 0) {
+        $res = $nb === 0 ? json_encode(true) : json_encode(false);
+        return $res;
+        /*if ($nb === 0) {
             return json_encode(false);
         }
         else {
             return json_encode(true);
-        }
+        }*/
+    }
+
+    /**
+     * save on database when an episode has benn saw
+     * @param $userId, user id
+     * @param $episodeId, episode id
+     */
+    public function seenEpisode($userId, $episodeId) {
+
+    }
+
+    /**
+     * remove the entry on database
+     * @param $userId, user id
+     * @param $episodeId, episode id
+     */
+    public function unseenEpisode($userId, $episodeId) {
+
     }
 
     /**

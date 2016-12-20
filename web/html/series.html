@@ -25,10 +25,8 @@
                         <md-content class="md-padding">
                             <md-card class="md-padding seasonDetails">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
-                                <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ seasonName }}</span></p>
-                                <p><span md-colors="{color: 'primary'}">Air date </span>: {{ seasonAirDate }}</p>
-                                <p><span md-colors="{color: 'primary'}">Overview : </span>{{ seasonOverview }}</p>
                                 <p>
+                                    <span class='md-display-1' md-colors="{color: 'primary'}">{{ seasonName }}</span>
                                     <md-input-container flex="50">
                                         <label>Episodes</label>
                                         <md-select  ng-model="episode.name">
@@ -36,14 +34,16 @@
                                         </md-select>
                                     </md-input-container>
                                 </p>
+                                <p><span md-colors="{color: 'primary'}">Air date </span>: {{ seasonAirDate }}</p>
+                                <p><span md-colors="{color: 'primary'}">Overview : </span>{{ seasonOverview }}</p>
                             </md-card>
 
                             <md-card ng-show="showEpisode" class="md-padding episodeDetails">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w300{{ episodePoster }}">
                                 <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ episodeName }}</span>
                                     <span ng-if="connected && followOrNot == 'true'">
-                                        <span ng-show="!episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised'>Seen</md-button></span>
-                                        <span ng-show="episode.saw"><md-button ng-click="seeEpisode(episode.id)" class='md-raised md-primary'>Seen</md-button></span>
+                                        <span ng-show="!episodeSeen"><md-button ng-click="seeEpisode(episodeId)" class='md-raised'>Seen</md-button></span>
+                                        <span ng-show="episodeSeen"><md-button ng-click="unseenEpisode(episodeId)" class='md-raised md-primary'>Useen</md-button></span>
                                     </span>
                                 </p>
                                 <p><span md-colors="{color: 'primary'}">Air date</span> : {{ episodeAirDate }}</p>

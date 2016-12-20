@@ -46,6 +46,20 @@ $app->get('/episode/checkIfSaw/:episodeId', function($episodeId) {
     echo $loggedController->hasSeenEpisode($userId, $episodeId);
 });
 
+$app->put('/episode/seen/:episodeId', function($episodeId) {
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->seenEpisode($userId, $episodeId);
+});
+
+$app->put('/episode/seen/:episodeId', function($episodeId) {
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->unseenEpisode($userId, $episodeId);
+});
+
 /*
  * Routes related to user
  */

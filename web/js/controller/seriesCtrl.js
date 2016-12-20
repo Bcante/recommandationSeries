@@ -105,8 +105,6 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url: 'episode/'+episodeId
         })
         .success(function (data, status, headers, config) {
-            console.log(data);
-
             $scope.showEpisode = true;
             data = data[0];
 
@@ -116,6 +114,24 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             $scope.episodePoster = data.still_path;
             $scope.episodeId = data.id;
 
+            /*
+            * Check if an episode has been seen
+             */
+            $http({
+                method: 'GET',
+                url: 'episode/checkIfSaw/' + episodeId
+            })
+            .success(function (data) {
+                var res;
+                if (data == "false") res = false;
+                else if (data == "true") res = true;
+
+                $scope.episodeSeen = res;
+            });
+
+            /*
+            * Actors playing on this episode
+             */
             $http({
                 method : 'GET',
                 url: 'serie/actors/'+data.id
@@ -173,34 +189,30 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     };
 
     /**
-     * function which checked if an episode has benn see
-     */
-    if($scope.connected) {
-        $scope.checkIfSaw = function (episodeId) {
-            $http({
-                method: 'GET',
-                url: 'episode/checkIfSaw/' + episodeId
-            })
-                .success(function (data) {
-                    var res;
-                    if (data == "false") res = false;
-                    else if (data == "true") res = true;
-                    return res;
-                });
-        };
-    }
-
-    /**
-     * function to save if a episode has been see
+     * function to save an episode seen
      * @param episodeId, id episode
      */
     $scope.seeEpisode = function(episodeId) {
         $http({
             method : 'PUT',
-            url : 'episode/checkIfSaw/'+episodeId
+            url : 'episode/seen/'+episodeId
         })
         .success(function (data, status, headers, config) {
-            location.reload();
+            // location.reload();
         });
     };
-}])
+
+    /**
+     * function to remove the entry on database
+     * @param episodeId, id episode
+     */
+    $scope.unseenEpisode = function(episodeId) {
+        $http({
+            method : 'PUT',
+            url : 'episode/unseen/'+episodeId
+        })
+        .success(function(data, status, headers, config) {
+
+        });
+    }
+}]);
