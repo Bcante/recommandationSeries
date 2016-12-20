@@ -128,7 +128,7 @@ class LoggedController extends AbstractController {
 
         $i = 0;
         $foundMatch = false;    
-        while (($foundMatch === false) || ($i < 10)) {
+        while (($foundMatch === false) && ( $i < sizeof($topGenre))) {
             $id = $topGenre[$i]['id'];
             $foundMatch = $this->areSimilarShowAvailable($userId,$id);
             $i++;
@@ -154,12 +154,9 @@ class LoggedController extends AbstractController {
                      ->get()
                      ->toArray();
                     
-        // At this point we have every ID of the series seen by our users, of the according genres
+        // At this point we have every ID of the series seen by our users, of the according genres. 
                      var_dump(sizeof($seenByUser));
-        if(sizeof($seenByUser) === 0) {
-            return false;
-        }
-        else return true;
+        return false;
     }
 
 }
