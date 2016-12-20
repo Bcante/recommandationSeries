@@ -128,11 +128,10 @@ class LoggedController extends AbstractController {
     }
 
     /**
-     * For a given user, check his favorite genre 
-     *
-     *
+     * For a given user, check his favorites genres 
+     * and sort them into an array
     **/
-    public function checkFavGenre($userId) {
+    public function checkFavGenre() {
         $topGenre = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
             ->join('series', 'seriesgenres.series_id', '=', 'series.id')
             ->join('userseries','series.id','userseries.serie_id')
@@ -143,9 +142,14 @@ class LoggedController extends AbstractController {
             ->groupBy('genres.id','genres.name')
             ->get()
             ->toArray();
+        return $topGenre;
+    }
 
-        //var_dump($topGenre);
-        // TODO Split the part below in a different function
+    /**
+    * For a given user, find 5 movies he'll be interested into
+    **/
+    public function giveMovieIdea($userId) {
+        $genres = checkFavGenre($userId);
         $i = 0;
         $affFinal = array(); 
         $acceptableSize = false;
@@ -158,11 +162,7 @@ class LoggedController extends AbstractController {
             if (sizeof($affFinal) >= 5) {
                 $acceptableSize = true;
                 $affFinal=array_slice($affFinal,0,5);
-                echo "in the end";
                 var_dump($affFinal);
-            }
-            else {
-                echo "un tour de plus";
             }
         }
 
@@ -176,9 +176,6 @@ class LoggedController extends AbstractController {
      * our user haven't seen yet
      **/
     public function areSimilarShowAvailable($userId, $genreId, $affArray){
-        echo "<br>params: <br>";
-        echo $userId."<br>";
-        echo $genreId."<br>";
         $seenByUser = Genres::where('genres.id','=',$genreId)
                      ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
                      ->join('series','seriesgenres.series_id','=','series.id')
@@ -202,13 +199,7 @@ class LoggedController extends AbstractController {
                 ->get()
                 ->take(5)
                 ->toArray();
-
-        echo "mes relevant series sont: ";
-        var_dump($relevantSeries);
-
-        echo "je vais merge: ";
-        var_dump($affArray);
-        var_dump($relevantSeries);
+                
         $res = array_merge($affArray, $relevantSeries);
         return $res;
     }
