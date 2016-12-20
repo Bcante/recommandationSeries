@@ -6,6 +6,8 @@ namespace recommandationSeries\control;
 use recommandationSeries\model\Users;
 use recommandationSeries\model\Series;
 use recommandationSeries\model\Genres;
+use recommandationSeries\model\Episodes;
+use recommandationSeries\model\Actors;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class LoggedController extends AbstractController {
@@ -87,7 +89,10 @@ class LoggedController extends AbstractController {
      * @return string, true or false
      */
     public function checkIfSaw($userId, $episodeId) {
-        return json_encode(true);
+        //$seen = Users::find($userId)->episodes()->where('episode_id','=',$episodeId)->count();
+            $la = Episodes::find(726)->get();
+            var_dump(json_encode($la));
+
     }
 
     /**
