@@ -32,9 +32,9 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
                 method: 'GET',
                 url: 'serie/checkIfFollow/' + data.id
             })
-                .success(function (data, status, headers, config) {
-                    $scope.followOrNot = data;
-                });
+            .success(function (data, status, headers, config) {
+                $scope.followOrNot = data;
+            });
         }
     });
 
@@ -90,7 +90,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             })
             .success(function (data, status, headers, config) {
                 $scope.episodes = data;
-            })
+            });
         });
     };
 
@@ -105,10 +105,17 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             url: 'episode/'+episodeId
         })
         .success(function (data, status, headers, config) {
+            console.log(data);
+
             $scope.showEpisode = true;
             data = data[0];
-            $scope.episodes = data;
-        })
+
+            $scope.episodeName = data.name;
+            $scope.episodeAirDate = data.air_date;
+            $scope.episodeOverview = data.overview;
+            $scope.episodePoster = data.still_path;
+            $scope.episodeId = data.id;
+        });
     };
 
     /**
@@ -183,7 +190,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         .success(function (data, status, headers, config) {
             location.reload();
         });
-    }
+    };
 
     /**
      *

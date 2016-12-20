@@ -12,6 +12,9 @@ $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
 
+
+
+
 /*
  * Routes related to home page
  */
@@ -35,6 +38,9 @@ $app->get('/home/seriesByGenre/:genre', function($genre) {
     echo $commonController->getByGenre($genre);
 });
 
+
+
+
 /*
  * Routes related to user
  */
@@ -42,6 +48,9 @@ $app->get('/user/connectionStatus', function() {
     if(isset($_SESSION['user_id'])) echo true;
     else echo false;
 });
+
+
+
 
 /*
  * Routes related to series
@@ -78,13 +87,18 @@ $app->get('/serie/serieSearch/:serieName', function($serieName) {
 
 
 
+
+
 /*
  * Routes related to episodes
  */
 $app->get('/episode/:episodeId', function($episodeId) {
     global $commonController;
+    var_dump($commonController->getEpisodeInfo($episodeId));
     echo $commonController->getEpisodeInfo($episodeId);
 });
+
+
 
 
 /*

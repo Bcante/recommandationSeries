@@ -118,12 +118,11 @@ class CommonController extends AbstractController {
     }
 
     public function getEpisodeInfo($episodeId) {
-        $episode = Episodes::select('name', 'overview')
+        $episode = Episodes::select('name', 'overview', 'air_date', 'still_path', 'id')
                             ->where('id', '=', $episodeId)
                             ->get();
         $episodeJson = json_encode($episode);
         return $episodeJson;
-
     }
 
 }
