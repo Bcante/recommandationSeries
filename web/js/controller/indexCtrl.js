@@ -55,7 +55,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope
 
     $scope.home = false;
     $scope.toHome = function () {
-        $location.path('/home');
+        $location.path('/');
     };
 
     $scope.toTrack = function () {
