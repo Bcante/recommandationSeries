@@ -19,6 +19,18 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
     };
 
     /**
+     * ajax to get all genres
+     */
+    $http({
+        method: 'GET',
+        url : 'serie/genres'
+    })
+    .success(function (data, status, headers, config) {
+        console.log(data);
+        $scope.genres = data;
+    });
+
+    /**
      * function with register datas
      */
     $scope.toRegistrate = function() {
@@ -59,9 +71,11 @@ app.directive('equalsTo', [function () {
         require: 'ngModel',
         link: function (scope, elem, attrs, control) {
             var check = function () {
-                var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = "confirm_password"
-                var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = "password"
-                return v1 == v2;
+                if(scope.$eval(attrs.equalsTo) != null) {
+                    var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = "confirm_password"
+                    var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = "password"
+                    return v1 == v2;
+                }
             };
 
             scope.$watch(check, function (isValid) {

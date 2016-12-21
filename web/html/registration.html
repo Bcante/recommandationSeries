@@ -52,7 +52,19 @@
                             </div>
                         </md-input-container>
 
+                        <md-input-container class="md-block">
+                            <label>Your favorite genre</label>
+                            <md-select ng-model="registration.genre">
+                                <md-option ng-repeat="genre in genres" value="{{genre.name}}">
+                                    {{genre.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
                         <md-card-actions>
+                            <md-button type="reset">
+                                Reset
+                            </md-button>
                             <md-button class="md-primary" ng-disabled="!registrationForm.$valid" ng-click="toRegistrate()">
                                 Sign up
                             </md-button>

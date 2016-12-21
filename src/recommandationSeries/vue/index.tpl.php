@@ -66,10 +66,7 @@
             <span flex></span>
             <div ng-show="!connected">
                 <md-button class="md-fab md-raised" aria-label="Sign in" ng-click="toConnect()">
-                    <md-icon>assignment_ind</md-icon>
-                </md-button>
-                <md-button class="md-fab md-raised" aria-label="Sign up" ng-click="toRegistrate()">
-                    <md-icon>assignment</md-icon>
+                    <md-icon>account_circle</md-icon>
                 </md-button>
             </div>
             <div ng-show="connected">

@@ -8,6 +8,11 @@ $guestController = new GuestController();
 /*
  * Route used for registration
  */
+$app->get('/serie/genres', function() {
+    global $guestController;
+    echo $guestController->getGenres();
+});
+
 $app->put('/registration', function() use ($app) {
     $param = json_decode($app->request->getBody());
     $username = $param->username;
