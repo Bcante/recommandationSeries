@@ -36,7 +36,7 @@
 
                         <md-card-actions>
                             <md-button class="md-primary" ng-disabled="!connectionForm.$valid" ng-click="toConnect()">
-                                Sign in
+                                <md-icon ng-show="connectionForm.$valid">done</md-icon> Sign in
                             </md-button>
                         </md-card-actions>
 

@@ -27,7 +27,7 @@
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displaySeasonsDetails(season.id)">
-                        <md-content class="md-padding">
+                        <md-content ng-show="showSeasons" class="md-padding">
                             <md-card class="md-padding seasonDetails">
                                 <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
                                 <p>

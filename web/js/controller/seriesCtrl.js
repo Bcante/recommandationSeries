@@ -69,12 +69,14 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
      * @param seasonId, id season
      */
     $scope.displaySeasonsDetails = function (seasonId) {
+        $scope.showSeasons = true;
         $http({
             method: 'GET',
             url: 'serie/seasons/details/'+seasonId
         })
         .success(function (data, status, headers, config) {
             $scope.showEpisode = false;
+
             data = data[0];
             $scope.seasonOverview = data.overview;
             $scope.seasonPoster = data.poster_path;
