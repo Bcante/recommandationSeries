@@ -4,12 +4,12 @@
             <md-card class="md-padding">
                 <md-card-title-text style="margin-bottom: 20px">
                     <span class="md-display-1" style="padding: 5px">{{ serieName }}</span>
-                    <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-fab md-raised md-accent">
-                        <md-icon>add_cirle</md-icon>
+                    <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-raised md-accent">
+                        <md-icon>add_cirle</md-icon> Add to my tracking
                     </md-button>
 
-                    <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' class="md-fab md-raised md-primary">
-                        <md-icon>check_cirle</md-icon>
+                    <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' md-colors="{'background-color':'green'}">
+                        <md-icon>check_cirle</md-icon> Remove to my tracking
                     </md-button>
                 </md-card-title-text>
                 <div layout="row" flex>
@@ -48,13 +48,13 @@
                                 <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ episodeName }}</span>
                                     <span ng-if="connected && followOrNot == 'true'">
                                         <span ng-show="!episodeSeen">
-                                            <md-button ng-click="seeEpisode(episodeId)">
-                                                <md-icon>visibility</md-icon>
+                                            <md-button ng-click="seeEpisode(episodeId)" class="md-raised md-accent">
+                                                <md-icon>visibility</md-icon> Watched ?
                                             </md-button>
                                         </span>
                                         <span ng-show="episodeSeen">
-                                            <md-button ng-click="unseenEpisode(episodeId)">
-                                                <md-icon md-colors="{color: 'primary'}">visibility</md-icon>
+                                            <md-button ng-click="unseenEpisode(episodeId)" md-colors="{'background-color':'green'}" class="md-raised">
+                                                <md-icon style="color:white">check</md-icon> Watched !
                                             </md-button>
                                         </span>
                                     </span>
