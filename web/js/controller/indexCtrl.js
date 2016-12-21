@@ -52,6 +52,16 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.displayASerie = function (serieId) {
         serviceSerie.loadSeriePage(serieId);
     };
+    /**
+     * most popular series
+     */
+    $http({
+        method: 'GET',
+        url : 'home/popularSeries'
+    })
+        .success(function(data, status, headers, config) {
+            $scope.popularSeries = data;
+        });
 
 }]);
 

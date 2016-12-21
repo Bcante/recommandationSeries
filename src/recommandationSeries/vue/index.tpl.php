@@ -82,8 +82,24 @@
             </div>
         </div>
     </md-toolbar>
+    <div class="sidenav" layout="row" flex>
+        <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
+            <div class="menu">
+                <h3>Most popular series</h3>
+                <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+                    <span ng-click="displayASerie(popularSerie.id)">
+                        <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />
+                        {{ popularSerie.name }}
+                    </span>
+                </md-whiteframe>
+            </div>
+        </md-sidenav>
+    </div>
     <md-content class="view" ng-view>
     </md-content>
+
+
+
 </div>
 </body>
 </html>
