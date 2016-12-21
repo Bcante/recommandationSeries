@@ -1,5 +1,5 @@
 var app = angular.module('routeAppControllers',[]);
-app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
+app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$location,$http,$mdDialog,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 
     serviceConnection.getConnectionStatus()
         .success(function (data) {
@@ -17,6 +17,22 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
                 .success(function(data, status, headers, config) {
                     $scope.popularSeries = data;
                 });
+
+                // check if it's his first connection
+                if(sessionStorage.getItem("firstConnection") == null) {
+                    console.log('premiere co');
+                    sessionStorage.setItem("firstConnection","false");
+
+                    $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'web/html/templates/dialogFirstConnection.tmpl.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: false
+                    })
+                    .then(function() {
+                        $location.path('/connection')
+                    });
+                }
             }
             else {
                 /**
@@ -73,6 +89,22 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.displayASerie = function (serieId) {
         serviceSerie.loadSeriePage(serieId);
     };
+
+    /**
+     * Controller use for the dialog box
+     * @param $scope, scope
+     * @param $mdDialog, md-dialog
+     * @constructor
+     */
+    function DialogController($scope, $mdDialog) {
+        $scope.guest = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.connect = function() {
+            $mdDialog.hide();
+        };
+    }
 
 }]);
 

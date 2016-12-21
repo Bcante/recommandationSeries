@@ -99,10 +99,6 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
      * @constructor
      */
     function DialogController($scope, $mdDialog) {
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
-
         $scope.cancel = function() {
             $mdDialog.cancel();
         };

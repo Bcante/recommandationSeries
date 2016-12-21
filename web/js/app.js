@@ -12,6 +12,10 @@ var app = angular.module('MyApp',[
  */
 app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdThemingProvider){
     $routeProvider
+        .when('/', {
+            templateUrl: 'web/html/home.html',
+            controller : 'homeCtrl'
+        })
         .when('/connection',{
             templateUrl: 'web/html/connection.html',
             controller : 'connectionCtrl'
@@ -21,10 +25,6 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             controller : 'registrationCtrl'
         })
         .when('/home', {
-            templateUrl: 'web/html/home.html',
-            controller : 'homeCtrl'
-        })
-        .when('/', {
             templateUrl: 'web/html/home.html',
             controller : 'homeCtrl'
         })
