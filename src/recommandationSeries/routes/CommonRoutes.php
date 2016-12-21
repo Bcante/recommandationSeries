@@ -55,6 +55,11 @@ $app->get('/user/connectionStatus', function() {
 /*
  * Routes related to series
  */
+$app->get('/series/all', function() {
+    global $commonController;
+    echo $commonController->getSeries();
+});
+
 $app->get('/serie/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getInfoSerie($serieId);
@@ -84,7 +89,6 @@ $app->get('/serie/serieSearch/:serieName', function($serieName) {
     global $commonController;
     echo $commonController->getSearchSerie($serieName);
 });
-
 
 
 

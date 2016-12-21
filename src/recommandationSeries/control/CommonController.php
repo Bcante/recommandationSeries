@@ -125,4 +125,10 @@ class CommonController extends AbstractController {
         return $episodeJson;
     }
 
+    public function getSeries() {
+        $series = Series::order_by('name', 'ASC')->get();
+        $seriesJson = json_encode($series);
+        return $seriesJson;
+    }
+
 }
