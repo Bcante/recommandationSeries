@@ -1,63 +1,60 @@
 <section class="tracking">
     <div ng-show='connected'>
         <md-card class="md-padding">
-            <h1 class="md-display-2">My Profil</h1>
+            <h1 class="md-display-1" >My Profil</h1>
+        </md-card>
+        <md-card class="articleProfil" id="articleInformations">
+            <md-card-title>
+                <md-card-title-text class="md-display-1" md-colors="{color: 'primary'}">
+                    Informations
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <br>
+                <span>Username : {{username}}</span>
+                    <br><br>
+                <span>Mail : {{email}}</span>
+            </md-card-content>
+        </md-card>
 
-            <article>
-                <md-card-title>
-                    <md-card-title-text>
-                        Informations
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <md-divider></md-divider>
-                    <br>
-                    <span>Username : {{username}}</span>
-                        <br><br>
-                    <span>Mail : {{email}}</span>
-                </md-card-content>
-            </article>
+        <md-card class="articleProfil" id="articleChangePassword">
+            <md-card-title>
+                <md-card-title-text class="md-display-1" md-colors="{color: 'primary'}">
+                    Profil modification
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <form name="modificationForm" ng-submit="modification()">
+                    <md-input-container class="md-block">
+                        <label>Password</label>
+                        <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="modification.password" name="password" type="password" required>
+                        <div ng-messages="modificationForm.password.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="pattern">Password do not match with pattern.</div>
+                            <div ng-message="minlength">Password is too short.</div>
+                        </div>
+                    </md-input-container>
 
-            <article>
-                <md-card-title>
-                    <md-card-title-text>
-                        Profil modification
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <form name="modificationForm" ng-submit="modification()">
-                        <md-input-container class="md-block">
-                            <label>Password</label>
-                            <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="modification.password" name="password" type="password" required>
-                            <div ng-messages="modificationForm.password.$error">
-                                <div ng-message="required">This is required.</div>
-                                <div ng-message="pattern">Password do not match with pattern.</div>
-                                <div ng-message="minlength">Password is too short.</div>
-                            </div>
-                        </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Confirm password</label>
+                        <input ng-model="modification.confirm_password" type="password" name="confirm_password" required equals-to="modificationForm.password" />
+                        <div ng-messages="modificationForm.confirm_password.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="equalsTo">Password are differents.</div>
+                        </div>
+                    </md-input-container>
 
-                        <md-input-container class="md-block">
-                            <label>Confirm password</label>
-                            <input ng-model="modification.confirm_password" type="password" name="confirm_password" required equals-to="modificationForm.password" />
-                            <div ng-messages="modificationForm.confirm_password.$error">
-                                <div ng-message="required">This is required.</div>
-                                <div ng-message="equalsTo">Password are differents.</div>
-                            </div>
-                        </md-input-container>
+                    <md-card-actions>
+                        <md-button class="md-primary" ng-disabled="!modificationForm.$valid" ng-click="toModify()">
+                            Modify password
+                        </md-button>
+                    </md-card-actions>
 
-                        <md-card-actions>
-                            <md-button class="md-primary" ng-disabled="!modificationForm.$valid" ng-click="toModify()">
-                                Modify password
-                            </md-button>
-                        </md-card-actions>
-
-                        <md-card-actions>
-                            <span md-colors="{color: 'primary'}">{{ successMessage }}</span>
-                        </md-card-actions>
-                    </form>
-                </md-card-content>
-            </article>
-
+                    <md-card-actions>
+                        <span md-colors="{color: 'primary'}">{{ successMessage }}</span>
+                    </md-card-actions>
+                </form>
+            </md-card-content>
         </md-card>
     </div>
     <div ng-show='!connected'>

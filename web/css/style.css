@@ -61,3 +61,28 @@ body{
     width : 45%;
     float: right;
 }
+
+.articleProfil {
+    width: 48%;
+}
+
+#articleInformations {
+    float: left;
+}
+
+#articleChangePassword {
+    float: right;
+}
+
+.formConnectionRegistration {
+    width: 40%;
+    margin: 3% auto auto;
+}
+
+md-card-title-text {
+    text-align: center;
+}
+
+.notActive {
+    background-color: #9E9E9E;
+}

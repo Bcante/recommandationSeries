@@ -2,7 +2,9 @@
     <div ng-show='connected'>
         <md-content>
             <md-content class="md-padding">
-                <h1 class="md-display-2">My Tracking</h1>
+                <md-card class="md-padding">
+                    <h1 class="md-display-1" >My Tracking</h1>
+                </md-card>
                 <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                     <md-whiteframe ng-repeat="serie in seriesFollowed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                         <span class="serieBloc">

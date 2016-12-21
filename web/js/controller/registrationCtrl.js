@@ -42,6 +42,10 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
             }
         });
     }
+
+    $scope.redirectSignIn = function() {
+        $location.path('/connection');
+    }
 }]);
 
 /**

@@ -31,5 +31,10 @@ app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$win
                 $location.path('/home');
             }
         });
+    };
+
+    $scope.redirectSignUp = function() {
+        console.log('here');
+        $location.path('/registration');
     }
 }]);

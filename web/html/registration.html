@@ -5,9 +5,12 @@
         </md-card>
     </div>
     <div ng-show="!connected">
-        <md-card class="md-primary">
+        <md-card class="md-primary formConnectionRegistration">
             <md-card-title>
-                <md-card-title-text>
+                <md-card-title-text class="md-display-1">
+                    <span ng-click="redirectSignIn()" md-colors="{color:'grey'}">Sign in</span>
+                </md-card-title-text>
+                <md-card-title-text md-colors="{color:'primary'}" class="md-display-1">
                     Sign up
                 </md-card-title-text>
             </md-card-title>

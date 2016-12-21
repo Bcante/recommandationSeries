@@ -5,12 +5,15 @@
         </md-card>
     </div>
     <div ng-show="!connected">
-        <md-card class="md-primary">
+        <md-card class="md-primary formConnectionRegistration">
             <md-card-title>
-                <md-card-title-text>
+                <md-card-title-text class="md-display-1" md-colors="{color: 'primary'}">
                     Sign in
                 </md-card-title-text>
-                </md-card-title>
+                <md-card-title-text class="md-display-1">
+                    <span ng-click="redirectSignUp()" md-colors="{color:'grey'}">Sign up</span>
+                </md-card-title-text>
+            </md-card-title>
                 <md-card-content>
                     <form name="connectionForm" ng-submit="connection()">
                         <md-input-container class="md-block">
@@ -36,7 +39,7 @@
                         </md-card-actions>
 
                         <md-card-actions>
-                                <span md-colors="{color: 'red'}">{{ connectionError }}</span>
+                            <span md-colors="{color: 'red'}">{{ connectionError }}</span>
                         </md-card-actions>
                     </form>
 
