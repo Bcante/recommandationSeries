@@ -13,13 +13,6 @@ class GuestController extends AbstractController {
 		parent::__construct ();
 	}
 
-    public function getGenres() {
-        $genres = Genres::orderBy('name', 'ASC')
-                    ->get();
-        $genresJson = json_encode($genres);
-        return $genresJson;
-    }
-
     public function registration($username, $password, $password_confirm, $email) {
         Authentication::register($username, $password, $password_confirm, $email);
     }

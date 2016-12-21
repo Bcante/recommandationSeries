@@ -23,10 +23,9 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
      */
     $http({
         method: 'GET',
-        url : 'serie/genres'
+        url : 'home/genres'
     })
     .success(function (data, status, headers, config) {
-        console.log(data);
         $scope.genres = data;
     });
 
@@ -41,7 +40,8 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
                 username: $scope.registration.username,
                 password: $scope.registration.password,
                 password_confirm : $scope.registration.confirm_password,
-                email : $scope.registration.email
+                email : $scope.registration.email,
+                genre : $scope.registration.genre
             },
             url: 'registration'
         })
@@ -53,7 +53,7 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
                 $scope.errors = data;
             }
         });
-    }
+    };
 
     $scope.redirectSignIn = function() {
         $location.path('/connection');

@@ -34,7 +34,6 @@ app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$win
     };
 
     $scope.redirectSignUp = function() {
-        console.log('here');
         $location.path('/registration');
     }
 }]);

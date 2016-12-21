@@ -54,11 +54,14 @@
 
                         <md-input-container class="md-block">
                             <label>Your favorite genre</label>
-                            <md-select ng-model="registration.genre">
-                                <md-option ng-repeat="genre in genres" value="{{genre.name}}">
+                            <md-select ng-model="registration.genre" name="genres">
+                                <md-option ng-repeat="genre in genres" value="{{genre.name}}" required>
                                     {{genre.name}}
                                 </md-option>
                             </md-select>
+                            <div ng-messages="registrationForm.genres.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
                         </md-input-container>
 
                         <md-card-actions>

@@ -8,7 +8,7 @@ $guestController = new GuestController();
 /*
  * Route used for registration
  */
-$app->get('/serie/genres', function() {
+$app->get('/serie/genre', function() {
     global $guestController;
     echo $guestController->getGenres();
 });

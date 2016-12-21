@@ -2,7 +2,6 @@
 
 namespace recommandationSeries\control;
 
-
 use recommandationSeries\model\Actors;
 use recommandationSeries\model\Genres;
 use recommandationSeries\model\Seasons;
