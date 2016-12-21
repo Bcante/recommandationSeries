@@ -82,3 +82,13 @@ md-card-title-text {
 .notActive {
     background-color: #9E9E9E;
 }
+
+.dialogPassword {
+    width: 40%;
+    margin: auto;
+}
+
+.dialogPasswordInput {
+    width: 90%;
+    margin: auto;
+}

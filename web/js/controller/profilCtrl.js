@@ -72,8 +72,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 templateUrl: 'web/html/templates/dialogChangePassword.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen : $scope.customFullscrenn
+                clickOutsideToClose: false
             })
             .then(function() {
                 console.log('Ok');
@@ -125,9 +124,11 @@ app.directive('equalsTo', [function () {
         require: 'ngModel',
         link: function (scope, elem, attrs, control) {
             var check = function () {
-                var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = "confirm_password"
-                var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = "password"
-                return v1 == v2;
+                if(scope.$eval(attrs.equalsTo) != null) {
+                    var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = "confirm_password"
+                    var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = "password"
+                    return v1 == v2;
+                }
             };
 
             scope.$watch(check, function (isValid) {
