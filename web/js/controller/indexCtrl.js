@@ -4,6 +4,32 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
+
+            // for sidebar
+            if(data != 1) {
+                /**
+                 * most popular series
+                 */
+                $http({
+                    method: 'GET',
+                    url : 'home/popularSeries'
+                })
+                .success(function(data, status, headers, config) {
+                    $scope.popularSeries = data;
+                });
+            }
+            else {
+                /**
+                 * recommandations
+                 */
+                $http({
+                    method:'GET',
+                    url:'user/recommandations'
+                })
+                .success(function(data, status, headers, config) {
+                    $scope.recommandationsSeries = data;
+                });
+            }
         });
 
     $scope.connect = false;
@@ -47,16 +73,6 @@ app.controller('indexCtrl',['$scope','$location','$http','$rootScope','$window',
     $scope.displayASerie = function (serieId) {
         serviceSerie.loadSeriePage(serieId);
     };
-    /**
-     * most popular series
-     */
-    $http({
-        method: 'GET',
-        url : 'home/popularSeries'
-    })
-        .success(function(data, status, headers, config) {
-            $scope.popularSeries = data;
-        });
 
 }]);
 
