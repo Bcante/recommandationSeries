@@ -69,10 +69,11 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     $scope.changePassword = function(ev) {
         $mdDialog.show({
                 controller: DialogController,
-                templateUrl: $templateCache.get('../../html/templates/dialogChangePassword.tmpl.html'),
+                templateUrl: 'http://localhost/recommandationSeries/web/html/templates/dialogChangePassword.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose: false
+                clickOutsideToClose: true,
+                fullscreen : $scope.customFullscrenn
             })
             .then(function() {
                 console.log('Ok');
