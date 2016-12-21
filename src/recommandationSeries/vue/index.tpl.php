@@ -9,6 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
     <link rel="stylesheet" href="web/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="web/js/angular/angular.js"></script>
@@ -42,7 +43,7 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
             <md-button aria-label="Accueil" ng-click="toHome()">
-                Home
+                <md-icon>home</md-icon>
             </md-button>
             <md-button ng-show="connected" aria-label="My tracking" ng-click="toTrack()">
                 My tracking
@@ -64,19 +65,19 @@
             </md-input-container>
             <span flex></span>
             <div ng-show="!connected">
-                <md-button class="md-raised" aria-label="Sign in" ng-click="toConnect()">
-                    Sign in
+                <md-button class="md-fab md-raised" aria-label="Sign in" ng-click="toConnect()">
+                    <md-icon>assignment_ind</md-icon>
                 </md-button>
-                <md-button class="md-raised" aria-label="Sign up" ng-click="toRegistrate()">
-                    Sign up
+                <md-button class="md-fab md-raised" aria-label="Sign up" ng-click="toRegistrate()">
+                    <md-icon>assignment</md-icon>
                 </md-button>
             </div>
             <div ng-show="connected">
-                <md-button class="md-raised" aria-label="Profil" ng-click="goToProfil()">
-                    Profil
+                <md-button class="md-fab md-raised" aria-label="Profil" ng-click="goToProfil()">
+                   <md-icon>account_circle</md-icon>
                 </md-button>
-                <md-button class="md-raised" aria-label="Sign out" ng-click="disconnect()">
-                    Sign out
+                <md-button class="md-fab md-raised" aria-label="Sign out" ng-click="disconnect()">
+                    <md-icon>power_settings_new</md-icon>
                 </md-button>
             </div>
         </div>
