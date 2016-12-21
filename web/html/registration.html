@@ -17,6 +17,7 @@
                 <md-card-content>
                     <form name="registrationForm" ng-submit="registration()">
                         <md-input-container class="md-block">
+                            <md-icon>perm_identity</md-icon>
                             <label>Username</label>
                             <input ng-minlength="4" required name="username" ng-model="registration.username" type="text">
                             <div ng-messages="registrationForm.username.$error">
@@ -26,6 +27,7 @@
                         </md-input-container>
 
                         <md-input-container class="md-block">
+                            <md-icon>email</md-icon>
                             <label>Email</label>
                             <input ng-model="registration.email" name="email" type="email" required>
                             <div ng-messages="registrationForm.email.$error">
@@ -34,6 +36,7 @@
                         </md-input-container>
 
                         <md-input-container class="md-block">
+                            <md-icon>lock_outline</md-icon>
                             <label>Password</label>
                             <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="registration.password" name="password" type="password" required>
                             <div ng-messages="registrationForm.password.$error">
@@ -44,6 +47,7 @@
                         </md-input-container>
 
                         <md-input-container class="md-block">
+                            <md-icon>lock</md-icon>
                             <label>Confirm password</label>
                             <input ng-model="registration.confirm_password" type="password" name="confirm_password" required equals-to="registrationForm.password" />
                             <div ng-messages="registrationForm.confirm_password.$error">
@@ -53,6 +57,7 @@
                         </md-input-container>
 
                         <md-input-container class="md-block">
+                            <md-icon>favorite</md-icon>
                             <label>Your favorite genre</label>
                             <md-select ng-model="registration.genre" name="genres">
                                 <md-option ng-repeat="genre in genres" value="{{genre.name}}" required>
@@ -66,10 +71,10 @@
 
                         <md-card-actions>
                             <md-button type="reset">
-                                Reset
+                                <md-icon>cached</md-icon> Reset
                             </md-button>
                             <md-button class="md-primary" ng-disabled="!registrationForm.$valid" ng-click="toRegistrate()">
-                                Sign up
+                                <md-icon ng-show="registrationForm.$valid">done</md-icon> Sign up
                             </md-button>
                         </md-card-actions>
 
