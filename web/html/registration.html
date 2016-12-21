@@ -20,10 +20,12 @@
                             <md-icon>perm_identity</md-icon>
                             <label>Username</label>
                             <input ng-minlength="4" required name="username" ng-model="registration.username" type="text">
+                            <md-icon ng-mouseover="usernameHelp=true" ng-mouseleave="usernameHelp=false">help</md-icon>
                             <div ng-messages="registrationForm.username.$error">
                                 <div ng-message="required">This is required.</div>
                                 <div ng-message="minlength">Username is too short.</div>
                             </div>
+                            <span ng-show="usernameHelp" md-colors="{color:'blue'}">4 chars minimum.</span>
                         </md-input-container>
 
                         <md-input-container class="md-block">
@@ -39,11 +41,13 @@
                             <md-icon>lock_outline</md-icon>
                             <label>Password</label>
                             <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="registration.password" name="password" type="password" required>
+                            <md-icon ng-mouseover="usernamePassword=true" ng-mouseleave="usernamePassword=false">help</md-icon>
                             <div ng-messages="registrationForm.password.$error">
                                 <div ng-message="required">This is required.</div>
                                 <div ng-message="pattern">Password do not match with pattern.</div>
                                 <div ng-message="minlength">Password is too short.</div>
                             </div>
+                            <span ng-show="usernamePassword" md-colors="{color:'blue'}">8 chars minimum. Must contains at least 1 digit, 1 lowercase and 1 uppercase.</span>
                         </md-input-container>
 
                         <md-input-container class="md-block">
@@ -59,8 +63,8 @@
                         <md-input-container class="md-block">
                             <md-icon>favorite</md-icon>
                             <label>Your favorite genre</label>
-                            <md-select ng-model="registration.genre" name="genres">
-                                <md-option ng-repeat="genre in genres" value="{{genre.name}}" required>
+                            <md-select ng-model="registration.genre" name="genres" required>
+                                <md-option ng-repeat="genre in genres" value="{{genre.name}}">
                                     {{genre.name}}
                                 </md-option>
                             </md-select>
