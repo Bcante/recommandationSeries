@@ -10,14 +10,19 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <br>
-                <span>Username : {{username}}</span>
-                    <br><br>
-                <span>Mail : {{email}}</span>
+                <h2>Log in</h2>
+                <p>Username : {{username}}</p>
+                <p>Password : ********
+                    <md-button class="md-primary" ng-click="changePassword($event)">
+                        Change
+                    </md-button>
+                </p>
+                <h2>Your informations</h2>
+                <p>Mail : {{email}}</p>
             </md-card-content>
         </md-card>
 
-        <md-card class="articleProfil" id="articleChangePassword">
+        <!--<md-card ng-show="changePass" class="articleProfil" id="articleChangePassword">
             <md-card-title>
                 <md-card-title-text class="md-display-1" md-colors="{color: 'primary'}">
                     Profil modification
@@ -26,7 +31,15 @@
             <md-card-content>
                 <form name="modificationForm" ng-submit="modification()">
                     <md-input-container class="md-block">
-                        <label>Password</label>
+                        <label>Current Password</label>
+                        <input ng-model="modification.CurrentPassword" name="password" type="password" required>
+                        <div ng-messages="modificationForm.CurrentPassword.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>New Password</label>
                         <input ng-minlength="8" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" ng-model="modification.password" name="password" type="password" required>
                         <div ng-messages="modificationForm.password.$error">
                             <div ng-message="required">This is required.</div>
@@ -45,8 +58,11 @@
                     </md-input-container>
 
                     <md-card-actions>
-                        <md-button class="md-primary" ng-disabled="!modificationForm.$valid" ng-click="toModify()">
-                            Modify password
+                        <md-button class="md-primary" ng-disabled="!modificationForm.$valid" ng-click="toChange()">
+                            Change
+                        </md-button>
+                        <md-button class="md-primary" ng-click="toCancelPass()">
+                            Cancel
                         </md-button>
                     </md-card-actions>
 
@@ -55,7 +71,7 @@
                     </md-card-actions>
                 </form>
             </md-card-content>
-        </md-card>
+        </md-card>-->
     </div>
     <div ng-show='!connected'>
         <md-card class="md-primary">

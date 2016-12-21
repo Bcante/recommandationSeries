@@ -1,7 +1,17 @@
 var app = angular.module('routeAppControllers');
 
-app.controller('profilCtrl',['$scope','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection',function ($scope,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection) {
+app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$rootScope','$window','$mdSidenav','$mdDialog','$route','$interval','serviceConnection',function ($templateCache, $scope,$location,$http,$rootScope,$window,$mdSidenav,$mdDialog,$route,$interval,serviceConnection) {
 
+    /**
+     * saving the template for the dialog box to change the password
+     */
+    app.run(function($templateCache) {
+        $templateCache.put('../../html/templates/dialogChangePassword.tmpl.html');
+    });
+
+    /**
+     * function to get the user connected
+     */
     $scope.getUser = function () {
         $http({
             method: 'GET',
@@ -10,33 +20,96 @@ app.controller('profilCtrl',['$scope','$location','$http','$rootScope','$window'
             $scope.email=data.email;
             $scope.username=data.name;
         })
-
     };
 
-    serviceConnection.getConnectionStatus()
-        .success(function (data) {
-            $scope.connected = data == 1 ? true : false;
-        });
-
-    $scope.toModify = function() {
-        $http({
-            method : 'POST',
-            data : {
-                password : $scope.modification.password
-            },
-            url : 'user/changePassoword'
-        })
-        .success(function (data, status, headers, config) {
-            $scope.successMessages = "Password has been changed";
-        });
-    };
-
+    /**
+     * function to get the connection status
+     * using serviceConnection
+     */
     if(serviceConnection.getConnectionStatus()) {
         $scope.getUser();
     }
 
-    $scope.connect = function() {
-        serviceConnection.redirectionConnectionPage();
+
+    /**
+     * function to check if the current password is good
+     * @param currentPassword, current password
+     */
+    function checkCurrentPassword(currentPassword) {
+        $http({
+            method: 'POST',
+            data : {
+                password : currentPassword
+            },
+            url : 'user/currentPassword'
+        })
+    }
+
+    /**
+     * function to change the password in database
+     * @param newPassword, new password
+     */
+    function changePassword(newPassword) {
+        $http({
+            method : 'POST',
+            data : {
+                password : newPassword
+            },
+            url : 'user/changePassoword'
+        })
+    }
+
+    /*
+    * DIALOG
+     */
+    /**
+     * function to change the password
+     * @param ev, event
+     */
+    $scope.changePassword = function(ev) {
+        $mdDialog.show({
+                controller: DialogController,
+                templateUrl: $templateCache.get('../../html/templates/dialogChangePassword.tmpl.html'),
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
+            })
+            .then(function() {
+                console.log('Ok');
+                /*checkCurrentPassword($scope.modification.currentPassword)
+                    .success(function (data, status, headers, config) {
+                        if(data == "true") {
+                            changePassword($scope.modification.password)
+                                .success(function (data, status, headers, config) {
+                                    $scope.successMessages = "Password has been changed";
+                                });
+                        }
+                        else {
+                            $scope.wrongPassword = "Current password is wrong";
+                        }
+                    });
+                };*/
+            });
+    };
+
+    /**
+     * Controller use for the dialog box
+     * @param $scope, scope
+     * @param $mdDialog, md-dialog
+     * @constructor
+     */
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
     }
 }]);
 

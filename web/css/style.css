@@ -67,11 +67,8 @@ body{
 }
 
 #articleInformations {
-    float: left;
-}
-
-#articleChangePassword {
-    float: right;
+    margin: auto;
+    width: 60%;
 }
 
 .formConnectionRegistration {
