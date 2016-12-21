@@ -50,7 +50,7 @@
             </md-button>
             <md-input-container>
                 <form name="formSearch">
-                    <label>Find a serie</label>
+                    <label><md-icon>search</md-icon> Find a serie</label>
                     <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
                 </form>
                 <md-content>
@@ -74,7 +74,7 @@
                    <md-icon>perm_identity</md-icon> Profil
                 </md-button>
                 <md-button aria-label="Sign out" ng-click="disconnect()">
-                    <md-icon>power_settings_new</md-icon> Sign out
+                    <md-icon>exit_to_app</md-icon> Sign out
                 </md-button>
             </div>
         </div>
@@ -82,7 +82,7 @@
     <div class="sidenav" layout="row" flex>
         <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
             <div ng-show="!connected" class="menu">
-                <h3>Most popular series</h3>
+                <h3 md-colors="{color:'accent'}">Most popular series</h3>
                 <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                     <span ng-click="displayASerie(popularSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />
@@ -91,7 +91,7 @@
                 </md-whiteframe>
             </div>
             <div ng-show="connected" class="menu">
-                <h3>We recommend you</h3>
+                <h3 md-colors="{color:'accent'}">We recommend you</h3>
                 <md-whiteframe ng-repeat="recommandationSerie in recommandationsSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                     <span ng-click="displayASerie(recommandationSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ recommandationSerie.poster_path }}"> <br />
@@ -101,11 +101,10 @@
             </div>
         </md-sidenav>
     </div>
-    <md-content class="view" ng-view>
-    </md-content>
-
-
-
 </div>
+
+<md-content class="view" ng-view>
+</md-content>
+
 </body>
 </html>
