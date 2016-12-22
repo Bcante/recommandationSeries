@@ -55,7 +55,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
             data : {
                 password : newPassword
             },
-            url : 'user/changePassoword'
+            url : 'user/changePassword'
         })
     }
 

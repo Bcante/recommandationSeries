@@ -228,6 +228,10 @@ class LoggedController extends AbstractController {
         Users::find($userId)->series();
     }
 
+    public function getCurrentPassword($userId, $password) {
+        // Your turn Benito !!!
+    }
+
     public function changePassword($userId, $password) {
         $goodPass = Authentication::verifyPassword($userId, $password);
         var_dump($goodPass);
