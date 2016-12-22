@@ -72,18 +72,16 @@
             <div ng-show="!connected" class="menu">
                 <h3 md-colors="{color:'accent'}">Most popular series</h3>
                 <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span ng-click="displayASerie(popularSerie.id)">
+                    <span class="sideserie" ng-click="displayASerie(popularSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />
-                        {{ popularSerie.name }}
                     </span>
                 </md-whiteframe>
             </div>
             <div ng-show="connected" class="menu">
                 <h3 md-colors="{color:'accent'}">We recommend you</h3>
                 <md-whiteframe ng-repeat="recommandationSerie in recommandationsSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span ng-click="displayASerie(recommandationSerie.id)">
+                    <span class="sideserie" ng-click="displayASerie(recommandationSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ recommandationSerie.poster_path }}"> <br />
-                        {{ recommandationSerie.name }}
                     </span>
                 </md-whiteframe>
             </div>
