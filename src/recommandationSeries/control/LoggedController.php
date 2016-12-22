@@ -10,6 +10,7 @@ use recommandationSeries\model\Episodes;
 use recommandationSeries\model\Actors;
 use recommandationSeries\utils\Authentication;
 use Illuminate\Database\Capsule\Manager as DB;
+use RandomLib\Sourczddze\Factory;
 
 class LoggedController extends AbstractController {
 
@@ -239,6 +240,17 @@ class LoggedController extends AbstractController {
         $res = Authentication::updatePassword($userId, $password);    
     }
 
+    public function testHash($userId) {
+        /**$factory = new Factory;
+        $generator = $factory->getMediumStrengthGenerator();
+        $randomString = $generator->generateString(32, 'abcdef');
+        echo $randomString;
+/**        $hash = password_hash("lalal", PASSWORD_DEFAULT);
+
+        echo $hash."<br>";
+        $hash = password_hash("lololl", PASSWORD_DEFAULT);
+        echo $hash;**/
+    }
 }
 
 ?>

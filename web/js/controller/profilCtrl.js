@@ -51,6 +51,8 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
      * @param newPasswordConfirm, confirm password
      */
     var changePassword = function (newPassword) {
+        console.log("new pass is: "+newPassword);
+        // undefined
         return $http({
             method: 'POST',
             data: {

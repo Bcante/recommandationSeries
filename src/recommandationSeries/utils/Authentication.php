@@ -132,9 +132,11 @@ class Authentication {
     }
 
     public static function updatePassword($userId, $triedPass) {
-        $usr=Users::find($userId)
+        $usr=Users::find($userId);
+        var_dump($usr);
         $usr->password = $triedPass;
         $usr->save();
     }
+    
 }
 ?>

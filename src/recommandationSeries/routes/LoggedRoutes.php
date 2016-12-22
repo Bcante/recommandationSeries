@@ -83,7 +83,6 @@ $app->post('/user/currentPassword', function() use ($app) {
 $app->post('/user/changePassword', function() use ($app){
     $param = json_decode($app->request->getBody());
     $password = $param->password;
-
     $userId = $_SESSION['user_id'];
 
     global $loggedController;
@@ -94,4 +93,10 @@ $app->get('/user/giveMovieIdea/', function() {
     $userId = $_SESSION['user_id'];
     global $loggedController;
     echo $loggedController->giveMovieIdea($userId);
+});
+
+$app->get('/testhash', function() {
+    $userId = $_SESSION['user_id'];
+    global $loggedController;
+    echo $loggedController->testHash($userId);
 });
