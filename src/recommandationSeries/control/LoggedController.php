@@ -171,10 +171,10 @@ class LoggedController extends AbstractController {
             $i++;
             if (sizeof($affFinal) >= 5) {
                 $acceptableSize = true;
-                $affFinal=array_slice($affFinal,0,5);
-                $laa=Series::select('name','backdrop_path')->findMany($affFinal)->toArray();
-                var_dump($laa);
-
+                $affFinalId=array_slice($affFinal,0,5);
+                $affFinal=Series::select('name','backdrop_path')->findMany($affFinal)->toArray();
+                $affFinal=json_encode($laa);
+                return $affFinal;
             }
         }
 
