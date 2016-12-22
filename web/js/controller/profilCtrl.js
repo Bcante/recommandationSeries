@@ -45,9 +45,10 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
         });
     };
 
-     /**
+    /**
      * function to change the password in database
      * @param newPassword, new password
+     * @param newPasswordConfirm, confirm password
      */
     var changePassword = function (newPassword) {
         return $http({
@@ -79,16 +80,16 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
             .then(function(currentPassword, newPassword, newPasswordConfirm) {
                 checkCurrentPassword(currentPassword)
                     .success(function (data, status, headers, config) {
-                        console.log('test');
-                        /*if(data == "true") {
-                         changePassword($scope.modification.password)
-                         .success(function (data, status, headers, config) {
-                         $scope.successMessages = "Password has been changed";
-                         });
+                        console.log(data);
+                        if(data == "true") {
+                            changePassword(newPassword)
+                                .success(function (data, status, headers, config) {
+                                    $scope.successMessages = "Password has been changed";
+                                });
                          }
                          else {
-                         $scope.wrongPassword = "Current password is wrong";
-                         }*/
+                            $scope.wrongPassword = "Current password is wrong";
+                         }
                     });
             });
     };

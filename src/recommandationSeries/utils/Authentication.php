@@ -117,12 +117,20 @@ class Authentication {
     }
 
     public static function verifyPassword($userId, $triedPass) {
-        $pass = Users::find($userId)
-        ->select('password')
-        ->get();
+        $pass = Users::select('password')
+                ->find($userId)
+                ->toArray();
+        if (isset($pass)) {
+            $pass = $pass['password'];
+            $res = $pass === $triedPass ? 1 : 0;
+            return $res;    
+        }
+        else {
+            // This shouldn't be the case, and means our system is flawed
+            echo "alerte intrus";
+        }
 
-        $res = $pass === $triedPass ? json_encode(true) : json_encode(false);
-        return $res; 
+         
     }
 }
 ?>

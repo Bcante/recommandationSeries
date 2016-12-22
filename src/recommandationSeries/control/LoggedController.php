@@ -8,6 +8,7 @@ use recommandationSeries\model\Series;
 use recommandationSeries\model\Genres;
 use recommandationSeries\model\Episodes;
 use recommandationSeries\model\Actors;
+use recommandationSeries\utils\Authentication;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class LoggedController extends AbstractController {
@@ -229,12 +230,13 @@ class LoggedController extends AbstractController {
     }
 
     public function getCurrentPassword($userId, $password) {
-        // Your turn Benito !!!
+        $goodPass = Authentication::verifyPassword($userId, $password);
+        $res = $goodPass === 1 ? json_encode(true) : json_encode(false);
+        return $res;
     }
 
     public function changePassword($userId, $password) {
-        $goodPass = Authentication::verifyPassword($userId, $password);
-        var_dump($goodPass);
+
     }
 
 }

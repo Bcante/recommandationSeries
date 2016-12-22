@@ -80,9 +80,9 @@ $app->post('/user/currentPassword', function() use ($app) {
     echo $loggedController->getCurrentPassword($userId, $currentPassword);
 });
 
-$app->post('user/changePassword', function() use ($app){
+$app->post('/user/changePassword', function() use ($app){
     $param = json_decode($app->request->getBody());
-    $password = $param->newPassword;
+    $password = $param->password;
 
     $userId = $_SESSION['user_id'];
 
