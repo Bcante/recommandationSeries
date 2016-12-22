@@ -48,21 +48,9 @@
             <md-button ng-show="connected" aria-label="My tracking" ng-click="toTrack()">
                 <md-icon>list</md-icon> My tracking
             </md-button>
-            <md-input-container>
-                <form name="formSearch">
-                    <label><md-icon>search</md-icon> Find a serie</label>
-                    <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
-                </form>
-                <md-content>
-                    <md-list flex>
-                        <md-list-item class="md-3-line" ng-repeat="serie in serieSearch" ng-click="null">
-                            <div class="md-list-item-text" layout="column">
-                                <span>{{ serie.name }}</span>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </md-content>
-            </md-input-container>
+            <md-button aria-label="Find a serie" ng-click="findSerie()">
+                <md-icon>search</md-icon> Find a serie
+            </md-button>
             <span flex></span>
             <div ng-show="!connected">
                 <md-button aria-label="Sign in" ng-click="toConnect()">
@@ -102,7 +90,6 @@
         </md-sidenav>
     </div>
 </div>
-
 <md-content class="view" ng-view>
 </md-content>
 

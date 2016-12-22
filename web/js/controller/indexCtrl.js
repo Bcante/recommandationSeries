@@ -67,17 +67,15 @@ app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope
     };
 
     //
-    $scope.inputSearchChange = function () {
-        if($scope.inputSearch != "") {
-            $http({
-                method: 'GET',
-                url: 'serie/serieSearch/' + $scope.inputSearch
-            })
-            .success(function (data, status, headers, config) {
-                $scope.serieSearch = data;
-                console.log(data);
-            });
-        }
+
+
+    $scope.findSerie = function () {
+        $mdDialog.show({
+            controller: FindController,
+            templateUrl: 'web/html/templates/dialogFindASerie.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        })
     };
 
     $scope.disconnect = function () {
@@ -104,6 +102,26 @@ app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope
         $scope.connect = function() {
             $mdDialog.hide();
         };
+    }
+
+    function FindController($scope, $mdDialog) {
+        $scope.inputSearchChange = function () {
+            if($scope.inputSearch != "") {
+                $http({
+                    method: 'GET',
+                    url: 'serie/serieSearch/' + $scope.inputSearch
+                })
+                    .success(function (data, status, headers, config) {
+                        $scope.serieSearch = data;
+                        console.log(data);
+                    });
+            }
+        };
+        $scope.goToSerie=function(serieId){
+            serviceSerie.loadSeriePage(serieId);
+            location.reload();
+            $mdDialog.cancel();
+        }
     }
 
 }]);

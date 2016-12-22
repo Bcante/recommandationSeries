@@ -92,3 +92,7 @@ md-card-title-text {
     width: 90%;
     margin: auto;
 }
+
+.serieFind:hover{
+    background-color: gray;
+}
