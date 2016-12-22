@@ -25,7 +25,11 @@ class Authentication {
             $found = Users::where('email', '=', "$email")->count();
             if ($found === 1 ) {
                 $usr = Users::where('email', '=', "$email")->first();
-                if ($password === $usr->password) {
+                $usrSalt = $usr->salt;
+                $hashedPass = $usr->password;
+                $saltedPass = $password.$usrSalt;
+
+                if (password_verify($saltedPass,$hashedPass)) {
                     // echo "Successful loggin";
                     Authentication::loadProfile($usr->id);
                     // Define what do we want to store in the session variable
