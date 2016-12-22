@@ -40,7 +40,7 @@ app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope
                  */
                 $http({
                     method:'GET',
-                    url:'user/recommandations'
+                    url:'user/giveMovieIdea'
                 })
                 .success(function(data, status, headers, config) {
                     $scope.recommandationsSeries = data;
