@@ -96,3 +96,12 @@ md-card-title-text {
 .serieFind:hover{
     background-color: gray;
 }
+
+#dialogFindSerie {
+    width: 40%;
+}
+
+.inputFindSerie {
+    width: 80%;
+    margin: auto;
+}

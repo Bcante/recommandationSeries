@@ -35,7 +35,7 @@ class CommonController extends AbstractController {
     public function getSearchSerie($serieName) {
         $searchSerie = Series::orderBy('name', 'ASC')
             ->where('name', 'LIKE', $serieName.'%')
-            ->select('name','id')
+            ->select('name','id', 'popularity', 'poster_path')
             ->take(10)
             ->get();
         $searchSerieJson = json_encode($searchSerie);
