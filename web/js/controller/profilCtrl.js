@@ -48,7 +48,6 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     /**
      * function to change the password in database
      * @param newPassword, new password
-     * @param newPasswordConfirm, confirm password
      */
     var changePassword = function (newPassword) {
         console.log("new pass is: "+newPassword);
@@ -79,20 +78,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 targetEvent: ev,
                 clickOutsideToClose: false
             })
-            .then(function(currentPassword, newPassword, newPasswordConfirm) {
-                checkCurrentPassword(currentPassword)
-                    .success(function (data, status, headers, config) {
-                        console.log(data);
-                        if(data == "true") {
-                            changePassword(newPassword)
-                                .success(function (data, status, headers, config) {
-                                    $scope.successMessages = "Password has been changed";
-                                });
-                         }
-                         else {
-                            $scope.wrongPassword = "Current password is wrong";
-                         }
-                    });
+            .then(function() {
             });
     };
 
@@ -108,8 +94,24 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
         };
 
         $scope.answer = function(currentPassword, newPassword, newPasswordConfirm) {
-            $mdDialog.hide(currentPassword, newPassword, newPasswordConfirm);
+            $mdDialog.hide();
+            changePasswordSubmit(currentPassword, newPassword, newPasswordConfirm);
         };
+    }
+
+    var changePasswordSubmit = function(currentPassword, newPassword, newPasswordConfirm) {
+        checkCurrentPassword(currentPassword)
+            .success(function (data, status, headers, config) {
+                if (data == "true") {
+                    changePassword(newPassword)
+                        .success(function (data, status, headers, config) {
+                            $scope.successMessages = "Password has been changed";
+                        });
+                }
+                else {
+                    $scope.wrongPassword = "Current password is wrong";
+                }
+            })
     }
 }]);
 

@@ -93,6 +93,19 @@ md-card-title-text {
     margin: auto;
 }
 
+.formSearch{
+    margin-bottom: 10%;
+}
+
 .serieFind:hover{
     background-color: gray;
+}
+
+#dialogFindSerie {
+    width: 40%;
+}
+
+.inputFindSerie {
+    width: 80%;
+    margin: auto;
 }
