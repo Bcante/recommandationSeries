@@ -2,6 +2,7 @@
 
 namespace recommandationSeries\utils;
 
+use RandomLib\Factory;
 use recommandationSeries\model\Users;
 
 class Authentication {
@@ -95,6 +96,8 @@ class Authentication {
                 }
 
                 if ($inscOk) {
+
+        
                     // Final check: Both emails and username can't be found in our DB
                     $sameName = Users::where('name', '=', $username)->count();
                     $sameMail = Users::where('email', '=', $email)->count();
@@ -104,10 +107,20 @@ class Authentication {
                         $inscOk = false;
                     }
                     else {
+                        // Creating a random salt, 10 char longs (a-zA-Z0-9)
+                        $factory = new Factory;
+                        $generator = $factory->getLowStrengthGenerator();
+                        $salt = $generator->generateString(10);
+                        
+                        // Hashing the password
+                        $saltedPass=$password.$salt;
+                        $hashedPass=password_hash($saltedPass, PASSWORD_DEFAULT);
+                        
                         $newUser = new Users;
                         $newUser->email=$email;
                         $newUser->name=$username;
-                        $newUser->password=$password;
+                        $newUser->password=$hashedPass;
+                        $newUser->salt=$salt;
                         $newUser->save();
                     }
                 }
@@ -137,6 +150,6 @@ class Authentication {
         $usr->password = $triedPass;
         $usr->save();
     }
-    
+
 }
 ?>
