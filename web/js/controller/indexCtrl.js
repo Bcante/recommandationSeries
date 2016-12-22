@@ -119,7 +119,6 @@ app.controller('indexCtrl',['$scope','$location','$http','$mdDialog','$rootScope
         };
         $scope.goToSerie=function(serieId){
             serviceSerie.loadSeriePage(serieId);
-            location.reload();
             $mdDialog.cancel();
         }
     }

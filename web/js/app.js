@@ -28,7 +28,7 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
             templateUrl: 'web/html/home.html',
             controller : 'homeCtrl'
         })
-        .when('/series', {
+        .when('/series/:id', {
             templateUrl: 'web/html/series.html',
             controller : 'seriesCtrl'
         })
