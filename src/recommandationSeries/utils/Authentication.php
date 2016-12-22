@@ -122,7 +122,6 @@ class Authentication {
                 ->toArray();
         if (isset($pass)) {
             $pass = $pass['password'];
-            echo "User is: $userId essai: $triedPass & realpass: $pass";
             $res = $pass === $triedPass ? 1 : 0;
             return $res;    
         }
