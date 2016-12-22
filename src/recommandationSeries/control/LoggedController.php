@@ -3,6 +3,7 @@
 namespace recommandationSeries\control;
 
 
+use RandomLib\Factory;
 use recommandationSeries\model\Users;
 use recommandationSeries\model\Series;
 use recommandationSeries\model\Genres;
@@ -10,7 +11,6 @@ use recommandationSeries\model\Episodes;
 use recommandationSeries\model\Actors;
 use recommandationSeries\utils\Authentication;
 use Illuminate\Database\Capsule\Manager as DB;
-use RandomLib\Sourczddze\Factory;
 
 class LoggedController extends AbstractController {
 
@@ -241,15 +241,15 @@ class LoggedController extends AbstractController {
     }
 
     public function testHash($userId) {
-        /**$factory = new Factory;
+        $factory = new Factory;
         $generator = $factory->getMediumStrengthGenerator();
         $randomString = $generator->generateString(32, 'abcdef');
         echo $randomString;
-/**        $hash = password_hash("lalal", PASSWORD_DEFAULT);
+        $hash = password_hash("lalal", PASSWORD_DEFAULT);
 
         echo $hash."<br>";
         $hash = password_hash("lololl", PASSWORD_DEFAULT);
-        echo $hash;**/
+        echo $hash;
     }
 }
 
