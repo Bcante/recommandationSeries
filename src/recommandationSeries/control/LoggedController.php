@@ -198,7 +198,7 @@ class LoggedController extends AbstractController {
      * from those movies, and we append them to the previous movies we selected.
      **/
     public function areSimilarShowAvailable($userId, $genreId, $affArray){
-        $seenByUser = Genres::where('genres.id','=',$genreId)
+        /**$seenByUser = Genres::where('genres.id','=',$genreId)
                      ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
                      ->join('series','seriesgenres.series_id','=','series.id')
                      ->join('userseries','userseries.serie_id','=','series.id')
@@ -207,12 +207,18 @@ class LoggedController extends AbstractController {
                             ['genres.id','=',$genreId]
                       ])
                      ->select('series.id')
+                     ->toSql();**/
+                     $seenByUser = Genres::where('genres.id','=',$genreId)
+                     ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
+                     ->join('series','seriesgenres.series_id','=','series.id')
+                     ->join('userseries','userseries.serie_id','=','series.id')
+                     ->where('userseries.user_id','=',$userId)
+                     ->select('series.id')
                      ->get()
                      ->toArray();
-                    
         // At this point we have every ID of the series seen by our users, of the according genres. 
         // Now we take every series of the same genre, and substract all series seen previously.
-
+        
         $relevantSeries = Series::whereNotIn('id', $seenByUser)
                 ->join('seriesgenres','seriesgenres.series_id','=','series.id')
                 ->select('id')
