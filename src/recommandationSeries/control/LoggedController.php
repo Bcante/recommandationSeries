@@ -226,8 +226,11 @@ class LoggedController extends AbstractController {
         return $res;
     }
 
+    /**
+     * For a given $userId, check if he's following at least one serie.
+     */
     public function hasSeenSomething($userId) {
-
+        Users::find($userId)->series();
     }
 
     public function changePassword($userId, $password) {
