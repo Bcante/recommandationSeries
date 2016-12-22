@@ -70,9 +70,19 @@ $app->get('/user/seriesFollowed/', function() {
     echo $loggedController->seriesFollowed($userId);
 });
 
+$app->post('/user/currentPassword', function() use ($app) {
+    $param = json_decode($app->request->getBody());
+    $currentPassword = $param->password;
+
+    $userId = $_SESSION['user_id'];
+
+    global $loggedController;
+    echo $loggedController->getCurrentPassword($userId, $currentPassword);
+});
+
 $app->post('user/changePassword', function() use ($app){
     $param = json_decode($app->request->getBody());
-    $password = $param->password;
+    $password = $param->newPassword;
 
     $userId = $_SESSION['user_id'];
 
