@@ -172,7 +172,9 @@ class LoggedController extends AbstractController {
             if (sizeof($affFinal) >= 5) {
                 $acceptableSize = true;
                 $affFinal=array_slice($affFinal,0,5);
-                var_dump($affFinal);
+                $laa=Series::select('name','backdrop_path')->findMany($affFinal)->toArray();
+                var_dump($laa);
+
             }
         }
 
@@ -191,7 +193,7 @@ class LoggedController extends AbstractController {
      * @return a new array, containing both the previous movies found and the new ones.
      * Explanation:
      * We check the movies who are linked to the same genreId . 
-     * Then we remove every movie from this previous list, that has already been seen by the user($seenByUser)
+     * Then we remove every movies from this previous list, that has already been seen by the user($seenByUser)
      * We take 5 movies (maximum, if there is less than 5 we'll take them all)
      * from those movies, and we append them to the previous movies we selected.
      **/
@@ -222,6 +224,10 @@ class LoggedController extends AbstractController {
 
         $res = array_merge($affArray, $relevantSeries);
         return $res;
+    }
+
+    public function hasSeenSomething($userId) {
+
     }
 
     public function changePassword($userId, $password) {
