@@ -77,7 +77,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 clickOutsideToClose: false
             })
             .then(function(currentPassword, newPassword, newPasswordConfirm) {
-                console.log($scope.newPass);
+                console.log(newPassword);
                 checkCurrentPassword(currentPassword)
                     .success(function (data, status, headers, config) {
                         if(data == "true") {
