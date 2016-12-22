@@ -231,7 +231,8 @@ class LoggedController extends AbstractController {
 
     public function getCurrentPassword($userId, $password) {
         $goodPass = Authentication::verifyPassword($userId, $password);
-        var_dump($goodPass);
+        $res = $goodPass === 1 ? json_encode(true) : json_encode(false);
+        return $res;
     }
 
     public function changePassword($userId, $password) {
