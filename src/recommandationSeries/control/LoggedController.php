@@ -166,7 +166,6 @@ class LoggedController extends AbstractController {
 
         while (($acceptableSize !== true) && ( $i < sizeof($genres))) {
             $id = $genres[$i]['id'];
-            echo "pour le genre: ".$id;
             $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
             $i++;
             if (sizeof($affFinal) >= 5) {
@@ -198,16 +197,6 @@ class LoggedController extends AbstractController {
      * from those movies, and we append them to the previous movies we selected.
      **/
     public function areSimilarShowAvailable($userId, $genreId, $affArray){
-        /**$seenByUser = Genres::where('genres.id','=',$genreId)
-                     ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
-                     ->join('series','seriesgenres.series_id','=','series.id')
-                     ->join('userseries','userseries.serie_id','=','series.id')
-                     ->where([
-                            ['userseries.user_id','=',$userId],
-                            ['genres.id','=',$genreId]
-                      ])
-                     ->select('series.id')
-                     ->toSql();**/
                      $seenByUser = Genres::where('genres.id','=',$genreId)
                      ->join('seriesgenres','seriesgenres.genre_id','=','genres.id')
                      ->join('series','seriesgenres.series_id','=','series.id')
