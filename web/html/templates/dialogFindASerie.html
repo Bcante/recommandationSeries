@@ -1,11 +1,10 @@
 <md-dialog aria-label="Find a Serie" id="dialogFindSerie">
     <h2 class="md-display-1 md-padding" md-colors="{color: 'primary'}">Find a serie</h2>
     <md-input-container class='inputFindSerie'>
-        <form name="formSearch">
+        <form class="formSearch" name="formSearch">
             <label><md-icon>search</md-icon> Find a serie</label>
             <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
         </form>
-
         <md-list>
             <md-list-item class="md-3-line serieFind" ng-repeat="serie in serieSearch" ng-click="goToSerie(serie.id)">
                 <img class="md-avatar" alt="{{serie.name}}" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"/>
