@@ -129,8 +129,12 @@ class Authentication {
             // This shouldn't be the case, and means our system is flawed
             echo "alerte intrus";
         }
+    }
 
-         
+    public static function updatePassword($userId, $triedPass) {
+        $usr=Users::find($userId)
+        $usr->password = $triedPass;
+        $usr->save();
     }
 }
 ?>

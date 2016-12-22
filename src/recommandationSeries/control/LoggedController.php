@@ -236,7 +236,7 @@ class LoggedController extends AbstractController {
     }
 
     public function changePassword($userId, $password) {
-
+        $res = Authentication::updatePassword($userId, $password);    
     }
 
 }
