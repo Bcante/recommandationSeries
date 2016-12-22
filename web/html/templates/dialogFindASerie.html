@@ -3,7 +3,7 @@
     <md-input-container class='inputFindSerie'>
         <form class="formSearch" name="formSearch">
             <label><md-icon>search</md-icon> Find a serie</label>
-            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()"/>
+            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()" autofocus/>
         </form>
         <md-list>
             <md-list-item class="md-3-line serieFind" ng-repeat="serie in serieSearch" ng-click="goToSerie(serie.id)">
