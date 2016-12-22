@@ -48,7 +48,6 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     /**
      * function to change the password in database
      * @param newPassword, new password
-     * @param newPasswordConfirm, confirm password
      */
     var changePassword = function (newPassword) {
         return $http({
@@ -78,9 +77,9 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 clickOutsideToClose: false
             })
             .then(function(currentPassword, newPassword, newPasswordConfirm) {
+                console.log($scope.newPass);
                 checkCurrentPassword(currentPassword)
                     .success(function (data, status, headers, config) {
-                        console.log(data);
                         if(data == "true") {
                             changePassword(newPassword)
                                 .success(function (data, status, headers, config) {
@@ -106,6 +105,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
         };
 
         $scope.answer = function(currentPassword, newPassword, newPasswordConfirm) {
+            console.log(newPassword);
             $mdDialog.hide(currentPassword, newPassword, newPasswordConfirm);
         };
     }
