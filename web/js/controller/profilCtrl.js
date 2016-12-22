@@ -35,32 +35,34 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
      * function to check if the current password is good
      * @param currentPassword, current password
      */
-    function checkCurrentPassword(currentPassword) {
-        $http({
+    var checkCurrentPassword = function (currentPassword) {
+        return $http({
             method: 'POST',
             data: {
                 password: currentPassword
             },
             url: 'user/currentPassword'
-        })
-    }
+        });
+    };
 
-    /**
+     /**
      * function to change the password in database
      * @param newPassword, new password
      */
-    function changePassword(newPassword) {
-        $http({
+    var changePassword = function (newPassword) {
+        return $http({
             method: 'POST',
             data: {
                 password: newPassword
             },
             url: 'user/changePassword'
         })
-    }
+    };
 
     /*
-     * DIALOG
+     *
+     ********* DIALOG *********
+     *
      */
     /**
      * function to change the password
@@ -74,11 +76,10 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 targetEvent: ev,
                 clickOutsideToClose: false
             })
-            .then(function () {
-                console.log('Ok');
-                checkCurrentPassword($scope.modification.currentPassword)
+            .then(function(currentPassword, newPassword, newPasswordConfirm) {
+                checkCurrentPassword(currentPassword)
                     .success(function (data, status, headers, config) {
-                        console.log('test')
+                        console.log('test');
                         /*if(data == "true") {
                          changePassword($scope.modification.password)
                          .success(function (data, status, headers, config) {
@@ -103,8 +104,8 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
             $mdDialog.cancel();
         };
 
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+        $scope.answer = function(currentPassword, newPassword, newPasswordConfirm) {
+            $mdDialog.hide(currentPassword, newPassword, newPasswordConfirm);
         };
     }
 }]);
