@@ -48,6 +48,6 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
     /**
      * Theme and colors
      */
-    $mdThemingProvider.theme('default').primaryPalette('teal')
+    $mdThemingProvider.theme('default').primaryPalette('red')
         .accentPalette('amber').dark();
 }]);
