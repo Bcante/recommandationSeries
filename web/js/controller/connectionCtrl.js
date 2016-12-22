@@ -9,6 +9,9 @@ app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$win
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
+            if($scope.connected){
+                $location.path('/home');
+            }
         });
 
     // function to connect a user
@@ -28,7 +31,6 @@ app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$win
             }
             else {
                 location.reload();
-                $location.path('/home');
             }
         });
     };
@@ -36,4 +38,5 @@ app.controller('connectionCtrl',['$scope','$location','$http','$rootScope','$win
     $scope.redirectSignUp = function() {
         $location.path('/registration');
     }
+
 }]);
