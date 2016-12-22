@@ -137,7 +137,7 @@ class LoggedController extends AbstractController {
     public function checkFavGenre($userId) {
         $topGenre = Genres::join('seriesgenres', 'seriesgenres.genre_id', '=', 'genres.id')
             ->join('series', 'seriesgenres.series_id', '=', 'series.id')
-            ->join('userseries','series.id','userseries.serie_id')
+            ->join('userseries','series.id','=','userseries.serie_id')
             ->join('users','users.id','=','userseries.user_id')
             ->where('userseries.user_id', '=', $userId)
             ->select('genres.id','genres.name',DB::raw('count(*)'))
@@ -173,8 +173,8 @@ class LoggedController extends AbstractController {
                 $acceptableSize = true;
                 $affFinalId=array_slice($affFinal,0,5);
                 $affFinal=Series::select('name','backdrop_path')->findMany($affFinal)->toArray();
-                $affFinal=json_encode($laa);
-                return $affFinal;
+                $affFinalJson=json_encode($affFinal);
+                return $affFinalJson;
             }
         }
 
