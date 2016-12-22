@@ -70,7 +70,7 @@ $app->get('/user/seriesFollowed/', function() {
     echo $loggedController->seriesFollowed($userId);
 });
 
-$app->post('user/changePassoword', function() use ($app){
+$app->post('user/changePassword', function() use ($app){
     $param = json_decode($app->request->getBody());
     $password = $param->password;
 
