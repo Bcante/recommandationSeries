@@ -5,7 +5,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     /**
      * saving the template for the dialog box to change the password
      */
-    app.run(function($templateCache) {
+    app.run(function ($templateCache) {
         $templateCache.put('../../html/templates/dialogChangePassword.tmpl.html');
     });
 
@@ -15,10 +15,10 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     $scope.getUser = function () {
         $http({
             method: 'GET',
-            url : 'user'
+            url: 'user'
         }).success(function (data) {
-            $scope.email=data.email;
-            $scope.username=data.name;
+            $scope.email = data.email;
+            $scope.username = data.name;
         })
     };
 
@@ -26,7 +26,7 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
      * function to get the connection status
      * using serviceConnection
      */
-    if(serviceConnection.getConnectionStatus()) {
+    if (serviceConnection.getConnectionStatus()) {
         $scope.getUser();
     }
 
@@ -38,10 +38,10 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
     function checkCurrentPassword(currentPassword) {
         $http({
             method: 'POST',
-            data : {
-                password : currentPassword
+            data: {
+                password: currentPassword
             },
-            url : 'user/currentPassword'
+            url: 'user/currentPassword'
         })
     }
 
@@ -51,22 +51,22 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
      */
     function changePassword(newPassword) {
         $http({
-            method : 'POST',
-            data : {
-                password : newPassword
+            method: 'POST',
+            data: {
+                password: newPassword
             },
-            url : 'user/changePassword'
+            url: 'user/changePassword'
         })
     }
 
     /*
-    * DIALOG
+     * DIALOG
      */
     /**
      * function to change the password
      * @param ev, event
      */
-    $scope.changePassword = function(ev) {
+    $scope.changePassword = function (ev) {
         $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'web/html/templates/dialogChangePassword.tmpl.html',
@@ -74,21 +74,21 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
                 targetEvent: ev,
                 clickOutsideToClose: false
             })
-            .then(function() {
+            .then(function () {
                 console.log('Ok');
-                /*checkCurrentPassword($scope.modification.currentPassword)
+                checkCurrentPassword($scope.modification.currentPassword)
                     .success(function (data, status, headers, config) {
-                        if(data == "true") {
-                            changePassword($scope.modification.password)
-                                .success(function (data, status, headers, config) {
-                                    $scope.successMessages = "Password has been changed";
-                                });
-                        }
-                        else {
-                            $scope.wrongPassword = "Current password is wrong";
-                        }
+                        console.log('test')
+                        /*if(data == "true") {
+                         changePassword($scope.modification.password)
+                         .success(function (data, status, headers, config) {
+                         $scope.successMessages = "Password has been changed";
+                         });
+                         }
+                         else {
+                         $scope.wrongPassword = "Current password is wrong";
+                         }*/
                     });
-                };*/
             });
     };
 
