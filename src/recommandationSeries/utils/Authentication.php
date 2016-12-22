@@ -115,5 +115,14 @@ class Authentication {
         }
         return $inscOk;
     }
+
+    public static function verifyPassword($userId, $triedPass) {
+        $pass = Users::find($userId)
+        ->select('password')
+        ->get();
+
+        $res = $pass === $triedPass ? json_encode(true) : json_encode(false);
+        return $res; 
+    }
 }
 ?>

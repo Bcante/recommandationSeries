@@ -229,7 +229,8 @@ class LoggedController extends AbstractController {
     }
 
     public function changePassword($userId, $password) {
-        // Your turn Benito !!!
+        $goodPass = Authentication::verifyPassword($userId, $password);
+        var_dump($goodPass);
     }
 
 }
