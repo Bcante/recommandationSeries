@@ -99,17 +99,21 @@ app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$roo
         };
     }
 
+    $scope.successMessage = false;
+    $scope.wrongPassword = false;
     var changePasswordSubmit = function(currentPassword, newPassword, newPasswordConfirm) {
         checkCurrentPassword(currentPassword)
             .success(function (data, status, headers, config) {
                 if (data == "true") {
                     changePassword(newPassword)
                         .success(function (data, status, headers, config) {
-                            $scope.successMessages = "Password has been changed";
+                            $scope.wrongPassword = false;
+                            $scope.successMessage = true;
                         });
                 }
                 else {
-                    $scope.wrongPassword = "Current password is wrong";
+                    $scope.successMessage = false;
+                    $scope.wrongPassword = true;
                 }
             })
     }
