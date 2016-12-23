@@ -134,12 +134,22 @@ class Authentication {
     }
 
     public static function verifyPassword($userId, $triedPass) {
-        $pass = Users::select('password')
+        $pass = Users::select('password','salt')
                 ->find($userId)
                 ->toArray();
+
         if (isset($pass)) {
-            $pass = $pass['password'];
-            $res = $pass === $triedPass ? 1 : 0;
+            $hashedPass = $pass['password'];
+            $salt = $pass['salt'];
+            $saltedPass = $triedPass.$salt;
+
+            echo "$saltedPass vs $hashedPass";
+            
+            if (password_verify($saltedPass,$hashedPass)) {
+                $res = 1; 
+                echo "ce sont les bons";
+            } 
+            else $res = 0;
             return $res;    
         }
         else {
