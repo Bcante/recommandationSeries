@@ -143,11 +143,8 @@ class Authentication {
             $salt = $pass['salt'];
             $saltedPass = $triedPass.$salt;
 
-            echo "$saltedPass vs $hashedPass";
-            
             if (password_verify($saltedPass,$hashedPass)) {
-                $res = 1; 
-                echo "ce sont les bons";
+                $res = 1;
             } 
             else $res = 0;
             return $res;    
@@ -160,8 +157,11 @@ class Authentication {
 
     public static function updatePassword($userId, $triedPass) {
         $usr=Users::find($userId);
-        var_dump($usr);
-        $usr->password = $triedPass;
+        //on oublie pas le sel
+        $salt=$usr->salt;
+        $newPass=$triedPass.$salt;
+
+        $usr->password = password_hash($newPass, PASSWORD_DEFAULT);
         $usr->save();
     }
 
