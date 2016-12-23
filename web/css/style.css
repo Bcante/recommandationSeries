@@ -65,13 +65,14 @@ md-toolbar  {
     float: right;
 }
 
-.articleProfil {
-    width: 48%;
+#articleInformations > h2 {
+    text-align: center;
 }
 
-#articleInformations {
+.contentProfil {
+    width: 35%;
+    text-align: left;
     margin: auto;
-    width: 60%;
 }
 
 .formConnectionRegistration {

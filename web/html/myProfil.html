@@ -1,29 +1,32 @@
 <section class="profil">
     <div ng-show='connected'>
-        <md-card class="md-padding" >
-            <h1 class="md-display-1" >My Profil</h1>
-        </md-card>
-        <md-card class="articleProfil" id="articleInformations">
-            <md-card-title>
-                <md-card-title-text class="md-display-1" md-colors="{color: 'primary'}">
-                    Informations
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <h2>Log in</h2>
-                <p><md-icon>email</md-icon> Email : {{email}}</p>
-                <p><md-icon>lock</md-icon> Password : ********
-                    <md-button class="md-primary" ng-click="changePassword($event)">
-                        Change
-                    </md-button>
-                    <md-card-actions>
-                        <span ng-show='successMessage' md-colors="{color: 'green'}">Password has been changed</span>
-                        <span ng-show='wrongPassword' md-colors="{color: 'red'}">Current password is wrong</span>
-                    </md-card-actions>
-                </p>
-                <h2>Your informations</h2>
-                <p><md-icon>perm_identity</md-icon> Username : {{username}}</p>
-            </md-card-content>
-        </md-card>
+        <md-content class="md-padding" md-colors="{backgroundColor:'accent-hue-2'}">
+            <md-card class="md-padding" md-colors="{'background-color':'accent-hue-2'}">
+                <md-card-title class="md-padding centerTitle" md-colors="{backgroundColor:'accent-hue-1'}">
+                    <h1 class="md-display-1" >My Profil</h1>
+                </md-card-title>
+                <md-card-content>
+                    <md-card md-colors="{'background-color':'accent-hue-1'}" id="articleInformations">
+                        <h2>Log in informations</h2>
+                        <div class="contentProfil">
+                            <p><md-icon>email</md-icon> Email : {{email}}</p>
+                            <p><md-icon>lock</md-icon> Password : ********
+                                <md-button class="md-primary" ng-click="changePassword($event)">
+                                    Change
+                                </md-button>
+                                <md-card-actions>
+                                    <span ng-show='successMessage' md-colors="{color: 'green'}">Password has been changed</span>
+                                    <span ng-show='wrongPassword' md-colors="{color: 'red'}">Current password is wrong</span>
+                                </md-card-actions>
+                            </p>
+                        </div>
+                        <h2>Your personal informations</h2>
+                        <div class="contentProfil">
+                            <p><md-icon>perm_identity</md-icon> Username : {{username}}</p>
+                        </div>
+                    </md-card>
+                </md-card-content>
+            </md-card>
+        </md-content>
     </div>
 </section>
