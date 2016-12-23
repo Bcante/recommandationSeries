@@ -1,66 +1,73 @@
 <section class="series">
     <div>
         <md-content md-colors="{backgroundColor:'accent-hue-2'}">
-            <md-card class="md-padding" md-colors="{backgroundColor:'accent-hue-1'}" >
-                <md-card-title-text style="margin-bottom: 20px">
-                    <span class="md-display-1">{{ serieName }}</span>
-                    <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-raised" md-colors="{'background-color':'yellow'}">
-                        <md-icon>add_cirle</md-icon> Add to my tracking
-                    </md-button>
+            <md-card class="md-padding" md-colors="{backgroundColor:'accent-hue-2'}" >
+                <md-card-title class="centerTitle" style="margin-bottom: 20px" md-colors="{backgroundColor:'accent-hue-1'}">
+                    <h1 class="md-display-1">{{ serieName }}
+                        <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-raised" md-colors="{'background-color':'yellow'}">
+                            <md-icon>add_cirle</md-icon> Add to my tracking
+                        </md-button>
 
-                    <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' md-colors="{'background-color':'green'}">
-                        <md-icon>check_cirle</md-icon> Remove to my tracking
-                    </md-button>
-                </md-card-title-text>
-                <div layout="row" flex>
-                    <img class="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
-                    <md-content class="md-padding" md-colors="{'background-color':'accent-hue-1'}">
-                        <span class="justify" md-colors="{color:'primary-hue-2'}">Overview</span> : {{ overview }}<br><br>
-                        <span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}<br><br>
-                        <span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}<br><br>
-                        <span md-colors="{color:'primary-hue-2'}">Creator</span> : {{ creatorName }}
-                    </md-content>
-                </div>
+                        <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' md-colors="{'background-color':'green'}">
+                            <md-icon>check_cirle</md-icon> Remove to my tracking
+                        </md-button>
+                    </h1>
+                </md-card-title>
+                <md-card-content md-colors="{backgroundColor:'accent-hue-1'}">
+                    <div layout="row" flex>
+                        <img class="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
+                        <md-content class="md-padding" md-colors="{'background-color':'accent-hue-1'}">
+                            <span class="justify" md-colors="{color:'primary-hue-2'}">Overview</span> : {{ overview }}<br><br>
+                            <span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}<br><br>
+                            <span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}<br><br>
+                            <span md-colors="{color:'primary-hue-2'}">Creator</span> : {{ creatorName }}
+                        </md-content>
+                    </div>
+                </md-card-content>
             </md-card>
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displaySeasonsDetails(season.id)">
-                        <md-content ng-show="showSeasons" class="md-padding">
-                            <div class="md-padding seasonDetails">
-                                <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
-                                <md-content class="md-padding">
-                                    <span class='md-display-1' md-colors="{color: 'primary'}">{{ seasonName }}</span>
-                                    <md-input-container flex="50">
-                                        <label>Episodes</label>
-                                        <md-select ng-model="episode.name">
-                                            <md-option ng-repeat="episode in episodes" ng-click="displayEpisode(episode.id)">{{ episode.number }} : {{ episode.name }}</md-option>
-                                        </md-select>
-                                    </md-input-container>
-                                </md-content>
-                                <p><span md-colors="{color: 'primary'}">Air date </span>: {{ seasonAirDate }}</p>
-                                <p><span class="justify" md-colors="{color: 'primary'}">Overview : </span>{{ seasonOverview }}</p>
-                            </div>
+                        <md-content ng-show="showSeasons" class="md-padding" md-colors="{backgroundColor:'accent-hue-1'}">
+                            <md-card class="seasonDetails">
+                                <div class="md-padding">
+                                    <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
+                                    <md-card-title class="md-padding">
+                                        <span class='md-display-1' md-colors="{color: 'primary'}">{{ seasonName }}</span>
+                                        <md-input-container flex="50">
+                                            <label>Episodes</label>
+                                            <md-select ng-model="episode.name">
+                                                <md-option ng-repeat="episode in episodes" ng-click="displayEpisode(episode.id)">{{ episode.number }} : {{ episode.name }}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </md-card-title>
+                                    <p><span md-colors="{color: 'primary'}">Air date </span>: {{ seasonAirDate }}</p>
+                                    <p><span class="justify" md-colors="{color: 'primary'}">Overview : </span>{{ seasonOverview }}</p>
+                                </div>
+                            </md-card>
 
-                            <div ng-show="showEpisode" class="md-padding episodeDetails">
-                                <img class="poster" src="https://image.tmdb.org/t/p/w300{{ episodePoster }}">
-                                <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ episodeName }}</span>
-                                    <span ng-if="connected && followOrNot == 'true'">
-                                        <span ng-show="!episodeSeen">
-                                            <md-button ng-click="seeEpisode(episodeId)" class="md-raised" md-colors="{'background-color':'yellow'}">
-                                                <md-icon>visibility</md-icon> Watched ?
-                                            </md-button>
+                            <md-card class="episodeDetails">
+                                <div ng-show="showEpisode" class="md-padding">
+                                    <img class="poster" src="https://image.tmdb.org/t/p/w300{{ episodePoster }}">
+                                    <p><span class='md-display-1' md-colors="{color: 'primary'}">{{ episodeName }}</span>
+                                        <span ng-if="connected && followOrNot == 'true'">
+                                            <span ng-show="!episodeSeen">
+                                                <md-button ng-click="seeEpisode(episodeId)" class="md-raised" md-colors="{'background-color':'yellow'}">
+                                                    <md-icon>visibility</md-icon> Watched ?
+                                                </md-button>
+                                            </span>
+                                            <span ng-show="episodeSeen">
+                                                <md-button ng-click="unseenEpisode(episodeId)" md-colors="{'background-color':'green'}" class="md-raised">
+                                                    <md-icon style="color:white">check</md-icon> Watched !
+                                                </md-button>
+                                            </span>
                                         </span>
-                                        <span ng-show="episodeSeen">
-                                            <md-button ng-click="unseenEpisode(episodeId)" md-colors="{'background-color':'green'}" class="md-raised">
-                                                <md-icon style="color:white">check</md-icon> Watched !
-                                            </md-button>
-                                        </span>
-                                    </span>
-                                </p>
-                                <p><span md-colors="{color: 'primary'}">Air date</span> : {{ episodeAirDate }}</p>
-                                <p><span md-colors="{color: 'primary'}">Actors</span> : {{ episodeActors }} </p>
-                                <p><span class="justify" md-colors="{color: 'primary'}">Overview </span>: {{ episodeOverview }}</p>
-                            </div>
+                                    </p>
+                                    <p><span md-colors="{color: 'primary'}">Air date</span> : {{ episodeAirDate }}</p>
+                                    <p><span md-colors="{color: 'primary'}">Actors</span> : {{ episodeActors }} </p>
+                                    <p><span class="justify" md-colors="{color: 'primary'}">Overview </span>: {{ episodeOverview }}</p>
+                                </div>
+                            </md-card>
                         </md-content>
                     </md-tab>
                 </md-tabs>
