@@ -2,13 +2,11 @@ md-toolbar  {
     color: #70a23e;
 }
 
-body{
-    height: 100%;
+html{
 }
 
 .serieBloc {
     padding: 15px;
-    background-color: #424242;
     min-width: 300px;
     height: 520px;
     position: relative;
@@ -23,6 +21,10 @@ body{
     position: absolute;
     bottom: 0;
     width: 98%;
+}
+
+.connexion {
+    color: black;
 }
 
 .index{
@@ -111,5 +113,9 @@ md-card-title-text {
 
 .inputFindSerie {
     width: 80%;
+    margin: auto;
+}
+
+.centerTitle > h1 {
     margin: auto;
 }

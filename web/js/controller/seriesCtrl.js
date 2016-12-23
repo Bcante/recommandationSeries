@@ -1,4 +1,4 @@
-var app = angular.module('routeAppControllers');
+var app = angular.module('routeAppControllers'/*, ['angular-carousel']*/);
 
 app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie',function ($scope,$mdToast,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie) {
 

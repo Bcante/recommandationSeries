@@ -48,6 +48,17 @@ app.config(['$routeProvider', '$mdThemingProvider',function($routeProvider, $mdT
     /**
      * Theme and colors
      */
-    $mdThemingProvider.theme('default').primaryPalette('deep-purple')
-        .accentPalette('amber').dark();
+    $mdThemingProvider.theme('default')
+        .primaryPalette('indigo', {
+            'default' : '600',
+            'hue-1' : '700',
+            'hue-2' : '800',
+            'hue-3' : '900'
+        })
+        .accentPalette('grey', {
+            'default' : '100',
+            'hue-1' : '100',
+            'hue-2' : '300',
+            'hue-3' : '400'
+        });
 }]);

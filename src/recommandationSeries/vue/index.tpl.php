@@ -3,13 +3,17 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="fr" ng-app="MyApp" xmlns="http://www.w3.org/1999/html">
+<html lang="fr" ng-app="MyApp" xmlns="http://www.w3.org/1999/html"  md-colors="{backgroundColor:'accent-hue-2'}">
 <head>
 
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
     <link rel="stylesheet" href="web/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS for carousel -->
+    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.css">
+    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.css.map">
+    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.min.css">
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="web/js/angular/angular.js"></script>
@@ -18,6 +22,10 @@
     <script src="web/js/angular/angular-aria.min.js"></script>
     <script src="web/js/angular/angular-messages.min.js"></script>
     <script src="web/js/angular/angular-sanitize.js"></script>
+
+    <!-- Script for carousel -->
+    <script src="web/angular-carousel/angular-carousel.js"></script>
+    <script src="web/angular-carousel/angular-carousel.min.js"></script>
 
     <!-- Angular Material Library -->
     <script src="web/js/angular/angular-material.min.js"></script>
@@ -38,9 +46,10 @@
     <script src="web/js/service/serviceSerie.js"></script>
     <script src="web/js/service/serviceConnection.js"></script>
 </head>
-<body ng-controller="indexCtrl">
-<div class="index">
-    <md-toolbar>
+
+<body ng-controller="indexCtrl"  md-colors="{backgroundColor:'accent-hue-2'}">
+<div class="index" md-colors="{backgroundColor:'accent-hue-2'}">
+    <md-toolbar md-colors="{backgroundColor:'primary-hue-1'}">
         <div class="md-toolbar-tools">
             <md-button aria-label="Accueil" ng-click="toHome()">
                 <md-icon>home</md-icon> Home
@@ -68,9 +77,9 @@
         </div>
     </md-toolbar>
     <div class="sidenav" layout="row" flex>
-        <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
+        <md-sidenav md-colors="{backgroundColor:'accent-hue-2'}" layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
             <div ng-show="!connected" class="menu">
-                <h3 md-colors="{color:'accent'}">Most popular series</h3>
+                <h3>Most popular series</h3>
                 <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                     <span class="sideserie" ng-click="displayASerie(popularSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ popularSerie.poster_path }}"> <br />
@@ -78,7 +87,7 @@
                 </md-whiteframe>
             </div>
             <div ng-show="connected" class="menu">
-                <h3 md-colors="{color:'accent'}">We recommend you</h3>
+                <h3>We recommend you</h3>
                 <md-whiteframe ng-repeat="recommandationSerie in recommandationsSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
                     <span class="sideserie" ng-click="displayASerie(recommandationSerie.id)">
                         <img src="https://image.tmdb.org/t/p/w300{{ recommandationSerie.poster_path }}"> <br />
@@ -87,9 +96,11 @@
             </div>
         </md-sidenav>
     </div>
+
+    <md-content class="view" ng-view  md-colors="{backgroundColor:'accent-hue-2'}">
+    </md-content>
+
 </div>
-<md-content class="view" ng-view>
-</md-content>
 
 </body>
 </html>
