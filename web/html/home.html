@@ -36,7 +36,7 @@
 
                         <md-card-content layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="infoSerie in seriesByGenre | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                                <md-card md-colors="{backgroundColor:'accent-hue-1'}" class="serieBloc">
+                                <md-card md-colors="{backgroundColor:'primary-hue-1'}" class="serieBloc">
                                     <img ng-click="displayASerie(infoSerie.id)" onclick="window.top.window.scrollTo(0,0);" src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
                                     <div>
                                         <span class="md-title" ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);">{{ infoSerie.name }}</span>
