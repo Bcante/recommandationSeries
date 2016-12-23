@@ -5,12 +5,12 @@
         </md-card>
     </div>
     <div ng-show="!connected">
-        <md-card class="md-primary formConnectionRegistration">
+        <md-card class="formConnectionRegistration" md-colors="{backgroundColor:'accent-hue-1'}">
             <md-card-title>
                 <md-card-title-text class="md-display-1">
-                    <span ng-click="redirectSignIn()" md-colors="{color:'grey'}">Sign in</span>
+                    <span ng-click="redirectSignIn()" md-colors="{color:'accent-hue-3'}">Sign in</span>
                 </md-card-title-text>
-                <md-card-title-text md-colors="{color:'primary'}" class="md-display-1">
+                <md-card-title-text class="md-display-1">
                     Sign up
                 </md-card-title-text>
             </md-card-title>
@@ -60,25 +60,12 @@
                             </div>
                         </md-input-container>
 
-                        <!--<md-input-container class="md-block">
-                            <md-icon>favorite</md-icon>
-                            <label>Your favorite genre</label>
-                            <md-select ng-model="registration.genre" name="genres" required>
-                                <md-option ng-value="{{ genre }}" ng-repeat="genre in genres">
-                                    {{ genre.name }}
-                                </md-option>
-                            </md-select>
-                            <div ng-messages="registrationForm.genres.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>-->
-
                         <md-card-actions>
                             <md-button type="reset">
                                 <md-icon>cached</md-icon> Reset
                             </md-button>
                             <md-button class="md-primary" ng-disabled="!registrationForm.$valid" ng-click="toRegistrate()">
-                                <md-icon ng-show="registrationForm.$valid">done</md-icon> Sign up
+                                <md-icon md-colors="{color:'primary-hue-1'}" ng-show="registrationForm.$valid">done</md-icon > Sign up
                             </md-button>
                         </md-card-actions>
 
