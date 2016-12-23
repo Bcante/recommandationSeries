@@ -25,5 +25,9 @@ class Series extends Model{
 		return $this->belongsToMany('\recommandationSeries\model\Genres', 'seriesgenres', 'series_id', 'genre_id');
 	}
 
+	public function creators() {
+		return $this->belongsToMany('\recommandationSeries\model\Creators', 'seriescreators', 'series_id', 'creator_id');	
+	}
+
 }
 ?>

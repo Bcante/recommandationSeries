@@ -94,9 +94,3 @@ $app->get('/user/giveMovieIdea/', function() {
     global $loggedController;
     echo $loggedController->giveMovieIdea($userId);
 });
-
-$app->get('/testhash', function() {
-    $userId = $_SESSION['user_id'];
-    global $loggedController;
-    echo $loggedController->testHash($userId);
-});

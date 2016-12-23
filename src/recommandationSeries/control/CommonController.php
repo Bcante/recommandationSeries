@@ -7,6 +7,7 @@ use recommandationSeries\model\Genres;
 use recommandationSeries\model\Seasons;
 use recommandationSeries\model\Series;
 use recommandationSeries\model\Episodes;
+use recommandationSeries\model\Creators;
 
 
 class CommonController extends AbstractController {
@@ -63,7 +64,16 @@ class CommonController extends AbstractController {
         $serie = Series::where('series.id', '=', $serieId)
             ->get();
         $serieJson = json_encode($serie);
+        $this->getSeriesFromSameAuthor($serieId);
         return $serieJson;
+    }
+
+    public function getSeriesFromSameAuthor($serieId) {
+        $idCreator = Series::find($serieId)->creators()->select('id')->get()->toArray();
+        $b = $idCreator[0]['id'];
+        echo $b;
+        $a = json_encode(true);
+    
     }
 
     public function getCreator($serieId) {

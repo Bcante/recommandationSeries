@@ -223,6 +223,10 @@ class LoggedController extends AbstractController {
         return $res;
     }
 
+    public function getMoviesFromLikedAuthors() {
+        
+    }
+    
     /**
      * For a given $userId, check if he's following at least one serie.
      */
@@ -240,21 +244,6 @@ class LoggedController extends AbstractController {
         $res = Authentication::updatePassword($userId, $password);    
     }
 
-    public function testHash($userId) {
-        $pass="mdpsecret";
-        $factory = new Factory;
-        $generator = $factory->getLowStrengthGenerator();
-        $randomString = $generator->generateString(10);
-        $saltedPass = $pass.$randomString; 
-        $hash = password_hash($saltedPass, PASSWORD_DEFAULT);
-        // on déchiffre
-        $mdp1="mdppassecret";
-        $mdp2="mdpsecret";
-        $mdp3="mdpsecret".$randomString;
-        var_dump(password_verify($mdp1, $hash));
-        var_dump(password_verify($mdp2, $hash));
-        var_dump(password_verify($mdp3, $hash));
-    }
 }
 
 ?>
