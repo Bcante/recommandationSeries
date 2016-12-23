@@ -17,8 +17,8 @@
                         Change
                     </md-button>
                     <md-card-actions>
-                        <span md-colors="{color: 'primary'}">{{ successMessage }}</span>
-                        <span md-colors="{color: 'red'}">{{ wrongPassword }}</span>
+                        <span ng-show='successMessage' md-colors="{color: 'green'}">Password has been changed</span>
+                        <span ng-show='wrongPassword' md-colors="{color: 'red'}">Current password is wrong</span>
                     </md-card-actions>
                 </p>
                 <h2>Your informations</h2>
