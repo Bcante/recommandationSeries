@@ -60,21 +60,27 @@ class CommonController extends AbstractController {
         return $seriesJson;
     }
 
+    /*
+    * Fetch all the informations to display for a given serie: Including the info about the serie itself,
+    * and series made by the same creator.
+     */
     public function getInfoSerie($serieId) {
+        //Information about the serie itself
         $serie = Series::where('series.id', '=', $serieId)
-            ->get();
+                ->get()
+                ->toArray();
         $serieJson = json_encode($serie);
-        $relatedMovies = $this->getSeriesFromSameAuthor($serieId);
         
-        $a = json_decode($serieJson, true);
-        $b = json_decode($relatedMovies, true);
-
-        $c = json_encode(array_merge($a,$b));
-        return $c;
-
-
+        // Information about the series made by the creator (can be empty)
+        $relatedMovies = $this->getSeriesFromSameAuthor($serieId);
+        $finalRes = json_encode(array_merge($serie,$relatedMovies));
+        return $finalRes;
     }
 
+    /**
+    * For a given series, search if there is other series made by 
+    * the same creator.
+    */
     public function getSeriesFromSameAuthor($serieId) {
         $creator = Series::find($serieId)
                     ->creators()
@@ -83,13 +89,13 @@ class CommonController extends AbstractController {
                     ->toArray();
         $idCreator = $creator[0]['id'];
 
-        $similar=Creators::find($idCreator)
+        $relatedMovies=Creators::find($idCreator)
             ->series()
             ->select('series.name','series.id','series.poster_path')
             ->where('series.id','!=',$serieId)
-            ->get();
+            ->get()
+            ->toArray();
 
-        $relatedMovies = json_encode($similar);
         return $relatedMovies;
     }
 

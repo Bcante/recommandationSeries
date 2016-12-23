@@ -12,9 +12,6 @@ $app->get('/',function() use ($app){
     $app->render('index.tpl.php');
 });
 
-
-
-
 /*
  * Routes related to home page
  */
@@ -48,9 +45,6 @@ $app->get('/user/connectionStatus', function() {
     if(isset($_SESSION['user_id'])) echo true;
     else echo false;
 });
-
-
-
 
 /*
  * Routes related to series
