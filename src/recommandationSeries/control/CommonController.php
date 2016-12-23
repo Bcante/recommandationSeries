@@ -64,16 +64,33 @@ class CommonController extends AbstractController {
         $serie = Series::where('series.id', '=', $serieId)
             ->get();
         $serieJson = json_encode($serie);
-        $this->getSeriesFromSameAuthor($serieId);
-        return $serieJson;
+        $relatedMovies = $this->getSeriesFromSameAuthor($serieId);
+        
+        $a = json_decode($serieJson, true);
+        $b = json_decode($relatedMovies, true);
+
+        $c = json_encode(array_merge($a,$b));
+        return $c;
+
+
     }
 
     public function getSeriesFromSameAuthor($serieId) {
-        $idCreator = Series::find($serieId)->creators()->select('id')->get()->toArray();
-        $b = $idCreator[0]['id'];
-        echo $b;
-        $a = json_encode(true);
-    
+        $creator = Series::find($serieId)
+                    ->creators()
+                    ->select('id')
+                    ->get()
+                    ->toArray();
+        $idCreator = $creator[0]['id'];
+
+        $similar=Creators::find($idCreator)
+            ->series()
+            ->select('series.name','series.id','series.poster_path')
+            ->where('series.id','!=',$serieId)
+            ->get();
+
+        $relatedMovies = json_encode($similar);
+        return $relatedMovies;
     }
 
     public function getCreator($serieId) {
