@@ -137,32 +137,38 @@ class Authentication {
         $pass = Users::select('password','salt')
                 ->find($userId)
                 ->toArray();
+        $res = 0;
 
-        if (isset($pass)) {
-            $hashedPass = $pass['password'];
-            $salt = $pass['salt'];
-            $saltedPass = $triedPass.$salt;
-
-            if (password_verify($saltedPass,$hashedPass)) {
-                $res = 1;
-            } 
-            else $res = 0;
-            return $res;    
+        if (filter_var($triedPass,FILTER_SANITIZE_STRING) !== $triedPass) {
+            $res = 0;
         }
         else {
-            // This shouldn't be the case, and means our system is flawed
-            echo "alerte intrus";
+            if (isset($pass)) {
+                $hashedPass = $pass['password'];
+                $salt = $pass['salt'];
+                $saltedPass = $triedPass.$salt;
+
+                if (password_verify($saltedPass,$hashedPass)) {
+                    $res = 1;
+                } 
+                else $res = 0;
+            }
+            else {
+                // This shouldn't be the case, and means our system is flawed
+                echo "alerte intrus";
+            }
         }
+        return $res;
     }
 
     public static function updatePassword($userId, $triedPass) {
-        $usr=Users::find($userId);
-        //on oublie pas le sel
-        $salt=$usr->salt;
-        $newPass=$triedPass.$salt;
-
-        $usr->password = password_hash($newPass, PASSWORD_DEFAULT);
-        $usr->save();
+        if (filter_var($triedPass,FILTER_SANITIZE_STRING) === $triedPass) {
+            $usr=Users::find($userId);
+            $salt=$usr->salt;
+            $newPass=$triedPass.$salt;
+            $usr->password = password_hash($newPass, PASSWORD_DEFAULT);
+            $usr->save();
+        }
     }
 
 }
