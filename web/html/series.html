@@ -1,29 +1,29 @@
 <section class="series">
     <div>
         <md-content md-colors="{backgroundColor:'accent-hue-2'}">
-            <md-card class="md-padding" md-colors="{backgroundColor:'accent-hue-2'}" >
-                <md-card-title class="centerTitle" style="margin-bottom: 20px" md-colors="{backgroundColor:'accent-hue-1'}">
-                    <h1 class="md-display-1">{{ serieName }}
-                        <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-raised" md-colors="{'background-color':'yellow'}">
-                            <md-icon>add_cirle</md-icon> Add to my tracking
-                        </md-button>
+            <md-card>
+                <md-content class="md-padding" md-colors="{backgroundColor:'accent-hue-1'}">
+                    <md-card>
+                        <md-card-title class="centerTitle">
+                            <h1 class="md-display-1">{{ serieName }}
+                                <md-button ng-show="connected && followOrNot == 'false'" ng-click='followASerie(serieId)' class="md-raised" md-colors="{'background-color':'yellow'}">
+                                    <md-icon>add_cirle</md-icon> Add to my tracking
+                                </md-button>
 
-                        <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' md-colors="{'background-color':'green'}">
-                            <md-icon>check_cirle</md-icon> Remove to my tracking
-                        </md-button>
-                    </h1>
-                </md-card-title>
-                <md-card-content md-colors="{backgroundColor:'accent-hue-1'}">
-                    <div layout="row" flex>
-                        <img class="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
-                        <md-content class="md-padding" md-colors="{'background-color':'accent-hue-1'}">
-                            <span class="justify" md-colors="{color:'primary-hue-2'}">Overview</span> : {{ overview }}<br><br>
-                            <span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}<br><br>
-                            <span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}<br><br>
-                            <span md-colors="{color:'primary-hue-2'}">Creator</span> : {{ creatorName }}
-                        </md-content>
-                    </div>
-                </md-card-content>
+                                <md-button ng-show="connected && followOrNot == 'true'" ng-click='unfollowASerie(serieId)' md-colors="{'background-color':'green'}">
+                                    <md-icon>check_cirle</md-icon> Remove to my tracking
+                                </md-button>
+                            </h1>
+                        </md-card-title>
+                        <div>
+                            <img class="poster" src="https://image.tmdb.org/t/p/w300{{ poster }}">
+                            <p><span class="justify" md-colors="{color:'primary-hue-2'}">Overview</span> : {{ overview }}</p>
+                            <p><span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}</p>
+                            <p><span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}</p>
+                            <p md-colors="{color:'primary-hue-2'}">Creator : {{ creatorName }}</p>
+                        </div>
+                    </md-card>
+                </md-content>
             </md-card>
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
