@@ -7,10 +7,27 @@ use recommandationSeries\model\Users;
 
 class Authentication {
 
+    /** 
+     * Function used to log in. 
+     * @param $email, the email used to log in, specied by the user
+     * @param $password, the password used to log in, specied by the user
+     *
+     * The functio will first check if there is no forbidden characters in
+     * the input fields, and if they aren't empty. 
+     * If any field is potentially dangerous, the log in process is stopped. 
+     * If every fields are ok, we compare the $email with the one stored in the DB. 
+     * Then we add salt the salt linked to the provided pass, hashit, and compare it
+     * to whatever is stored in the DB. If the mails & passwords match, the user is logged.
+     */ 
     public static function authenticate($email, $password) {
         $connexionOK = true;
         // user names are unique therefore we can directly search for a matching username 
         // in the DB
+
+        if (!isset($email) || !isset($password)) {
+            $connexionOk = false;
+        }
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // echo "Invalid mail";
             $connexionOK = false;
@@ -30,12 +47,9 @@ class Authentication {
                 $saltedPass = $password.$usrSalt;
 
                 if (password_verify($saltedPass,$hashedPass)) {
-                    // echo "Successful loggin";
                     Authentication::loadProfile($usr->id);
-                    // Define what do we want to store in the session variable
                 }
                 else {
-                    // echo "Invalide email / password";
                     $connexionOK = false;
                 }
             }
@@ -46,12 +60,26 @@ class Authentication {
         return $connexionOK;
     }
 
+    /**
+     * Destroy any left-over session, and start a new one.
+     * @param $id : The newly-logged user.
+     * Store the user_id, so it can be used in the other parts
+     * of our website
+     **/
     public static function loadProfile($id) {
         session_destroy();
         session_start();
         $_SESSION['user_id'] = $id;
     }
 
+    /**
+     * Function used to register new users
+     * @param $username : the username choosed by the user
+     * @param $password : his password
+     * @param $password_confirm : to check if he typed the password correctly
+     * @param $email : his email
+     * If the whole process go through correctly, a new user is saved in the DB.
+     */
     public static function register($username, $password, $password_confirm, $email) {
         // Check if the form is correctly filled
         // Username has to be at least 4 chars long
@@ -100,8 +128,6 @@ class Authentication {
                 }
 
                 if ($inscOk) {
-
-        
                     // Final check: Both emails and username can't be found in our DB
                     $sameName = Users::where('name', '=', $username)->count();
                     $sameMail = Users::where('email', '=', $email)->count();
@@ -133,6 +159,14 @@ class Authentication {
         return $inscOk;
     }
 
+    /**
+     * Function used when a user want to update his password
+     * @param $userId : The id of the user logged in, who wants to update his password
+     * @param $triedPass : His input when asked to confirm what his current password is
+     *
+     * @return 1 if the operation is a success, 0 if triedPass isn't the excepted password,
+     * -1 if the user has no password stored in the DB
+     */
     public static function verifyPassword($userId, $triedPass) {
         $pass = Users::select('password','salt')
                 ->find($userId)
@@ -155,19 +189,33 @@ class Authentication {
             }
             else {
                 // This shouldn't be the case, and means our system is flawed
-                echo "alerte intrus";
+                $res = -1;
             }
         }
         return $res;
     }
 
-    public static function updatePassword($userId, $triedPass) {
-        if (filter_var($triedPass,FILTER_SANITIZE_STRING) === $triedPass) {
-            $usr=Users::find($userId);
-            $salt=$usr->salt;
-            $newPass=$triedPass.$salt;
-            $usr->password = password_hash($newPass, PASSWORD_DEFAULT);
-            $usr->save();
+    /**
+    * Function called once we saw that the user know his own password, and
+    * is therefore clear to change it.
+    * @param $userId: The id of the user logged in, who wants to update his password
+    * @param $newPass: The new password he wants to use (who must follow our secutiry policy)
+    */
+    public static function updatePassword($userId, $newPass) {
+        if (filter_var($newPass,FILTER_SANITIZE_STRING) === $newPass) {
+
+            if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $newPass)) {
+                    echo "The password should be 8 letters long, contain a lowercase and a uppercase letter";
+                    $inscOk = false;
+                }
+            else {
+                $usr=Users::find($userId);
+                $salt=$usr->salt;
+                $newSaltedPass=$newPass.$salt;
+                $usr->password = password_hash($newSaltedPass, PASSWORD_DEFAULT);
+                $usr->save();
+            }
+
         }
     }
 

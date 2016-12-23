@@ -234,6 +234,9 @@ class LoggedController extends AbstractController {
         Users::find($userId)->series();
     }
 
+    /**
+     * Verify if the user knows the correct current password
+     */
     public function getCurrentPassword($userId, $password) {
         $goodPass = Authentication::verifyPassword($userId, $password);
         $res = $goodPass === 1 ? json_encode(true) : json_encode(false);

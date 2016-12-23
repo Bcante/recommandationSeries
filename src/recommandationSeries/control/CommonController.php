@@ -79,16 +79,20 @@ class CommonController extends AbstractController {
 
     /**
     * For a given series, search if there is other series made by 
-    * the same creator.
+    * the same creator. Retrieve information regarding their names, ids, and poser_paths
+    * if they exist.
     */
     public function getSeriesFromSameAuthor($serieId) {
+        // First part: get the creator
         $creator = Series::find($serieId)
                     ->creators()
                     ->select('id')
-                    ->get()
+                    ->get() 
                     ->toArray();
         $idCreator = $creator[0]['id'];
 
+        // Once the creator is isolated: Find movie made by him, but differents from the 
+        // that we're initially searching for.
         $relatedMovies=Creators::find($idCreator)
             ->series()
             ->select('series.name','series.id','series.poster_path')
