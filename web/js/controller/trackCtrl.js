@@ -5,6 +5,9 @@ app.controller('trackCtrl',['$scope','$location','$http','$rootScope','$window',
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
+            if(!$scope.connected){
+                $location.path('/home');
+            }
         });
 
     $http({

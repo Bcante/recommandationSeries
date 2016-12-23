@@ -5,6 +5,9 @@ app.controller('registrationCtrl',['$scope','$location','$http','$rootScope','$w
     serviceConnection.getConnectionStatus()
         .success(function (data) {
             $scope.connected = data == 1 ? true : false;
+            if($scope.connected){
+                $location.path('/home');
+            }
         });
 
     /**

@@ -2,6 +2,15 @@ var app = angular.module('routeAppControllers');
 
 app.controller('profilCtrl',['$templateCache','$scope','$location','$http','$rootScope','$window','$mdSidenav','$mdDialog','$route','$interval','serviceConnection',function ($templateCache, $scope,$location,$http,$rootScope,$window,$mdSidenav,$mdDialog,$route,$interval,serviceConnection) {
 
+    serviceConnection.getConnectionStatus()
+        .success(function (data) {
+            $scope.connected = data == 1 ? true : false;
+            if(!$scope.connected){
+                $location.path('/home');
+            }
+        });
+
+
     /**
      * saving the template for the dialog box to change the password
      */

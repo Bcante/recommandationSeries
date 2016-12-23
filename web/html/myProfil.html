@@ -1,6 +1,6 @@
-<section class="tracking">
+<section class="profil">
     <div ng-show='connected'>
-        <md-card class="md-padding">
+        <md-card class="md-padding" >
             <h1 class="md-display-1" >My Profil</h1>
         </md-card>
         <md-card class="articleProfil" id="articleInformations">
@@ -24,11 +24,6 @@
                 <h2>Your informations</h2>
                 <p><md-icon>perm_identity</md-icon> Username : {{username}}</p>
             </md-card-content>
-        </md-card>
-    </div>
-    <div ng-show='!connected'>
-        <md-card class="md-primary">
-            <span>Please,<span ng-click="connect()" md-colors="{color: 'primary'}">connect you</span> !</span>
         </md-card>
     </div>
 </section>
