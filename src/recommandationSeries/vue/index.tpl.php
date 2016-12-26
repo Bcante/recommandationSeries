@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="fr" ng-app="MyApp" xmlns="http://www.w3.org/1999/html"  md-colors="{backgroundColor:'accent-hue-2'}">
+<html lang="fr" ng-app="MyApp" xmlns="http://www.w3.org/1999/html">
 <head>
 
     <!-- CSS -->
@@ -47,9 +47,9 @@
     <script src="web/js/service/serviceConnection.js"></script>
 </head>
 
-<body ng-controller="indexCtrl"  md-colors="{backgroundColor:'accent-hue-2'}">
-<div class="index" md-colors="{backgroundColor:'accent-hue-2'}">
-    <md-toolbar md-colors="{backgroundColor:'primary-hue-1'}">
+<body ng-controller="indexCtrl">
+<div class="index">
+    <md-toolbar>
         <div class="md-toolbar-tools">
             <md-button aria-label="Accueil" ng-click="toHome()">
                 <md-icon>home</md-icon> Home
@@ -77,7 +77,7 @@
         </div>
     </md-toolbar>
     <div class="sidenav" layout="row" flex>
-        <md-sidenav md-colors="{backgroundColor:'accent-hue-2'}" layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
+        <md-sidenav layout="column" md-component-id="right" md-is-locked-open="true" class="md-sidenav-right" md-whiteframe="2">
             <div ng-show="!connected" class="menu">
                 <h3>Most popular series</h3>
                 <md-whiteframe ng-repeat="popularSerie in popularSeries" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
@@ -97,7 +97,7 @@
         </md-sidenav>
     </div>
 
-    <md-content class="view" ng-view  md-colors="{backgroundColor:'accent-hue-2'}">
+    <md-content class="view" ng-view>
     </md-content>
 
 </div>

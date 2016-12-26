@@ -1,16 +1,16 @@
 <section class="home">
-    <md-content md-colors="{backgroundColor:'accent-hue-1'}">
+    <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="All Series">
-                <md-content class="md-padding" md-colors="{backgroundColor:'accent-hue-2'}">
-                    <md-card class="md-padding" md-colors="{'background-color':'accent-hue-2'}">
-                        <md-card-title class="centerTitle" md-colors="{backgroundColor:'accent-hue-1'}">
+                <md-content class="md-padding">
+                    <md-card class="md-padding">
+                        <md-card-title class="centerTitle">
                             <h1 class="md-display-1">All Series</h1>
                         </md-card-title>
 
                         <md-card-content layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="serie in allSeries | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                                <md-card md-colors="{backgroundColor:'accent-hue-1'}" class="serieBloc">
+                                <md-card class="serieBloc">
                                     <img ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"> <br />
                                     <div>
                                         <span class="md-title" ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);">{{ serie.name }}</span>
@@ -20,23 +20,23 @@
                         </md-card-content>
 
                         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                            <md-button md-colors="{backgroundColor:'primary-hue-1'}" class="md-fab md-raised" aria-label="Load more" ng-click="loadMore()">
-                                <md-icon md-colors="{backgroundColor:'primary-hue-1'}">arrow_downward</md-icon>
+                            <md-button class="md-fab md-raised" aria-label="Load more" ng-click="loadMore()">
+                                <md-icon>arrow_downward</md-icon>
                             </md-button>
                         </section>
                     </md-card>
                 </md-content>
             </md-tab>
             <md-tab ng-repeat="genre in genresArray" label="{{ genre.name }}" ng-click="displaySeriesByGenre(genre.id)">
-                <md-content class="md-padding" md-colors="{backgroundColor:'accent-hue-2'}">
-                    <md-card class="md-padding" md-colors="{'background-color':'accent-hue-2'}">
-                        <md-card-title class="centerTitle" md-colors="{backgroundColor:'accent-hue-1'}">
+                <md-content class="md-padding">
+                    <md-card class="md-padding">
+                        <md-card-title class="centerTitle">
                             <h1 class="md-display-1">{{ genre.name }}</h1>
                         </md-card-title>
 
                         <md-card-content layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
                             <md-whiteframe ng-repeat="infoSerie in seriesByGenre | limitTo:totalDisplayed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                                <md-card md-colors="{backgroundColor:'accent-hue-1'}" class="serieBloc">
+                                <md-card class="serieBloc">
                                     <img ng-click="displayASerie(infoSerie.id)" onclick="window.top.window.scrollTo(0,0);" src="https://image.tmdb.org/t/p/w300{{ infoSerie.poster_path }}"> <br />
                                     <div>
                                         <span class="md-title" ng-click="displayASerie(serie.id)" onclick="window.top.window.scrollTo(0,0);">{{ infoSerie.name }}</span>
@@ -46,8 +46,8 @@
                         </md-card-content>
 
                         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                            <md-button md-colors="{backgroundColor:'primary-hue-1'}" class="md-fab md-raised" aria-label="Load more" ng-click="loadMore()">
-                                <md-icon md-colors="{backgroundColor:'primary-hue-1'}">arrow_downward</md-icon>
+                            <md-button class="md-fab md-raised" aria-label="Load more" ng-click="loadMore()">
+                                <md-icon>arrow_downward</md-icon>
                             </md-button>
                         </section>
                     </md-card>

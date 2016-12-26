@@ -1,8 +1,8 @@
 <section class="series">
     <div>
-        <md-content md-colors="{backgroundColor:'accent-hue-2'}">
+        <md-content>
             <md-card>
-                <md-content class="md-padding" md-colors="{backgroundColor:'accent-hue-1'}">
+                <md-content class="md-padding">
                     <md-card>
                         <md-card-title class="centerTitle">
                             <h1 class="md-display-1">{{ serieName }}
@@ -28,7 +28,7 @@
             <md-card>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab ng-repeat="season in seasonsArray" label="{{ season.name }}" ng-click="displaySeasonsDetails(season.id)">
-                        <md-content ng-show="showSeasons" class="md-padding" md-colors="{backgroundColor:'accent-hue-1'}">
+                        <md-content ng-show="showSeasons" class="md-padding">
                             <md-card class="seasonDetails">
                                 <div class="md-padding">
                                     <img class="poster" src="https://image.tmdb.org/t/p/w300{{ seasonPoster }}">
