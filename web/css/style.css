@@ -127,3 +127,11 @@ md-card-title-text {
 .md-icon-button{
     display: none;
 }
+
+#dialogCarousel{
+    height: 100%;
+}
+.carouselContent{
+   text-align: center;
+    height: 100%;
+}
