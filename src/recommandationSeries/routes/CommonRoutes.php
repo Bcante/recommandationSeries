@@ -93,6 +93,7 @@ $app->get('/serie/serieSearch/:serieName', function($serieName) {
 
 
 
+
 /*
  * Routes related to episodes
  */

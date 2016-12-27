@@ -1,6 +1,6 @@
-var app = angular.module('routeAppControllers'/*, ['angular-carousel']*/);
+var app = angular.module('routeAppControllers');
 
-app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie','$mdDialog',function ($scope,$mdToast,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie,$mdDialog) {
+app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope','$window','$mdSidenav','$route','$interval','serviceConnection','serviceSerie','$mdDialog', function ($scope,$mdToast,$location,$http,$rootScope,$window,$mdSidenav,$route,$interval,serviceConnection, serviceSerie,$mdDialog) {
 
     serviceConnection.getConnectionStatus()
         .success(function (data) {
@@ -57,40 +57,38 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     /**
      * ajax to get all series from a creator
      */
-        $http({
-            method:'GET',
-            url : 'serie/creator/series/'+$scope.idSerie,
-            data : {
-                name : $scope.creatorName
-            }
-        }).success(function (data) {
-            $scope.authorArray = data;
-            console.log($scope.authorArray)
-            return data;
+    $http({
+        method:'GET',
+        url : 'serie/creator/series/'+$scope.idSerie,
+        data : {
+            name : $scope.creatorName
+        }
+    }).success(function (data) {
+        $scope.creatorArray = data;
+    });
 
-        });
+    /*$scope.anotherSeries = function () {
+        $mdDialog.show({
+            locals : {dataToPass : $scope},
+            controller: CarouselController,
+            templateUrl: 'web/html/templates/carouselMain.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        })
+            .then(function() {
+                $location.path('/connection')
+            });
+    };
 
-        $scope.anotherSeries = function () {
-            $mdDialog.show({
-                locals : {dataToPass : $scope},
-                controller: CarouselController,
-                templateUrl: 'web/html/templates/carouselMain.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true
-            })
-                .then(function() {
-                    $location.path('/connection')
-                });
-        };
+    function CarouselController ($scope, $mdDialog, dataToPass) {
+        $scope.authorArray = dataToPass.authorArray;
+        $scope.goToSerie=function(serieId){
+            console.log("hello");
+            serviceSerie.loadSeriePage(serieId);
+            $mdDialog.cancel();
+        }
+    };*/
 
-        function CarouselController ($scope, $mdDialog, dataToPass) {
-            $scope.authorArray = dataToPass.authorArray;
-            $scope.goToSerie=function(serieId){
-                console.log("hello");
-                serviceSerie.loadSeriePage(serieId);
-                $mdDialog.cancel();
-            }
-        };
     /**
      * ajax to recover season
      */

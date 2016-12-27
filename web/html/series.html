@@ -20,8 +20,8 @@
                             <p><span class="justify" md-colors="{color:'primary-hue-2'}">Overview</span> : {{ overview }}</p>
                             <p><span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}</p>
                             <p><span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}</p>
-                            <p md-colors="{color:'primary-hue-2'}">Creator : {{ creatorName }}</p>
-                            <md-button ng-click="anotherSeries()">Another series from {{creatorName}}</md-button>
+                            <p><span md-colors="{color:'primary-hue-2'}">Creator</span> : {{ creatorName }}</p>
+                            <!--<md-button ng-click="anotherSeries()">Another series from {{creatorName}}</md-button>-->
                         </div>
                     </md-card>
                 </md-content>
@@ -72,6 +72,15 @@
                         </md-content>
                     </md-tab>
                 </md-tabs>
+            </md-card>
+
+            <md-card>
+                <jk-carousel
+                        data="creatorArray"
+                        item-template-url="'carousel.html'"
+                        max-width="800"
+                        max-height="500" >
+                </jk-carousel>
             </md-card>
 
         </md-content>
