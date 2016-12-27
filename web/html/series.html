@@ -21,6 +21,7 @@
                             <p><span md-colors="{color:'primary-hue-2'}">Number of seasons</span> : {{ numberOfSeasons }}</p>
                             <p><span md-colors="{color:'primary-hue-2'}">Popularity</span> : {{ popularity }}</p>
                             <p md-colors="{color:'primary-hue-2'}">Creator : {{ creatorName }}</p>
+                            <p>{{authorArray}}</p>
                         </div>
                     </md-card>
                 </md-content>
@@ -73,7 +74,7 @@
                 </md-tabs>
             </md-card>
             <md-card layout-align="center center" style="padding-bottom: 10px" ng-init="serieCreator()">
-                    <jk-carousel id="carousel" data="authorArray"
+                <jk-carousel id="carousel" data="authorArray"
                                  item-template-url="'web/html/templates/carousel.html'"
                                  max-width="800"
                                  max-height="500"
