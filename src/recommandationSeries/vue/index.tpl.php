@@ -8,12 +8,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="web/css/angular-material.min.css">
+    <link rel="stylesheet" href="web/css/jk-carousel.min.css">
     <link rel="stylesheet" href="web/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- CSS for carousel -->
-    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.css">
-    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.css.map">
-    <link rel="stylesheet" href="web/angular-carousel/angular-carousel.min.css">
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="web/js/angular/angular.js"></script>
@@ -23,12 +20,12 @@
     <script src="web/js/angular/angular-messages.min.js"></script>
     <script src="web/js/angular/angular-sanitize.js"></script>
 
-    <!-- Script for carousel -->
-    <script src="web/angular-carousel/angular-carousel.js"></script>
-    <script src="web/angular-carousel/angular-carousel.min.js"></script>
 
     <!-- Angular Material Library -->
     <script src="web/js/angular/angular-material.min.js"></script>
+
+    <!-- Catousel Script -->
+    <script src="web/js/angular/jk-carousel.min.js"></script>
 
     <!-- Custom Script -->
     <script src="web/js/app.js"></script>

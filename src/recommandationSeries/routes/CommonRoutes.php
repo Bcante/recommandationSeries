@@ -64,6 +64,12 @@ $app->get('/serie/creator/:serieId', function($serieId) {
     echo $commonController->getCreator($serieId);
 });
 
+$app->get('/serie/creator/series/:serieId', function($serieId) {
+    global $commonController;
+    echo json_encode($commonController->getSeriesFromSameAuthor($serieId));
+});
+
+
 $app->get('/serie/seasons/:serieId', function($serieId) {
     global $commonController;
     echo $commonController->getSeasons($serieId);

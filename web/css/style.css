@@ -123,3 +123,7 @@ md-card-title-text {
 .justify {
     text-align: justify;
 }
+
+.md-icon-button{
+    display: none;
+}

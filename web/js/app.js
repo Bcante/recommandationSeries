@@ -4,7 +4,8 @@ var app = angular.module('MyApp',[
     'ngRoute',
     'routeAppControllers',
     'ngMessages',
-    'ngAnimate'
+    'ngAnimate',
+    'jkAngularCarousel'
 ]);
 
 /**
