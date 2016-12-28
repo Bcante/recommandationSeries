@@ -158,7 +158,10 @@ class LoggedController extends AbstractController {
     * @param $userId, userId
     * @return an array containing the id of 5 movies who couldn't interest him
     * Explanation: 
-    * Firstly, we see what the user is interested into through the series he's following.
+    * Before hand, we check if the user has any genres we can find recommandation for. If it's not the case
+    * we'll retrieve the most popular series. 
+    *
+    * If he has some genres he saw, we'll see what the user is interested into through the series he's following.
     * More specifically, we check which genre is the most common. 
     * For every genres he has interest into, we'll see if we can present them to him (through areSimilarShowAvailable method)
     * Once we had collected enough data (= 5 movies), we trim the array to a max size of 5 (because we can't display more than 5 movies in his user space)
