@@ -1,3 +1,5 @@
-<div class="carouselContent">
-    <img ng-src="https://image.tmdb.org/t/p/w300{{creatorArray.backdrop_path}}" >
+<div class="carouselContent" ng-controller="seriesCtrl" ng-click="goToSerie(slideItem.id)">
+    <p>{{slideItem.name}}</p>
+    <img ng-src="https://image.tmdb.org/t/p/w300{{slideItem.poster_path}}" >
+    <p>Hello</p>
 </div>
