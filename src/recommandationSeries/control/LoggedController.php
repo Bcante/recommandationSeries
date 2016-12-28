@@ -55,7 +55,10 @@ class LoggedController extends AbstractController {
      * the id of the serie, and of the user
     **/
     public function checkIfFollow($userId, $serieId) {
-        $users = Users::find($userId)->series()->where('serie_id', '=', $serieId)->count();
+        $users = Users::find($userId)
+                ->series()
+                ->where('serie_id', '=', $serieId)
+                ->count();
         if ($users === 1) {
             $thereIsOne = json_encode(true);
             return $thereIsOne;
@@ -151,7 +154,7 @@ class LoggedController extends AbstractController {
     }
 
     /**
-    * For a given user, find 5 movies he'll be interested into
+    * For a given user, find 5 movies he'll be interested into, or 5 popular movies
     * @param $userId, userId
     * @return an array containing the id of 5 movies who couldn't interest him
     * Explanation: 
@@ -162,25 +165,32 @@ class LoggedController extends AbstractController {
     **/
     public function giveMovieIdea($userId) {
         $genres = $this->checkFavGenre($userId);
-        $i = 0;
-        $affFinal = array(); 
-        $acceptableSize = false;
-
-        while (($acceptableSize !== true) && ( $i < sizeof($genres))) {
-            $id = $genres[$i]['id'];
-            $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
-            $i++;
-            if (sizeof($affFinal) >= 5) {
-                $acceptableSize = true;
-                $affFinalId=array_slice($affFinal,0,5);
-                $affFinal=Series::select('id','name','poster_path')->findMany($affFinal)->toArray();
-                $affFinalJson=json_encode($affFinal);
-                return $affFinalJson;
-            }
+        if (sizeof($genres) === 0) {
+            // This user hasn't seen a serie yet
+            $jsonShows=CommonController::getPopularSeries();
+            return $jsonShows;
         }
+        else {
+            $i = 0;
+            $affFinal = array(); 
+            $acceptableSize = false;
 
-        if ($i === sizeof($genres)) {
-            echo "Vous avez tout vu :( ";
+            while (($acceptableSize !== true) && ( $i < sizeof($genres))) {
+                $id = $genres[$i]['id'];
+                $affFinal = $this->areSimilarShowAvailable($userId,$id,$affFinal);
+                $i++;
+                if (sizeof($affFinal) >= 5) {
+                    $acceptableSize = true;
+                    $affFinalId=array_slice($affFinal,0,5);
+                    $affFinal=Series::select('id','name','poster_path')->findMany($affFinal)->toArray();
+                    $affFinalJson=json_encode($affFinal);
+                    return $affFinalJson;
+                }
+            }
+
+            if ($i === sizeof($genres)) {
+                echo "Vous avez tout vu :( ";
+            }
         }
     }
 
