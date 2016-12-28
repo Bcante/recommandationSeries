@@ -128,10 +128,13 @@ md-card-title-text {
     display: none;
 }
 
-#dialogCarousel{
-    height: 100%;
-}
+
 .carouselContent{
    text-align: center;
+    height: inherit;
+    width: inherit;
+}
+
+.carouselContent img{
     height: 100%;
 }

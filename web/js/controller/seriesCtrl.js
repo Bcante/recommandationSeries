@@ -64,6 +64,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             name : $scope.creatorName
         }
     }).success(function (data) {
+        console.log(data);
         $scope.creatorArray = data;
     });
 
@@ -82,12 +83,14 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
 
     function CarouselController ($scope, $mdDialog, dataToPass) {
         $scope.authorArray = dataToPass.authorArray;
-        $scope.goToSerie=function(serieId){
-            console.log("hello");
-            serviceSerie.loadSeriePage(serieId);
-            $mdDialog.cancel();
-        }
+
     };*/
+
+    $scope.goToSerie=function(serieId){
+        console.log("hello");
+        serviceSerie.loadSeriePage(serieId);
+        $mdDialog.cancel();
+    }
 
     /**
      * ajax to recover season

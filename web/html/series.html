@@ -74,12 +74,14 @@
                 </md-tabs>
             </md-card>
 
-            <md-card>
+            <md-card ng-if="creatorArray!=undefined" layout="column" layout-align="center center" style="padding-bottom: 10px" >
                 <jk-carousel
                         data="creatorArray"
-                        item-template-url="'carousel.html'"
+                        item-template-url="'web/html/templates/carousel.html'"
                         max-width="800"
-                        max-height="500" >
+                        max-height="500"
+                        auto-slide="true"
+                        auto-slide-time="5000">
                 </jk-carousel>
             </md-card>
 
