@@ -235,10 +235,6 @@ class LoggedController extends AbstractController {
         $res = array_merge($affArray, $relevantSeries);
         return $res;
     }
-
-    public function getMoviesFromLikedAuthors() {
-        
-    }
     
     /**
      * For a given $userId, check if he's following at least one serie.

@@ -24,6 +24,10 @@ class CommonController extends AbstractController {
         return $seriesJson;
     }
 
+    /*
+    * Made static for the sake of the "DRY" practice. This function is used
+    * in LoggedController 
+    */
     public static function getPopularSeries() {
         $popularSeries = Series::orderBy('popularity', 'DESC')
             ->select('name', 'poster_path', 'id')
