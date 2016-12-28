@@ -87,10 +87,9 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
     };*/
 
     $scope.goToSerie=function(serieId){
-        console.log("hello");
         serviceSerie.loadSeriePage(serieId);
         $mdDialog.cancel();
-    }
+    };
 
     /**
      * ajax to recover season
