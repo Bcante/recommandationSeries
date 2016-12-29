@@ -1,16 +1,16 @@
 <md-dialog aria-label="Find a Serie" id="dialogFindSerie">
-    <h1 class="md-display-1 md-padding centerTitle" md-colors="{color: 'primary-hue-2'}">Find a serie</h1>
+    <h1 class="md-display-1 md-padding centerTitle">Find a serie</h1>
     <md-input-container class='inputFindSerie'>
         <form class="formSearch" name="formSearch">
             <label md-colors="{color:'primary-hue-1'}"><md-icon md-colors="{color:'primary-hue-1'}">search</md-icon> Find a serie</label>
-            <input md-colors="{color:'primary-hue-1'}" type="text" ng-model="inputSearch" ng-change="inputSearchChange()" autofocus/>
+            <input type="text" ng-model="inputSearch" ng-change="inputSearchChange()" autofocus/>
         </form>
         <md-list>
             <md-list-item class="md-3-line serieFind" ng-repeat="serie in serieSearch" ng-click="goToSerie(serie.id)">
                 <img class="md-avatar" alt="{{serie.name}}" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"/>
                 <div class="md-list-item-text" layout="column">
-                    <h3 md-colors="{color:'primary-hue-1'}">{{ serie.name }}</h3>
-                    <h4 md-colors="{color:'primary-hue-1'}">Popularity : {{ serie.popularity}}</h4>
+                    <h3>{{ serie.name }}</h3>
+                    <h4> <span md-colors="{color:'primary-hue-1'}">Popularity </span>: {{ serie.popularity}}</h4>
                 </div>
                 <md-divider></md-divider>
             </md-list-item>
