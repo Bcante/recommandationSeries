@@ -64,29 +64,10 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
             name : $scope.creatorName
         }
     }).success(function (data) {
-        console.log(data);
-        $scope.creatorArray = data;
+        if(data.length != 0) $scope.creatorArray = data;
     });
 
-    /*$scope.anotherSeries = function () {
-        $mdDialog.show({
-            locals : {dataToPass : $scope},
-            controller: CarouselController,
-            templateUrl: 'web/html/templates/carouselMain.html',
-            parent: angular.element(document.body),
-            clickOutsideToClose: true
-        })
-            .then(function() {
-                $location.path('/connection')
-            });
-    };
-
-    function CarouselController ($scope, $mdDialog, dataToPass) {
-        $scope.authorArray = dataToPass.authorArray;
-
-    };*/
-
-    $scope.goToSerie=function(serieId){
+    $scope.goToSerie = function(serieId){
         serviceSerie.loadSeriePage(serieId);
         $mdDialog.cancel();
     };

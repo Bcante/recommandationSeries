@@ -99,7 +99,7 @@ class CommonController extends AbstractController {
         // that we're initially searching for.
         $relatedMovies=Creators::find($idCreator)
             ->series()
-            ->select('series.name','series.id','series.poster_path')
+            ->select('series.name','series.id','series.backdrop_path')
             ->where('series.id','!=',$serieId)
             ->get()
             ->toArray();
