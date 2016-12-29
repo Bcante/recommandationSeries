@@ -67,7 +67,7 @@ app.controller('seriesCtrl',['$scope','$mdToast','$location','$http','$rootScope
         if(data.length != 0) $scope.creatorArray = data;
     });
 
-    $scope.goToSerie=function(serieId){
+    $scope.goToSerie = function(serieId){
         serviceSerie.loadSeriePage(serieId);
         $mdDialog.cancel();
     };
