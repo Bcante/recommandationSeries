@@ -10,23 +10,21 @@ Installer les dépendances avec l'outil "composer" en lançant la commande `comp
 
 ### Etape 3 : 
 
-Création d’un fichier ‘db.ini’ dans ‘/src/conf/’.
+Création d’un fichier `db.ini` dans `/src/conf/`.
 
 Ce fichier doit contenir ces lignes (et les parties droites doivent naturellement être complétées avec vos informations).
 
-`
-driver=mysql
+`driver=mysql
 host=127.0.0.1
 database=recommandationSeries
 username=****
 password=****
 charset=utf8
 collation=utf8_unicode_ci
-prefix=
-`
+prefix=`
 
 NB : `prefix` peut rester vide
 
 # Utilisation
 
-Rendez-vous sur le site en localhost
+Rendez-vous sur l'adresse 127.0.0.1 pour accéder à TVSeries en localhost
