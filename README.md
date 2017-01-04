@@ -1,12 +1,14 @@
 # Installation
 
+Voici toutes les étapes pour l'installation du projet.
+
 ### Etape 1 : 
 
-Importer la base de données à l'aide du script `bdd.sql` dans PHPMyAdmin
+Importer la base de données à l'aide du script `bdd.sql` dans PHPMyAdmin.
 
 ### Etape 2 : 
 
-Installer les dépendances avec l'outil "composer" en lançant la commande `composer install` depuis la racine du projet
+Installer les dépendances avec l'outil "composer" en lançant la commande `composer install` depuis la racine du projet.
 
 ### Etape 3 : 
 
@@ -27,4 +29,4 @@ NB : `prefix` peut rester vide
 
 # Utilisation
 
-Rendez-vous sur l'adresse 127.0.0.1 pour accéder à TVSeries en localhost
+Rendez-vous sur l'adresse 127.0.0.1 pour accéder à TVSeries en localhost.
