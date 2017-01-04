@@ -1,7 +1,5 @@
 # Installation
 
-Voici toutes les étapes pour l'installation du projet.
-
 ### Etape 1 : 
 
 Importer la base de données à l'aide du script `bdd.sql` dans PHPMyAdmin.
