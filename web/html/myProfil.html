@@ -1,0 +1,32 @@
+<section class="profil">
+    <div ng-show='connected'>
+        <md-content class="md-padding">
+            <md-card class="md-padding">
+                <md-card-title class="md-padding centerTitle">
+                    <h1 class="md-display-1" >My Profil</h1>
+                </md-card-title>
+                <md-card-content>
+                    <md-card id="articleInformations">
+                        <h2>Log in informations</h2>
+                        <div class="contentProfil">
+                            <p><md-icon>email</md-icon> Email : {{email}}</p>
+                            <p><md-icon>lock</md-icon> Password : ********
+                                <md-button class="md-primary" ng-click="changePassword($event)">
+                                    Change
+                                </md-button>
+                                <md-card-actions>
+                                    <span ng-show='successMessage' md-colors="{color: 'green'}">Password has been changed</span>
+                                    <span ng-show='wrongPassword' md-colors="{color: 'red'}">Current password is wrong</span>
+                                </md-card-actions>
+                            </p>
+                        </div>
+                        <h2>Your personal informations</h2>
+                        <div class="contentProfil">
+                            <p><md-icon>perm_identity</md-icon> Username : {{username}}</p>
+                        </div>
+                    </md-card>
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </div>
+</section>

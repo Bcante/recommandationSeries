@@ -1,0 +1,140 @@
+md-toolbar  {
+    color: #70a23e;
+}
+
+.serieBloc {
+    padding: 15px;
+    min-width: 300px;
+    height: 520px;
+    position: relative;
+}
+
+.serieBloc img {
+    margin: auto;
+    display: block;
+}
+
+.serieBloc div {
+    position: absolute;
+    bottom: 0;
+    width: 98%;
+}
+
+.connexion {
+    color: black;
+}
+
+.index{
+}
+
+.sidenav{
+    float: right;
+    height: 100%;
+    text-align: center;
+}
+
+.sideserie{
+    text-align: center;
+}
+.menu{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.view{
+    position: relative;
+    z-index: 1;
+}
+
+.poster{
+    float: left;
+    margin: 20px;
+}
+
+#content{
+    padding:5px;
+}
+
+.seasonDetails {
+    width: 48%;
+    float: left;
+}
+
+.episodeDetails {
+    width : 48%;
+    float: right;
+}
+
+#articleInformations > h2 {
+    text-align: center;
+}
+
+.contentProfil {
+    width: 35%;
+    text-align: left;
+    margin: auto;
+}
+
+.formConnectionRegistration {
+    width: 40%;
+    margin: 3% auto auto;
+}
+
+md-card-title-text {
+    text-align: center;
+}
+
+.notActive {
+    background-color: #9E9E9E;
+}
+
+.dialogPassword {
+    width: 40%;
+    margin: auto;
+}
+
+.dialogPasswordInput {
+    width: 90%;
+    margin: auto;
+}
+
+.formSearch{
+    margin-bottom: 10%;
+}
+
+.serieFind:hover{
+    background-color: gray;
+}
+
+#dialogFindSerie {
+    width: 40%;
+}
+
+.inputFindSerie {
+    width: 80%;
+    margin: auto;
+}
+
+.centerTitle > h1 {
+    margin: auto;
+    text-align: center;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.md-icon-button{
+    display: none;
+}
+
+
+.carouselContent{
+   text-align: center;
+    height: inherit;
+    width: inherit;
+}
+
+.carouselContent img{
+    height: 100%;
+}

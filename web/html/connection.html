@@ -1,0 +1,46 @@
+<section class="connexion">
+    <div ng-show="!connected">
+        <md-card class="formConnectionRegistration">
+            <md-card-title>
+                <md-card-title-text class="md-display-1">
+                    Sign in
+                </md-card-title-text>
+                <md-card-title-text class="md-display-1">
+                    <span ng-click="redirectSignUp()">Sign up</span>
+                </md-card-title-text>
+            </md-card-title>
+                <md-card-content>
+                    <form name="connectionForm" ng-submit="connection()">
+                        <md-input-container class="md-block">
+                            <md-icon>email</md-icon>
+                            <label>Email</label>
+                            <input ng-model="connection.email" name="email" type="email" md-no-asterisk required>
+                            <div ng-messages="connectionForm.email.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <md-icon>lock</md-icon>
+                            <label>Password</label>
+                            <input ng-model="connection.password" name="password" type="password" md-no-asterisk required>
+                            <div ng-messages="connectionForm.password.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-card-actions>
+                            <md-button class="md-primary" ng-disabled="!connectionForm.$valid" ng-click="toConnect()">
+                                <md-icon ng-show="connectionForm.$valid">lock_open</md-icon> Sign in
+                            </md-button>
+                        </md-card-actions>
+
+                        <md-card-actions>
+                            <span md-colors="{color: 'red'}">{{ connectionError }}</span>
+                        </md-card-actions>
+                    </form>
+
+                </md-card-content>
+        </md-card>
+    </div>
+</section>

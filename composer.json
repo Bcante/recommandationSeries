@@ -1,0 +1,18 @@
+{
+    "name": "src",
+    "type": "project",
+    "require": {
+        "illuminate/database": "*",
+        "slim/slim": "2.*",
+        "ircmaxell/password-compat": "1.0.4",
+        "slim/php-view": "^2.2",
+        "ircmaxell/random-lib": "*",
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+      "psr-0": {
+        "recommandationSeries" : "src",
+        "conf" : "src"
+      }
+    }
+}

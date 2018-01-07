@@ -1,0 +1,23 @@
+<section class="tracking">
+    <div ng-show='connected'>
+        <md-content class="md-padding">
+            <md-card class="md-padding">
+                <md-card-title class="md-padding centerTitle">
+                    <h1 class="md-display-1">My Tracking</h1>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+                        <md-whiteframe ng-repeat="serie in seriesFollowed" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+                            <md-card class="serieBloc">
+                                <img ng-click="displayASerie(serie.id)" src="https://image.tmdb.org/t/p/w300{{ serie.poster_path }}"> <br />
+                                <div>
+                                    <span class="md-title" ng-click="displayASerie(serie.id)">{{ serie.name }}</span>
+                                </div>
+                            </md-card>
+                        </md-whiteframe>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </div>
+</section>
